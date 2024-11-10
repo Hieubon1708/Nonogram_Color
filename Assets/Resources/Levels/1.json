@@ -1,0 +1,50 @@
+{
+"typeLevel": 0,
+  "buttonConfigs": [
+
+{
+"buttonHex": "#4E83FE", "fontHex": "#FFFFFF"
+}, 
+{
+"buttonHex": "#FDAA0A" , "fontHex": "#000000"
+
+}
+],
+  "boxConfigs": [
+    [
+      { "mainHex": "#4E83FE", "extraHex": "#0FADFE" },
+      { "mainHex": "#4E83FE", "extraHex": "#0FADFE" },
+{ "mainHex": "#4E83FE", "extraHex": "#4E83FE" },
+      { "mainHex": "#4E83FE", "extraHex": "#0FADFE" },
+{ "mainHex": "#4E83FE", "extraHex": "#4E83FE" }
+    ],
+[
+      { "mainHex": "#4E83FE", "extraHex": "#4E83FE" },
+      { "mainHex": "#4E83FE", "extraHex": "#0FADFE" },
+{ "mainHex": "#4E83FE", "extraHex": "#0FADFE" },
+      { "mainHex": "#4E83FE", "extraHex": "#4E83FE" },
+{ "mainHex": "#FFFFFF", "extraHex": "#0FADFE" },
+    ],
+[
+      { "mainHex": "#4E83FE", "extraHex": "#0FADFE" },
+      { "mainHex": "#4E83FE", "extraHex": "#4E83FE" },
+{ "mainHex": "#FFFFFF", "extraHex": "#0FADFE" },
+      { "mainHex": "#4E83FE", "extraHex": "#4E83FE" },
+{ "mainHex": "#4E83FE", "extraHex": "#4E83FE" },
+    ],
+[
+      { "mainHex": "#FDAA0A", "extraHex": "#845F04" },
+      { "mainHex": "#4E83FE", "extraHex": "#4E83FE" },
+{ "mainHex": "#FDAA0A", "extraHex": "845F04" },
+      { "mainHex": "#4E83FE", "extraHex": "#4E83FE" },
+{ "mainHex": "#FDAA0A", "extraHex": "#845F04" },
+    ],
+[
+      { "mainHex": "#FFFFFF", "extraHex": "#FFF3EE" },
+      { "mainHex": "#FFFFFF", "extraHex": "#FFF3EE" },
+{ "mainHex": "#FDAA0A", "extraHex": "#845F04" },
+      { "mainHex": "#FFFFFF", "extraHex": "#FFF3EE" },
+{ "mainHex": "#FFFFFF", "extraHex": "#FFF3EE" },
+    ]
+  ]
+}
