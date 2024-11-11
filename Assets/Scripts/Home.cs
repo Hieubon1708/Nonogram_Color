@@ -14,7 +14,7 @@ public class Home : MonoBehaviour
     {
         home.SetActive(false);
         gamePlay.SetActive(true);
-        GameController.instance.LoadLevel(1);
+        GameController.instance.LoadLevel(GameController.instance.level);
     }
         
     public void Achievement()

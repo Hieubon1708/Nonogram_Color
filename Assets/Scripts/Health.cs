@@ -10,6 +10,11 @@ public class Health : MonoBehaviour
         ani.Play("HealthSubtract");
     }
 
+    public void Replay()
+    {
+        ani.Play("ScaleHealth");
+    }
+
     private void OnDestroy()
     {
         transform.DOKill();

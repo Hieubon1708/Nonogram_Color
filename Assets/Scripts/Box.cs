@@ -1,9 +1,10 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Box : MonoBehaviour, IPointerClickHandler
+public class Box : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler
 {
     public bool isVisible;
     public string mainHex;
@@ -16,18 +17,28 @@ public class Box : MonoBehaviour, IPointerClickHandler
     {
         this.mainHex = mainHex;
         this.extraHex = extraHex;
-        IsX();
         gameObject.SetActive(true);
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        if (isVisible || x.activeSelf || GameController.instance.playerController.health == 0) return;
         Show();
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        GameController.instance.playerController.isDrag = true;
+        Show();
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        GameController.instance.playerController.isDrag = false;
     }
 
     public void Show()
     {
+        if (!GameController.instance.playerController.isDrag || isVisible || x.activeSelf || GameController.instance.playerController.health == 0) return;
         isVisible = true;
         Color color;
         if (GameController.instance.ColorConvert(GameController.instance.playerController.hexSelected, out color))
@@ -36,12 +47,21 @@ public class Box : MonoBehaviour, IPointerClickHandler
             {
                 if (mainHex != GameController.instance.playerController.hexSelected)
                 {
+                    GameController.instance.playerController.isDrag = false;
                     GameController.instance.playerController.SubtractHealth();
                     image.color = Color.white;
                     GameController.instance.uIController.PlayFalse(transform.position, this);
                 }
+                if (mainHex != "#FFFFFF") GameController.instance.playerController.PlusBoxSelected();
             });
         }
+        else Debug.LogError("Not found " + gameObject.name + " / " + mainHex);
+    }
+
+    public void EndDo(float time)
+    {
+        Color color;
+        if (GameController.instance.ColorConvert(extraHex, out color)) image.DOColor(color, time).SetEase(Ease.Linear);
         else Debug.LogError("Not found " + gameObject.name + " / " + mainHex);
     }
 
@@ -73,5 +93,10 @@ public class Box : MonoBehaviour, IPointerClickHandler
         x.SetActive(false);
         image.color = Color.white;
         isVisible = false;
+    }
+
+    public void OnDestroy()
+    {
+        transform.DOKill();
     }
 }

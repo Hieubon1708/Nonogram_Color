@@ -51,7 +51,7 @@ public class UICommon : MonoBehaviour
     public void ShowPanelSetting()
     {
         panelSetting.gameObject.SetActive(true);
-        ScalePopup(panelSetting, popupSetting, 222f / 255f, 0.1f, 1f, 0.5f);
+        ScalePopup(panelSetting, popupSetting, 234f / 255f, 0.1f, 1f, 0.5f);
     }
 
     public void HidePanelSetting()

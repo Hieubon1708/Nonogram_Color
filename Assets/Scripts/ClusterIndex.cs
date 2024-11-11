@@ -23,7 +23,8 @@ public class ClusterIndex : MonoBehaviour
         else Debug.LogError("Not found " + gameObject.name + " / " + hex);
         num.text = amount.ToString();
         num.fontSize = GameController.instance.dataManager.sizeConfig[(int)GameController.instance.typeLevel].fontSize;
-            if (GameController.instance.ColorConvert(GameController.instance.GetFontColor(hex), out color)) num.color = color;
+
+        if (GameController.instance.ColorConvert(GameController.instance.GetFontColor(hex), out color)) num.color = color;
         else Debug.LogError("Not found " + gameObject.name + " / " + hex);
     }
 

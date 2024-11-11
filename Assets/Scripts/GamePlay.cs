@@ -11,9 +11,13 @@ public class GamePlay : MonoBehaviour
     public CanvasGroup frameWin;
     public CanvasGroup panelWin;
 
+    public GameObject layerCover;
+    public Image panelLose;
+    public RectTransform popupLose;
     public RectTransform boxAreaParent;
     public RectTransform target;
     public GameObject wooden;
+    public Mask mask;
     Vector2 startBoxAreaParent;
 
     public Health[] healths;
@@ -43,10 +47,11 @@ public class GamePlay : MonoBehaviour
     {
         for (int i = 0; i < canvasBeforeWin.Length; i++)
         {
-            canvasBeforeWin[i].DOFade(0f, 0.5f).SetEase(Ease.Linear);
+            canvasBeforeWin[i].DOFade(0f, 0.25f).SetEase(Ease.Linear);
         }
-        DOVirtual.DelayedCall(0.5f, delegate
+        DOVirtual.DelayedCall(0.25f, delegate
         {
+            mask.enabled = true;
             frameWin.gameObject.SetActive(true);
             frameWin.DOFade(1f, 0.25f).SetEase(Ease.Linear).OnComplete(delegate
             {
@@ -54,7 +59,10 @@ public class GamePlay : MonoBehaviour
                 {
                     wooden.SetActive(true);
                     panelWin.gameObject.SetActive(true);
-                    panelWin.DOFade(1f, 0.25f).SetEase(Ease.Linear);
+                    panelWin.DOFade(1f, 0.25f).SetEase(Ease.Linear).OnComplete(delegate
+                    {
+                        layerCover.SetActive(false);
+                    }) ;
                 });
                 boxAreaParent.DOMove(target.position, 0.5f).SetEase(Ease.Linear);
                 boxAreaParent.DOScale(0.725f, 0.5f).SetEase(Ease.InBack);
@@ -62,17 +70,45 @@ public class GamePlay : MonoBehaviour
         });
     }
 
-    public void Lose()
+    public void ShowPanelLose()
     {
-
+        layerCover.SetActive(true);
+        DOVirtual.DelayedCall(1.25f, delegate
+        {
+            panelLose.gameObject.SetActive(true);
+            UIController.instance.uICommon.ScalePopup(panelLose, popupLose, 234f / 255f, 0.1f, 1f, 0.5f);
+        });
     }
 
+    public void HidePanelLose()
+    {
+        UIController.instance.uICommon.ScalePopup(panelLose, popupLose, 0f, 0f, 0.9f, 0f);
+        panelLose.gameObject.SetActive(false);
+        layerCover.SetActive(false);
+    }
+
+    public void Replay()
+    {
+        GameController.instance.LoadLevel(GameController.instance.level);
+        HidePanelLose();
+        for (int i = 0; i < healths.Length; i++)
+        {
+            healths[i].Replay();
+        }
+    }
+
+    public void PlusHealth()
+    {
+        GameController.instance.playerController.health++;
+        HidePanelLose();
+        healths[0].Replay();
+    }
 
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            Win();
+            GameController.instance.boxController.Win();
         }
     }
 
@@ -92,6 +128,7 @@ public class GamePlay : MonoBehaviour
         frameWin.gameObject.SetActive(false);
         panelWin.gameObject.SetActive(false);
         wooden.SetActive(false);
+        mask.enabled = false;
         frameWin.alpha = 0f;
         boxAreaParent.position = startBoxAreaParent;
         boxAreaParent.localScale = Vector3.one;

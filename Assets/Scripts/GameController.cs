@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     public DataManager dataManager;
     public UIController uIController;
     public LineGenerator lineGenerator;
+    public int level;
 
     public void Awake()
     {

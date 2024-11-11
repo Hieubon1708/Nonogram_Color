@@ -31,6 +31,7 @@ public class DataManager : MonoBehaviour
 [System.Serializable]
 public class SizeConfig
 {
+    public int percentX;
     public int amountBox;
     public float boxCellSize;
     public float fontSize;
@@ -42,6 +43,7 @@ public class SizeConfig
 public class LevelConfig
 {
     public DataManager.TypeLevel typeLevel;
+    public int totalToWin;
     public ButtonConfig[] buttonConfigs;
     public BoxConfig[][] boxConfigs;
 }
@@ -52,7 +54,6 @@ public class ButtonConfig
     public string buttonHex;
     public string fontHex;
 }
-
 
 [System.Serializable]
 public class BoxConfig

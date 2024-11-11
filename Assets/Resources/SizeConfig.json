@@ -1,27 +1,31 @@
 [
     {
-	"amountBox": 5,
+        "percentX": 0,
+        "amountBox": 5,
         "boxCellSize": 170,
         "fontSize": 50.0,
         "contrainCount": 5,
         "limitSpaceInCluster": 2
     },
     {
-	"amountBox": 10,
+        "percentX": 50,
+        "amountBox": 10,
         "boxCellSize": 85,
         "fontSize": 20.0,
         "contrainCount": 10,
         "limitSpaceInCluster": 5
     },
     {
-	"amountBox": 15,
+        "percentX": 50,
+        "amountBox": 15,
         "boxCellSize": 56.6667,
         "fontSize": 20.0,
         "contrainCount": 15,
         "limitSpaceInCluster": 6
     },
     {
-	"amountBox": 20,
+        "percentX": 50,
+        "amountBox": 20,
         "boxCellSize": 42.5,
         "fontSize": 20.0,
         "contrainCount": 20,

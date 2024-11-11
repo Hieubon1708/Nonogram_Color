@@ -6,11 +6,15 @@ public class PlayerController : MonoBehaviour
     public int health;
     public RectTransform gridButton;
     public ButtonSelector[] buttonSelectors;
+    public bool isDrag;
+    public int totalBoxSelected;
+    public int totalToWin;
 
     public void LoadLevel(LevelConfig levelConfig)
     {
         ResetButtons();
         UIController.instance.gamePlay.ResetHealth(out health);
+        totalToWin = levelConfig.totalToWin;
         for (int i = 0; i < levelConfig.buttonConfigs.Length; i++)
         {
             buttonSelectors[i + 1].LoadLevel(levelConfig.buttonConfigs[i].buttonHex, levelConfig.buttonConfigs[i].fontHex);
@@ -26,7 +30,17 @@ public class PlayerController : MonoBehaviour
         health--;
         if (health == 0)
         {
-            GameController.instance.uIController.gamePlay.Lose();
+            GameController.instance.uIController.gamePlay.ShowPanelLose();
+        }
+    }
+
+    public void PlusBoxSelected()
+    {
+        totalBoxSelected++;
+        if (totalBoxSelected == totalToWin)
+        {
+            GameController.instance.boxController.Win();
+            GameController.instance.uIController.gamePlay.layerCover.SetActive(true);
         }
     }
 
