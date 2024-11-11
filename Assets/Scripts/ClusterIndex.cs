@@ -7,7 +7,7 @@ public class ClusterIndex : MonoBehaviour
 {
     public Image bg;
     public TextMeshProUGUI num;
-    public List<Box> boxClusters = new List<Box>();
+    public Animation flicker;
 
     public void LoadData(int amount, string hex)
     {
@@ -28,10 +28,14 @@ public class ClusterIndex : MonoBehaviour
         else Debug.LogError("Not found " + gameObject.name + " / " + hex);
     }
 
+    public void Flicker()
+    {
+        flicker.Play("FadeCluster");
+    }
+
     public void ResetClusterIndex()
     {
         gameObject.SetActive(false);
-        boxClusters.Clear();
         bg.color = Vector4.one;
         num.color = Vector4.one;
     }

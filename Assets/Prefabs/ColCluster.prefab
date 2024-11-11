@@ -280,6 +280,8 @@ GameObject:
   - component: {fileID: 8648450559290205932}
   - component: {fileID: 3494962458794919924}
   - component: {fileID: 6153512026659328560}
+  - component: {fileID: 4036467985837927413}
+  - component: {fileID: 4522586727703483832}
   m_Layer: 5
   m_Name: IndexColCluster (4)
   m_TagString: Untagged
@@ -359,7 +361,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bg: {fileID: 3494962458794919924}
   num: {fileID: 3748291849286499739}
-  boxClusters: []
+  flicker: {fileID: 4522586727703483832}
+--- !u!225 &4036467985837927413
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2595456826136421048}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!111 &4522586727703483832
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2595456826136421048}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 2b1615879147c164e8038d1b8e8e878a, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 2b1615879147c164e8038d1b8e8e878a, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &3116416645946959167
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,6 +536,8 @@ GameObject:
   - component: {fileID: 7206020243622572832}
   - component: {fileID: 3205199415691672152}
   - component: {fileID: 1823551561981468537}
+  - component: {fileID: 2859164883206959604}
+  - component: {fileID: 5704854372302703393}
   m_Layer: 5
   m_Name: IndexColCluster
   m_TagString: Untagged
@@ -585,7 +617,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bg: {fileID: 3205199415691672152}
   num: {fileID: 808730012816159924}
-  boxClusters: []
+  flicker: {fileID: 5704854372302703393}
+--- !u!225 &2859164883206959604
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3395661659523943129}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!111 &5704854372302703393
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3395661659523943129}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 2b1615879147c164e8038d1b8e8e878a, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 2b1615879147c164e8038d1b8e8e878a, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &3959644136628951634
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,6 +658,8 @@ GameObject:
   - component: {fileID: 1693425532659610020}
   - component: {fileID: 2530911118464255492}
   - component: {fileID: 6133725600786053986}
+  - component: {fileID: 1231593656868163679}
+  - component: {fileID: 9139929778182359695}
   m_Layer: 5
   m_Name: IndexColCluster (2)
   m_TagString: Untagged
@@ -677,7 +739,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bg: {fileID: 2530911118464255492}
   num: {fileID: 6573130566179471903}
-  boxClusters: []
+  flicker: {fileID: 9139929778182359695}
+--- !u!225 &1231593656868163679
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3959644136628951634}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!111 &9139929778182359695
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3959644136628951634}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 2b1615879147c164e8038d1b8e8e878a, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 2b1615879147c164e8038d1b8e8e878a, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &4376794882915429103
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,6 +780,8 @@ GameObject:
   - component: {fileID: 1657032123852773709}
   - component: {fileID: 1296378609309311944}
   - component: {fileID: 4267828456267606808}
+  - component: {fileID: 2220736124585302672}
+  - component: {fileID: 554028211866691762}
   m_Layer: 5
   m_Name: IndexColCluster (3)
   m_TagString: Untagged
@@ -769,7 +861,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bg: {fileID: 1296378609309311944}
   num: {fileID: 1986478099354706028}
-  boxClusters: []
+  flicker: {fileID: 554028211866691762}
+--- !u!225 &2220736124585302672
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4376794882915429103}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!111 &554028211866691762
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4376794882915429103}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 2b1615879147c164e8038d1b8e8e878a, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 2b1615879147c164e8038d1b8e8e878a, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &5043523497299507804
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,6 +902,8 @@ GameObject:
   - component: {fileID: 3566740596739607109}
   - component: {fileID: 7493782325328130506}
   - component: {fileID: 7849470331915805403}
+  - component: {fileID: 4454475336537535016}
+  - component: {fileID: 3278996787854947942}
   m_Layer: 5
   m_Name: IndexColCluster (1)
   m_TagString: Untagged
@@ -861,7 +983,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bg: {fileID: 7493782325328130506}
   num: {fileID: 7233734757471727491}
-  boxClusters: []
+  flicker: {fileID: 3278996787854947942}
+--- !u!225 &4454475336537535016
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5043523497299507804}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!111 &3278996787854947942
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5043523497299507804}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 2b1615879147c164e8038d1b8e8e878a, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 2b1615879147c164e8038d1b8e8e878a, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &6854685210433529202
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,6 +1025,7 @@ GameObject:
   - component: {fileID: 7509055934088001002}
   - component: {fileID: 1794572845829267467}
   - component: {fileID: 8803071960983728298}
+  - component: {fileID: 8645438350394794710}
   m_Layer: 5
   m_Name: ColCluster
   m_TagString: Untagged
@@ -989,6 +1140,23 @@ MonoBehaviour:
   - {fileID: 6133725600786053986}
   - {fileID: 4267828456267606808}
   - {fileID: 6153512026659328560}
+  ani: {fileID: 8645438350394794710}
+--- !u!111 &8645438350394794710
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6854685210433529202}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: cd52c42f07fcf064486a54a18c130fe3, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: cd52c42f07fcf064486a54a18c130fe3, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &7492652100205936480
 GameObject:
   m_ObjectHideFlags: 0

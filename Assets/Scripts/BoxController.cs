@@ -61,7 +61,7 @@ public class BoxController : MonoBehaviour
                 });
             }
         }
-        DOVirtual.DelayedCall((boxes.Length - 1) * (0.25f * 0.25f), delegate
+        DOVirtual.DelayedCall((boxes.Length) * (0.25f * 0.25f), delegate
         {
             GameController.instance.uIController.gamePlay.Win();
         });
@@ -75,7 +75,7 @@ public class BoxController : MonoBehaviour
         }
     }
 
-    public Box GetBox(GameObject box)
+    public Box GetBox(Box box)
     {
         for (int i = 0; i < boxes.Length; i++)
         {
@@ -88,5 +88,35 @@ public class BoxController : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public int GetRow(Box box)
+    {
+        for (int i = 0; i < boxes.Length; i++)
+        {
+            for (int j = 0; j < boxes[i].Length; j++)
+            {
+                if (boxes[i][j] == box)
+                {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+    
+    public int GetCol(Box box)
+    {
+        for (int i = 0; i < boxes.Length; i++)
+        {
+            for (int j = 0; j < boxes[i].Length; j++)
+            {
+                if (boxes[i][j] == box)
+                {
+                    return j;
+                }
+            }
+        }
+        return -1;
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,6 +6,7 @@ public class RowCluster : MonoBehaviour
 {
     public HorizontalLayoutGroup horizontalLayoutGroup;
     public ClusterIndex[] clusterIndexs;
+    public Animation ani;
 
     public void LoadLevel(int index, Box[][] boxes)
     {
@@ -18,6 +20,7 @@ public class RowCluster : MonoBehaviour
         int count = 0;
         int indexCluster = 0;
         string hexPrevious = boxes[index][0].mainHex;
+        List<Box> boxClusters = new List<Box>();
         for (int i = 0; i < boxes[index].Length; i++)
         {
             if (boxes[index][i].mainHex != hexPrevious)
@@ -27,8 +30,15 @@ public class RowCluster : MonoBehaviour
                     amountIndex++;
                     clusterIndexs[indexCluster].LoadData(count, hexPrevious);
                 }
+                boxClusters = new List<Box>();
                 indexCluster++;
                 count = 0;
+            }
+            boxClusters.Add(boxes[index][i]);
+            if (boxes[index][i].mainHex != "#FFFFFF")
+            {
+                boxes[index][i].rowClusters = boxClusters;
+                boxes[index][i].rowClusterIndex = clusterIndexs[indexCluster];
             }
             hexPrevious = boxes[index][i].mainHex;
             count++;
@@ -51,6 +61,11 @@ public class RowCluster : MonoBehaviour
             }
         }
         gameObject.SetActive(true);
+    }
+
+    public void Flicker()
+    {
+        ani.Play("Flicker");
     }
 
     public void ResetRowCluster()

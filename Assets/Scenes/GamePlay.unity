@@ -11288,6 +11288,7 @@ RectTransform:
   m_Children:
   - {fileID: 1366121047}
   - {fileID: 266372163}
+  - {fileID: 1305383157}
   - {fileID: 247162665}
   m_Father: {fileID: 1713687658}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -36670,7 +36671,8 @@ MonoBehaviour:
   - {fileID: 1804904464}
   - {fileID: 1424187294}
   frameWin: {fileID: 1244220902}
-  panelWin: {fileID: 1790985897}
+  panelWinFront: {fileID: 1305383158}
+  panelWinBack: {fileID: 1790985897}
   layerCover: {fileID: 266372162}
   panelLose: {fileID: 247162667}
   popupLose: {fileID: 1858567921}
@@ -41735,7 +41737,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 216253412}
-  m_Father: {fileID: 1790985896}
+  m_Father: {fileID: 1305383157}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -47527,6 +47529,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f64e1ce230be0c945bbaf6473c659252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1305383156
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1305383157}
+  - component: {fileID: 1305383158}
+  m_Layer: 5
+  m_Name: Win
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1305383157
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305383156}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1156857920}
+  - {fileID: 2053854338}
+  m_Father: {fileID: 332474588}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1305383158
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305383156}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &1306858406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66089,8 +66141,6 @@ RectTransform:
   m_Children:
   - {fileID: 1403530693}
   - {fileID: 1862272172}
-  - {fileID: 1156857920}
-  - {fileID: 2053854338}
   m_Father: {fileID: 1072987946}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -76531,7 +76581,7 @@ RectTransform:
   m_Children:
   - {fileID: 1453496438}
   - {fileID: 1668565008}
-  m_Father: {fileID: 1790985896}
+  m_Father: {fileID: 1305383157}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -76584,7 +76634,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1043590401}
         m_TargetAssemblyTypeName: GamePlay, Assembly-CSharp
-        m_MethodName: Back
+        m_MethodName: Home
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
     {
         ResetButtons();
         UIController.instance.gamePlay.ResetHealth(out health);
+        totalBoxSelected = 0;
         totalToWin = levelConfig.totalToWin;
         for (int i = 0; i < levelConfig.buttonConfigs.Length; i++)
         {
@@ -39,7 +41,10 @@ public class PlayerController : MonoBehaviour
         totalBoxSelected++;
         if (totalBoxSelected == totalToWin)
         {
-            GameController.instance.boxController.Win();
+            DOVirtual.DelayedCall(0.25f, delegate
+            {
+                GameController.instance.boxController.Win();
+            });
             GameController.instance.uIController.gamePlay.layerCover.SetActive(true);
         }
     }

@@ -9,7 +9,8 @@ public class GamePlay : MonoBehaviour
 
     public CanvasGroup[] canvasBeforeWin;
     public CanvasGroup frameWin;
-    public CanvasGroup panelWin;
+    public CanvasGroup panelWinFront;
+    public CanvasGroup panelWinBack;
 
     public GameObject layerCover;
     public Image panelLose;
@@ -47,25 +48,27 @@ public class GamePlay : MonoBehaviour
     {
         for (int i = 0; i < canvasBeforeWin.Length; i++)
         {
-            canvasBeforeWin[i].DOFade(0f, 0.25f).SetEase(Ease.Linear);
+            canvasBeforeWin[i].DOFade(0f, 0.5f).SetEase(Ease.Linear);
         }
-        DOVirtual.DelayedCall(0.25f, delegate
+        DOVirtual.DelayedCall(0.5f, delegate
         {
             mask.enabled = true;
             frameWin.gameObject.SetActive(true);
-            frameWin.DOFade(1f, 0.25f).SetEase(Ease.Linear).OnComplete(delegate
+            frameWin.DOFade(1f, 0.5f).SetEase(Ease.Linear).OnComplete(delegate
             {
-                DOVirtual.DelayedCall(0.25f, delegate
+                DOVirtual.DelayedCall(0.5f, delegate
                 {
                     wooden.SetActive(true);
-                    panelWin.gameObject.SetActive(true);
-                    panelWin.DOFade(1f, 0.25f).SetEase(Ease.Linear).OnComplete(delegate
+                    panelWinFront.gameObject.SetActive(true);
+                    panelWinFront.DOFade(1f, 0.5f).SetEase(Ease.Linear);
+                    panelWinBack.gameObject.SetActive(true);
+                    panelWinBack.DOFade(1f, 0.5f).SetEase(Ease.Linear).OnComplete(delegate
                     {
                         layerCover.SetActive(false);
                     }) ;
                 });
                 boxAreaParent.DOMove(target.position, 0.5f).SetEase(Ease.Linear);
-                boxAreaParent.DOScale(0.725f, 0.5f).SetEase(Ease.InBack);
+                boxAreaParent.DOScale(0.725f, 0.5f).SetEase(Ease.Linear);
             });
         });
     }
@@ -78,6 +81,12 @@ public class GamePlay : MonoBehaviour
             panelLose.gameObject.SetActive(true);
             UIController.instance.uICommon.ScalePopup(panelLose, popupLose, 234f / 255f, 0.1f, 1f, 0.5f);
         });
+    }
+
+    public void Home()
+    {
+        ResetWin();
+        Back();
     }
 
     public void HidePanelLose()
@@ -126,7 +135,8 @@ public class GamePlay : MonoBehaviour
     {
         wooden.SetActive(false);
         frameWin.gameObject.SetActive(false);
-        panelWin.gameObject.SetActive(false);
+        panelWinBack.gameObject.SetActive(false);
+        panelWinFront.gameObject.SetActive(false);
         wooden.SetActive(false);
         mask.enabled = false;
         frameWin.alpha = 0f;
@@ -134,7 +144,7 @@ public class GamePlay : MonoBehaviour
         boxAreaParent.localScale = Vector3.one;
         for (int i = 0; i < canvasBeforeWin.Length; i++)
         {
-            canvasBeforeWin[i].alpha = 0f;
+            canvasBeforeWin[i].alpha = 1f;
         }
     }
 
@@ -144,7 +154,8 @@ public class GamePlay : MonoBehaviour
         {
             canvasBeforeWin[i].DOKill();
         }
-        panelWin.DOKill();
+        panelWinBack.DOKill();
+        panelWinFront.DOKill();
         frameWin.DOKill();
     }
 }
