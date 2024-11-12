@@ -1,7 +1,5 @@
 using DG.Tweening;
-using System;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -48,22 +46,67 @@ public class Box : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoint
         if (!GameController.instance.playerController.isDrag || isVisible || x.gameObject.activeSelf || GameController.instance.playerController.health == 0) return;
         isVisible = true;
         Color color;
-        if (GameController.instance.ColorConvert(GameController.instance.playerController.hexSelected, out color))
+        if (GameController.instance.uIController.gamePlay.hint.isHint)
         {
-            image.DOColor(color, 0.1f).OnComplete(delegate
+            if (mainHex == "#FFFFFF")
+            {
+                x.gameObject.SetActive(true);
+            }
+            else
+            {
+                if (GameController.instance.ColorConvert(mainHex, out color))
+                {
+                    image.DOColor(color, 0.1f);
+                    CheckLine();
+                    GameController.instance.playerController.CheckWin();
+                }
+                else Debug.LogError("Not found " + gameObject.name + " / " + mainHex);
+            }
+            if (GameController.instance.uIController.gamePlay.hint) GameController.instance.uIController.gamePlay.hint.Deselect();
+        }
+        else
+        {
+            if (GameController.instance.playerController.hexSelected == "#FFFFFF")
             {
                 if (mainHex != GameController.instance.playerController.hexSelected)
                 {
+                    xSelected.gameObject.SetActive(true);
                     GameController.instance.playerController.isDrag = false;
-                    GameController.instance.playerController.SubtractHealth();
-                    image.color = Color.white;
-                    GameController.instance.uIController.PlayFalse(transform.position, this);
+                    DOVirtual.DelayedCall(0.15f, delegate
+                    {
+                        GameController.instance.playerController.totalBoxSelected++;
+                        xSelected.gameObject.SetActive(false);
+                        GameController.instance.playerController.SubtractHealth();
+                        GameController.instance.uIController.PlayFalse(transform.position, this);
+                    }).SetUpdate(true);
                 }
-                else CheckLine();
-                if (mainHex != "#FFFFFF") GameController.instance.playerController.PlusBoxSelected();
-            });
+                else x.gameObject.SetActive(true);
+            }
+            else if (GameController.instance.ColorConvert(GameController.instance.playerController.hexSelected, out color))
+            {
+                image.DOColor(color, 0.1f).OnComplete(delegate
+                {
+                    if (mainHex != GameController.instance.playerController.hexSelected)
+                    {
+                        if (mainHex != "#FFFFFF") GameController.instance.playerController.totalBoxSelected++;
+                        image.color = Color.white;
+                        GameController.instance.playerController.SubtractHealth();
+                        GameController.instance.uIController.PlayFalse(transform.position, this);
+                    }
+                });
+                if (mainHex != GameController.instance.playerController.hexSelected) GameController.instance.playerController.isDrag = false;
+                else
+                {
+                    if (mainHex != "#FFFFFF")
+                    {
+                        GameController.instance.playerController.totalBoxSelected++;
+                        GameController.instance.playerController.CheckWin();
+                    }
+                    CheckLine();
+                }
+            }
+            else Debug.LogError("Not found " + gameObject.name + " / " + mainHex);
         }
-        else Debug.LogError("Not found " + gameObject.name + " / " + mainHex);
     }
 
     public void ShowX()
@@ -79,73 +122,81 @@ public class Box : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoint
 
         bool isRowOk = true;
         bool isColOk = true;
-        for (int i = 0; i < GameController.instance.boxController.boxes[row].Length; i++)
+
+        if (GameController.instance.playerController.totalToWin != GameController.instance.playerController.totalBoxSelected)
         {
-            if (!GameController.instance.boxController.boxes[row][i].isVisible
-                && GameController.instance.boxController.boxes[row][i].mainHex != "#FFFFFF") isRowOk = false;
-        }
-        if (isRowOk)
-        {
-            for (int i = col; i >= 0; i--)
+            for (int i = 0; i < GameController.instance.boxController.boxes[row].Length; i++)
             {
-                if (GameController.instance.boxController.boxes[row][i].mainHex == "#FFFFFF")
+                if (!GameController.instance.boxController.boxes[row][i].isVisible
+                    && GameController.instance.boxController.boxes[row][i].mainHex != "#FFFFFF") isRowOk = false;
+            }
+            if (isRowOk)
+            {
+                for (int i = col; i >= 0; i--)
                 {
-                    int index = i;
-                    DOVirtual.DelayedCall(0.15f * ((col - i) * 0.15f), delegate
+                    if (GameController.instance.boxController.boxes[row][i].mainHex == "#FFFFFF")
                     {
-                        GameController.instance.boxController.boxes[row][index].ShowX();
-                    });
+                        int index = i;
+                        GameController.instance.boxController.boxes[row][index].isVisible = true;
+                        DOVirtual.DelayedCall(0.15f * ((col - i) * 0.15f), delegate
+                        {
+                            GameController.instance.boxController.boxes[row][index].ShowX();
+                        });
+                    }
+                }
+                DOVirtual.DelayedCall(0.15f * ((col + 1) * 0.15f), delegate
+                {
+                    GameController.instance.clusterController.rowClusters[row].Flicker();
+                    rowClusterIndex.Flicker();
+                });
+                for (int i = col; i < GameController.instance.boxController.boxes[row].Length; i++)
+                {
+                    if (GameController.instance.boxController.boxes[row][i].mainHex == "#FFFFFF")
+                    {
+                        int index = i;
+                        GameController.instance.boxController.boxes[row][index].isVisible = true;
+                        DOVirtual.DelayedCall(0.15f * ((col - i) * 0.15f), delegate
+                        {
+                            GameController.instance.boxController.boxes[row][index].ShowX();
+                        });
+                    }
                 }
             }
-            DOVirtual.DelayedCall(0.15f * ((col + 1) * 0.15f), delegate
+            for (int i = 0; i < GameController.instance.boxController.boxes.Length; i++)
             {
-                GameController.instance.clusterController.rowClusters[row].Flicker();
-                rowClusterIndex.Flicker();
-            });
-            for (int i = col; i < GameController.instance.boxController.boxes[row].Length; i++)
-            {
-                if (GameController.instance.boxController.boxes[row][i].mainHex == "#FFFFFF")
-                {
-                    int index = i;
-                    DOVirtual.DelayedCall(0.15f * ((col - i) * 0.15f), delegate
-                    {
-                        GameController.instance.boxController.boxes[row][index].ShowX();
-                    });
-                }
+                if (!GameController.instance.boxController.boxes[i][col].isVisible
+                    && GameController.instance.boxController.boxes[i][col].mainHex != "#FFFFFF") isColOk = false;
             }
-        }
-        for (int i = 0; i < GameController.instance.boxController.boxes.Length; i++)
-        {
-            if (!GameController.instance.boxController.boxes[i][col].isVisible
-                && GameController.instance.boxController.boxes[i][col].mainHex != "#FFFFFF") isColOk = false;
-        }
-        if (isColOk)
-        {
-            for (int i = row; i >= 0; i--)
+            if (isColOk)
             {
-                if (GameController.instance.boxController.boxes[i][col].mainHex == "#FFFFFF")
+                for (int i = row; i >= 0; i--)
                 {
-                    int index = i;
-                    DOVirtual.DelayedCall(0.15f * ((row - i) * 0.15f), delegate
+                    if (GameController.instance.boxController.boxes[i][col].mainHex == "#FFFFFF")
                     {
-                        GameController.instance.boxController.boxes[index][col].ShowX();
-                    });
+                        int index = i;
+                        GameController.instance.boxController.boxes[index][col].isVisible = true;
+                        DOVirtual.DelayedCall(0.15f * ((row - i) * 0.15f), delegate
+                        {
+                            GameController.instance.boxController.boxes[index][col].ShowX();
+                        });
+                    }
                 }
-            }
-            DOVirtual.DelayedCall(0.15f * ((row + 1) * 0.15f), delegate
-            {
-                GameController.instance.clusterController.colClusters[col].Flicker();
-                colClusterIndex.Flicker();
-            });
-            for (int i = row; i < GameController.instance.boxController.boxes.Length; i++)
-            {
-                if (GameController.instance.boxController.boxes[i][col].mainHex == "#FFFFFF")
+                DOVirtual.DelayedCall(0.15f * ((row + 1) * 0.15f), delegate
                 {
-                    int index = i;
-                    DOVirtual.DelayedCall(0.15f * ((row - i) * 0.15f), delegate
+                    GameController.instance.clusterController.colClusters[col].Flicker();
+                    colClusterIndex.Flicker();
+                });
+                for (int i = row; i < GameController.instance.boxController.boxes.Length; i++)
+                {
+                    if (GameController.instance.boxController.boxes[i][col].mainHex == "#FFFFFF")
                     {
-                        GameController.instance.boxController.boxes[index][col].ShowX();
-                    });
+                        int index = i;
+                        GameController.instance.boxController.boxes[index][col].isVisible = true;
+                        DOVirtual.DelayedCall(0.15f * ((row - i) * 0.15f), delegate
+                        {
+                            GameController.instance.boxController.boxes[index][col].ShowX();
+                        });
+                    }
                 }
             }
         }
@@ -160,8 +211,8 @@ public class Box : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoint
             if (!isRowOk)
             {
                 GameController.instance.clusterController.rowClusters[row].Flicker();
-                rowClusterIndex.Flicker();
             }
+            rowClusterIndex.Flicker();
         }
         isClusterOk = true;
         for (int i = 0; i < colClusters.Count; i++)
@@ -173,8 +224,8 @@ public class Box : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoint
             if (!isColOk)
             {
                 GameController.instance.clusterController.colClusters[col].Flicker();
-                colClusterIndex.Flicker();
             }
+            colClusterIndex.Flicker();
         }
     }
 
@@ -198,8 +249,9 @@ public class Box : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoint
             Color color;
             if (GameController.instance.ColorConvert(mainHex, out color))
             {
-                CheckLine();
                 image.DOColor(color, 0.1f);
+                CheckLine();
+                GameController.instance.playerController.CheckWin();
             }
             else Debug.LogError("Not found " + gameObject.name + " / " + mainHex);
         }

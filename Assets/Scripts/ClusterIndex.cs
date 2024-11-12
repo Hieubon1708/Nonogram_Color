@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +7,7 @@ public class ClusterIndex : MonoBehaviour
     public Image bg;
     public TextMeshProUGUI num;
     public Animation flicker;
+    public CanvasGroup canvasGroup;
 
     public void LoadData(int amount, string hex)
     {
@@ -35,6 +35,7 @@ public class ClusterIndex : MonoBehaviour
 
     public void ResetClusterIndex()
     {
+        canvasGroup.alpha = 1f;
         gameObject.SetActive(false);
         bg.color = Vector4.one;
         num.color = Vector4.one;

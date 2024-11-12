@@ -42,6 +42,7 @@ public class SizeConfig
 [System.Serializable]
 public class LevelConfig
 {
+    public string name;
     public DataManager.TypeLevel typeLevel;
     public int totalToWin;
     public ButtonConfig[] buttonConfigs;

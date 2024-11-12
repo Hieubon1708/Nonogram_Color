@@ -7,6 +7,8 @@ public class UIController : MonoBehaviour
 
     public UICommon uICommon;
     public GamePlay gamePlay;
+    public Home home;
+
     public FalseCircle[] falseCircles;
     int falseIndex;
 
@@ -21,15 +23,21 @@ public class UIController : MonoBehaviour
         {
             falseCircles[i].SetSize(levelConfig);
         }
+        gamePlay.LoadLevel(levelConfig);
     }
 
     public void PlayFalse(Vector2 pos, Box box)
     {
-        falseCircles[falseIndex].boxSelected = box;
-        falseCircles[falseIndex].gameObject.transform.position = pos;
-        falseCircles[falseIndex].gameObject.SetActive(true);
+        FalseCircle falseCircle = falseCircles[falseIndex];
+        falseCircle.boxSelected = box;
+        falseCircle.gameObject.transform.position = pos;
+        falseCircle.gameObject.SetActive(true);
         falseIndex++;
         if (falseIndex == falseCircles.Length) falseIndex = 0;
+        DOVirtual.DelayedCall(0.4f, delegate
+        {
+            falseCircle.EndFalse();
+        }).SetUpdate(true);
     }
 
     public void ButtonSelect(ButtonSelector[] buttons, ButtonSelector buttonSelected, float timeIn, float timeOut)

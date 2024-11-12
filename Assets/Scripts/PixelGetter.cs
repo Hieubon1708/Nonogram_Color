@@ -21,6 +21,8 @@ public class PixelGetter : MonoBehaviour
             LevelConfig levelConfig = new LevelConfig();
             Color[] pixels = images[i].GetPixels();
 
+            levelConfig.name = colorSeters[i].name;
+                
             if (pixels.Length == 25) levelConfig.typeLevel = DataManager.TypeLevel.Level5x5;
             if (pixels.Length == 100) levelConfig.typeLevel = DataManager.TypeLevel.Level10x10;
             if (pixels.Length == 225) levelConfig.typeLevel = DataManager.TypeLevel.Level15x15;
@@ -91,6 +93,7 @@ public class PixelGetter : MonoBehaviour
 [System.Serializable]
 public class ColorSeter
 {
+    public string name;
     public DominantColor[] dominantColors;
 }
 

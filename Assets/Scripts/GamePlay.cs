@@ -1,9 +1,12 @@
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GamePlay : MonoBehaviour
 {
+    public Hint hint;
+
     public GameObject home;
     public GameObject gamePlay;
 
@@ -18,6 +21,9 @@ public class GamePlay : MonoBehaviour
     public RectTransform boxAreaParent;
     public RectTransform target;
     public GameObject wooden;
+    public TextMeshProUGUI textObject;
+    public TextMeshProUGUI textLevel;
+    public TextMeshProUGUI textNextLevel;
     public Mask mask;
     Vector2 startBoxAreaParent;
 
@@ -26,6 +32,13 @@ public class GamePlay : MonoBehaviour
     private void Awake()
     {
         startBoxAreaParent = boxAreaParent.position;
+    }
+
+    public void LoadLevel(LevelConfig levelConfig)
+    {
+        textObject.text = levelConfig.name;
+        textLevel.text = "Level " + PlayerPrefs.GetInt("Level", 1);
+        textNextLevel.text = "Next Level " + (PlayerPrefs.GetInt("Level", 1) + 1);
     }
 
     public void Back()
@@ -65,7 +78,7 @@ public class GamePlay : MonoBehaviour
                     panelWinBack.DOFade(1f, 0.5f).SetEase(Ease.Linear).OnComplete(delegate
                     {
                         layerCover.SetActive(false);
-                    }) ;
+                    });
                 });
                 boxAreaParent.DOMove(target.position, 0.5f).SetEase(Ease.Linear);
                 boxAreaParent.DOScale(0.725f, 0.5f).SetEase(Ease.Linear);
@@ -83,6 +96,16 @@ public class GamePlay : MonoBehaviour
         });
     }
 
+    public void NextLevel()
+    {
+        ResetWin();
+        for (int i = 0; i < healths.Length; i++)
+        {
+            healths[i].Replay();
+        }
+        GameController.instance.LoadLevel(PlayerPrefs.GetInt("Level", 1));
+    }
+
     public void Home()
     {
         ResetWin();
@@ -98,7 +121,7 @@ public class GamePlay : MonoBehaviour
 
     public void Replay()
     {
-        GameController.instance.LoadLevel(GameController.instance.level);
+        GameController.instance.LoadLevel(PlayerPrefs.GetInt("Level", 1));
         HidePanelLose();
         for (int i = 0; i < healths.Length; i++)
         {
@@ -117,7 +140,7 @@ public class GamePlay : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            GameController.instance.boxController.Win();
+            NextLevel();
         }
     }
 

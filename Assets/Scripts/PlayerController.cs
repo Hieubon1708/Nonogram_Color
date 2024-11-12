@@ -30,22 +30,20 @@ public class PlayerController : MonoBehaviour
     {
         UIController.instance.gamePlay.HealthSubstractAni(health - 1);
         health--;
-        if (health == 0)
+        if (health == 0 && totalBoxSelected != totalToWin)
         {
             GameController.instance.uIController.gamePlay.ShowPanelLose();
         }
     }
 
-    public void PlusBoxSelected()
+    public void CheckWin()
     {
-        totalBoxSelected++;
         if (totalBoxSelected == totalToWin)
         {
-            DOVirtual.DelayedCall(0.25f, delegate
-            {
-                GameController.instance.boxController.Win();
-            });
+            GameController.instance.boxController.Win();
             GameController.instance.uIController.gamePlay.layerCover.SetActive(true);
+            PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level", 1) + 1);
+            GameController.instance.uIController.home.UpdateTextLevel();
         }
     }
 
@@ -60,5 +58,17 @@ public class PlayerController : MonoBehaviour
     public void SetColorSelect(string hex)
     {
         hexSelected = hex;
+    }
+
+    public int GetButtonIndex()
+    {
+        for (int i = 0; i < buttonSelectors.Length; i++)
+        {
+            if (buttonSelectors[i].hex == hexSelected)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 }

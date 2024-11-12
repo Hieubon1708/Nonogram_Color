@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -12,13 +13,15 @@ public class GameController : MonoBehaviour
     public DataManager dataManager;
     public UIController uIController;
     public LineGenerator lineGenerator;
-    public int level;
 
     public void Awake()
     {
+        DOTween.SetTweensCapacity(200, 125);
         instance = this;
         lineGenerator.Generate();
         dataManager.DataReader();
+        uIController.home.UpdateTextLevel();
+        PlayerPrefs.SetInt("Level", 12);
     }
 
     public void LoadLevel(int level)

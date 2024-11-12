@@ -26,6 +26,7 @@ public class ButtonSelector : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if(GameController.instance.uIController.gamePlay.hint) GameController.instance.uIController.gamePlay.hint.HideHint();
         GameController.instance.playerController.SetColorSelect(hex);
         GameController.instance.uIController.ButtonSelect(GameController.instance.playerController.buttonSelectors, this, 0.15f, 0.25f);
     }

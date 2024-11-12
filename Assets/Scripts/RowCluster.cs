@@ -52,15 +52,25 @@ public class RowCluster : MonoBehaviour
         {
             for (int i = 0; i < clusterIndexs.Length; i++)
             {
-                if(!clusterIndexs[i].gameObject.activeSelf && amountIndex < GameController.instance.dataManager.sizeConfig[(int)GameController.instance.typeLevel].limitSpaceInCluster)
+                if (!clusterIndexs[i].gameObject.activeSelf && amountIndex < GameController.instance.dataManager.sizeConfig[(int)GameController.instance.typeLevel].limitSpaceInCluster)
                 {
                     clusterIndexs[i].LoadData(0, "#FFFFFF");
-                    clusterIndexs[i].transform.SetAsFirstSibling();
+                    SetAsFirstSibling(clusterIndexs[i], i);
                     amountIndex++;
                 }
             }
         }
         gameObject.SetActive(true);
+    }
+
+    void SetAsFirstSibling(ClusterIndex clusterIndex, int index)
+    {
+        clusterIndex.transform.SetAsFirstSibling();
+        for (int i = index; i > 0; i--)
+        {
+            clusterIndexs[i] = clusterIndexs[i - 1];
+        }
+        clusterIndexs[0] = clusterIndex;
     }
 
     public void Flicker()
