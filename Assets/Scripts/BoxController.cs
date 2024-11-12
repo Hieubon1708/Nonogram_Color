@@ -21,6 +21,7 @@ public class BoxController : MonoBehaviour
         List<Box> x = new List<Box>();
         int indexPool = 0;
         int row = levelConfig.boxConfigs.Length;
+        ResizeX(row);
         boxes = new Box[row][];
         for (int i = 0; i < row; i++)
         {
@@ -28,13 +29,13 @@ public class BoxController : MonoBehaviour
             Box[] boxesInRow = new Box[col];
             for (int j = 0; j < col; j++)
             {
-                boxesInRow[j] = pool[indexPool++];
-
+                boxesInRow[j] = pool[indexPool];
                 string mainColor = levelConfig.boxConfigs[i][j].mainHex;
                 string extraColor = levelConfig.boxConfigs[i][j].extraHex;
 
                 if (mainColor == "#FFFFFF") x.Add(pool[indexPool]);
                 boxesInRow[j].LoadLevel(mainColor, extraColor);
+                indexPool++;
             }
             boxes[i] = boxesInRow;
         }
@@ -45,6 +46,19 @@ public class BoxController : MonoBehaviour
             x[indexRandom].IsX();
             x.RemoveAt(indexRandom);
             xCount--;
+        }
+    }
+
+    void ResizeX(int row)
+    {
+        float size = 0;
+        if (row == 5) size = 95;
+        if (row == 10) size = 55;
+        if (row == 15) size = 35;
+        if (row == 20) size = 25;
+        for (int i = 0; i < pool.Length; i++)
+        {
+            pool[i].ResizeX(size);
         }
     }
 

@@ -1,5 +1,6 @@
-﻿using DG.Tweening;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class PixelGetter : MonoBehaviour
 
     public ColorSeter[] colorSeters;
 
+    public List<Box> boxes  = new List<Box>();
     string HexConvert(Color color)
     {
         return "#" + ColorUtility.ToHtmlStringRGB(color);
@@ -46,13 +48,17 @@ public class PixelGetter : MonoBehaviour
             for (int h = 0; h < pixels.Length; h++)
             {
                 string extraHex = HexConvert(pixels[h]);
-                if (extraHex != "#FFFFFF") totalToWin++;
                 if (count == 0)
                 {
                     boxConfigsChild = new BoxConfig[boxConfigs.Length];
                 }
                 BoxConfig boxConfig = new BoxConfig();
-                boxConfig.mainHex = HexConvert(GetDominantColor(pixels[h], i));
+                Color color = GetDominantColor(pixels[h], i);
+                if(color != Color.white)
+                {
+                    totalToWin++;
+                }
+                boxConfig.mainHex = HexConvert(color);
                 boxConfig.extraHex = extraHex;
 
                 boxConfigsChild[count] = boxConfig;

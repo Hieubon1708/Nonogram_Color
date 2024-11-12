@@ -11,7 +11,9 @@ public class Box : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoint
     public string extraHex;
     public Image image;
     public Image x;
+    public RectTransform rectX;
     public Image xSelected;
+    public RectTransform rectXSelected;
     public List<Box> rowClusters;
     public List<Box> colClusters;
     public ClusterIndex rowClusterIndex;
@@ -39,6 +41,12 @@ public class Box : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPoint
     public void OnPointerUp(PointerEventData eventData)
     {
         GameController.instance.playerController.isDrag = false;
+    }
+
+    public void ResizeX(float size)
+    {
+        rectX.sizeDelta = Vector2.one * size;
+        rectXSelected.sizeDelta = Vector2.one * size;
     }
 
     public void Show()

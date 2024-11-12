@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         {
             buttonSelectors[i + 1].LoadLevel(levelConfig.buttonConfigs[i].buttonHex, levelConfig.buttonConfigs[i].fontHex);
         }
-        gridButton.localScale = Vector3.one * (0.6f + (levelConfig.buttonConfigs.Length * (0.4f / 5)));
+        gridButton.localScale = Vector3.one * (0.6f + ((5 - levelConfig.buttonConfigs.Length) * 0.08f));
         GameController.instance.uIController.ButtonSelect(buttonSelectors, buttonSelectors[1], 0f, 0f);
         SetColorSelect(buttonSelectors[1].hex);
     }

@@ -45,6 +45,7 @@ public class GamePlay : MonoBehaviour
     {
         gamePlay.SetActive(false);
         home.SetActive(true);
+        UIController.instance.home.inputField.gameObject.SetActive(true);
     }
 
     public void Book()
