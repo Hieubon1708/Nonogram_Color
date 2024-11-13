@@ -10,7 +10,6 @@ public class PixelGetter : MonoBehaviour
 
     public ColorSeter[] colorSeters;
 
-    public List<Box> boxes  = new List<Box>();
     string HexConvert(Color color)
     {
         return "#" + ColorUtility.ToHtmlStringRGB(color);
@@ -86,10 +85,11 @@ public class PixelGetter : MonoBehaviour
         {
             for (int j = 0; j < colorSeters[index].dominantColors[i].uniformColor.Length; j++)
             {
-                if (colorSeters[index].dominantColors[i].uniformColor[j] == color)
-                {
-                    return colorSeters[index].dominantColors[i].dominantColor;
-                }
+                Color colorFind = colorSeters[index].dominantColors[i].uniformColor[j];
+                float r = Mathf.Abs(colorFind.r * 255f - color.r * 255f);
+                float b = Mathf.Abs(colorFind.b * 255f - color.b * 255f);
+                float g = Mathf.Abs(colorFind.g * 255f - color.g * 255f);
+                if(r <= 10 && b <= 10 && g <= 10) return colorSeters[index].dominantColors[i].dominantColor;
             }
         }
         return Color.white;

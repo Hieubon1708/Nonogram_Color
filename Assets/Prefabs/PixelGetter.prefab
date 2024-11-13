@@ -1,0 +1,1945 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2309782757167843271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8325380864893796540}
+  - component: {fileID: 2373175897968454850}
+  m_Layer: 0
+  m_Name: PixelGetter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8325380864893796540
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2309782757167843271}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2373175897968454850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2309782757167843271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2094a85d242ab7c48bca57b570c6ccbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  images:
+  - {fileID: 2800000, guid: 67634992fb3f32a40ad2c2c09d10978f, type: 3}
+  - {fileID: 2800000, guid: d5d39f80ae625a84f816ee9ae1132566, type: 3}
+  - {fileID: 2800000, guid: 6a9606724cf3bc64a858537e9b8747ed, type: 3}
+  - {fileID: 2800000, guid: 4a0b9399577fe2c4a88edb90d0ae3957, type: 3}
+  - {fileID: 2800000, guid: b7f69973f265bb4439f273eb3a30c129, type: 3}
+  - {fileID: 2800000, guid: cb13b5d7980a4ed4e9bab1b3aeab2759, type: 3}
+  - {fileID: 2800000, guid: 8f4ba1480f3995a4b95915eb7dbc1337, type: 3}
+  - {fileID: 2800000, guid: 5ec0737cfbcce3d49923f915e25f4717, type: 3}
+  - {fileID: 2800000, guid: 45aea6e3ef9eda141a6c2a428c6e0d5a, type: 3}
+  - {fileID: 2800000, guid: ec4a5c5773f93cb4999e32c3b75a0ef8, type: 3}
+  - {fileID: 2800000, guid: 7546c94e5f40bc446871e06cf4bcc680, type: 3}
+  - {fileID: 2800000, guid: 469f9292b41c3344a9b76c484d674937, type: 3}
+  - {fileID: 2800000, guid: fa26d019d51a9c64885878e2f5e502c4, type: 3}
+  - {fileID: 2800000, guid: 948ccc74006caf546b8e0ab2fd43311e, type: 3}
+  - {fileID: 2800000, guid: f5cd6305c7627304cbe96fe2c7a8ab41, type: 3}
+  - {fileID: 2800000, guid: 7c7b77d834a73624ba9ed871576c79b7, type: 3}
+  - {fileID: 2800000, guid: 0babd0ab2632ec547a39adc9f222e309, type: 3}
+  - {fileID: 2800000, guid: b7b5ad1b6ff586944bc1538e1ce65ccd, type: 3}
+  - {fileID: 2800000, guid: 0e83e77548a5b5747bc469a9bec79e96, type: 3}
+  - {fileID: 2800000, guid: 474335f76d435f84abcff86a1f7a2a47, type: 3}
+  - {fileID: 2800000, guid: 00e5e76c4a7f2d6418896360363f0268, type: 3}
+  - {fileID: 2800000, guid: 88b45257da30fb14e9761a8e382301ef, type: 3}
+  - {fileID: 2800000, guid: 8ab65b5e9e102f94096fddb58344005b, type: 3}
+  - {fileID: 2800000, guid: eacb45f51ddca07438b7e7345a6c1401, type: 3}
+  - {fileID: 2800000, guid: 466f866944704ed44ab2906a163a8773, type: 3}
+  - {fileID: 2800000, guid: 4385397e5fbec374c927516520f02f60, type: 3}
+  - {fileID: 2800000, guid: 725c3f6a7d5f1bf4abd06655e7ac27da, type: 3}
+  - {fileID: 2800000, guid: 2aa8bc44b1129494692af3d8aecc4589, type: 3}
+  - {fileID: 2800000, guid: 4d7c0475eb99c1446b4cb922139ebb5b, type: 3}
+  - {fileID: 2800000, guid: d084c03ab1c5b844c81ad1d97a2111d9, type: 3}
+  - {fileID: 2800000, guid: de53000b8cb07e242ae88805490c0bff, type: 3}
+  - {fileID: 2800000, guid: 1cf45aadcdcc8c540a0115e24d7cd915, type: 3}
+  - {fileID: 2800000, guid: 45e15c77e783f7d4393216b86ef5cba8, type: 3}
+  - {fileID: 2800000, guid: 5066c187443619843bdb5abccf131d0b, type: 3}
+  - {fileID: 2800000, guid: e2908cbdc29769e43bdabb516ba08c28, type: 3}
+  - {fileID: 2800000, guid: 8d00c9793ab3fd6439e37709979f1ca6, type: 3}
+  - {fileID: 2800000, guid: ccf2a69c16443204da47f82f810bc155, type: 3}
+  - {fileID: 2800000, guid: 512a22eb68f71b943b838dd0a836676e, type: 3}
+  - {fileID: 2800000, guid: 719283e1308eddb479f7f3a5dac6b609, type: 3}
+  - {fileID: 2800000, guid: 2d6250cc90ee61240a651482c13c92ab, type: 3}
+  - {fileID: 2800000, guid: 0e62ed2b74a200b42895eb460290e0a3, type: 3}
+  - {fileID: 2800000, guid: 49777b7b77cda7e49976779f779664d2, type: 3}
+  - {fileID: 2800000, guid: 9cd712da860082047be2c9bc895a91d2, type: 3}
+  - {fileID: 2800000, guid: 8e18a215bae5da448affd4cf91c89b39, type: 3}
+  - {fileID: 2800000, guid: c06a15617ee090542922cd1359c7aa45, type: 3}
+  - {fileID: 2800000, guid: 06cf355e9e05a474383e99386584493b, type: 3}
+  - {fileID: 2800000, guid: a70e6f6e2cd9dda47acd2e976d43f3ca, type: 3}
+  - {fileID: 2800000, guid: b9f218da5a947e947a8c22f220f10157, type: 3}
+  - {fileID: 2800000, guid: 9cd90d23fb350ce4d897ffe134260596, type: 3}
+  - {fileID: 2800000, guid: d7a30187aca749948a308eebf32d2889, type: 3}
+  - {fileID: 2800000, guid: 4e1e95394e09fbf4eae80c25022912a3, type: 3}
+  - {fileID: 2800000, guid: a62b4f4662dac124994c0002ea8c0573, type: 3}
+  - {fileID: 2800000, guid: cd2d47e7de1e9ae439deb1166b9af6b1, type: 3}
+  - {fileID: 2800000, guid: 3d708fc3a28f30e46a2bfc2cfdbc09a8, type: 3}
+  - {fileID: 2800000, guid: ccc685897b2a1894492d1f050c6c6406, type: 3}
+  - {fileID: 2800000, guid: 8801230193348d043970522314b406bf, type: 3}
+  - {fileID: 2800000, guid: bebb820fe6e0768449bcbf85212cd73d, type: 3}
+  - {fileID: 2800000, guid: 49f588ffe68f9c143b508512b571a95a, type: 3}
+  - {fileID: 2800000, guid: 1d1959fbcfa09a0439f395173f5dfee0, type: 3}
+  - {fileID: 2800000, guid: ced51794c47abc34db26b10b78641e86, type: 3}
+  - {fileID: 2800000, guid: a18847ae762ce60488b246dff35fc48f, type: 3}
+  - {fileID: 2800000, guid: 385d9139a4b746949a1325f3d782080c, type: 3}
+  - {fileID: 2800000, guid: f54c32a97f86ad749b9ce76fd4921c8d, type: 3}
+  - {fileID: 2800000, guid: 1465ec34a4196ea4aabc021f01689e70, type: 3}
+  - {fileID: 2800000, guid: 5e75acbf323f1f64bb978818587399ba, type: 3}
+  - {fileID: 2800000, guid: 84c6588c735d8cf4f97ce0aaa05ef039, type: 3}
+  - {fileID: 2800000, guid: 051ffa172dc7aa942bb78e5599a2d93b, type: 3}
+  - {fileID: 2800000, guid: d4bc5513431cc6e44875c837cf8ba51e, type: 3}
+  - {fileID: 2800000, guid: 80f2d1d717d36f64e95f85628e564369, type: 3}
+  - {fileID: 2800000, guid: c7cbc6837e21f7e46bcd5df9de10ae60, type: 3}
+  - {fileID: 2800000, guid: 6ad6af6a85467ef4e958f4846ab65209, type: 3}
+  - {fileID: 2800000, guid: c4eb6f32064d3a2488ec8d5ada6284aa, type: 3}
+  - {fileID: 2800000, guid: 98992b4e99fa28644ad1ba6e17016bd9, type: 3}
+  - {fileID: 2800000, guid: f02f59f66b7fb8b4084dc0ffad6e295b, type: 3}
+  - {fileID: 2800000, guid: 29fb8e70dbd4e1141b26119407cc041a, type: 3}
+  - {fileID: 2800000, guid: 5e582da3052d28f49836aa1222cc797c, type: 3}
+  - {fileID: 2800000, guid: b43a68f717ae5914f8266e99184eae30, type: 3}
+  - {fileID: 2800000, guid: 280f299c6b728ed4492d3eb201e2d621, type: 3}
+  - {fileID: 2800000, guid: bd91f1630b16b5a4fbf6c6c3a796c32e, type: 3}
+  - {fileID: 2800000, guid: 50791f49c1addd349b22f0703b34d156, type: 3}
+  - {fileID: 2800000, guid: c6a6568e07b503742a698ff0f871c12a, type: 3}
+  - {fileID: 2800000, guid: 9735c2923ce434342ad002aa9146060e, type: 3}
+  - {fileID: 2800000, guid: afcf6e52475e46644944603dd4385a5b, type: 3}
+  - {fileID: 2800000, guid: fa372a68f70c74e4ca639e75d6a89dc1, type: 3}
+  - {fileID: 2800000, guid: 2e75c181cdf37234ca0252032dee81ad, type: 3}
+  - {fileID: 2800000, guid: fa52173f0b2315d40964afe9715c4ec2, type: 3}
+  colorSeters:
+  - name: banana
+    dominantColors:
+    - dominantColor: {r: 1, g: 0.8352942, b: 0.023529414, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 1, g: 1, b: 0.023529414, a: 1}
+      - {r: 1, g: 0.8352942, b: 0.023529414, a: 1}
+    - dominantColor: {r: 0.03529412, g: 0.72156864, b: 0.07058824, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.03529412, g: 0.72156864, b: 0.07058824, a: 1}
+  - name: cherry
+    dominantColors:
+    - dominantColor: {r: 0.8470589, g: 0.054901965, b: 0.054901965, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.8470589, g: 0.054901965, b: 0.054901965, a: 1}
+      - {r: 0.8470589, g: 0.3921569, b: 0.36862746, a: 1}
+    - dominantColor: {r: 0.16862746, g: 0.8196079, b: 0.3372549, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.16862746, g: 0.8196079, b: 0.3372549, a: 1}
+      - {r: 0.16862746, g: 0.5764706, b: 0.3372549, a: 1}
+    - dominantColor: {r: 0.49803925, g: 0.30588236, b: 0.13725491, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.49803925, g: 0.30588236, b: 0.13725491, a: 1}
+      - {r: 0.6431373, g: 0.30588236, b: 0.13725491, a: 1}
+  - name: watermelon
+    dominantColors:
+    - dominantColor: {r: 0.81568635, g: 0.28235295, b: 0.3372549, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.81568635, g: 0.28235295, b: 0.3372549, a: 1}
+    - dominantColor: {r: 0.54901963, g: 0.8117648, b: 0.35686275, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.54901963, g: 0.8117648, b: 0.35686275, a: 1}
+    - dominantColor: {r: 0, g: 0, b: 0, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0, g: 0, b: 0, a: 1}
+  - name: strawberry
+    dominantColors:
+    - dominantColor: {r: 0.8470589, g: 0.054901965, b: 0.054901965, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.8470589, g: 0.054901965, b: 0.054901965, a: 1}
+      - {r: 0.95294124, g: 0.3803922, b: 0.3803922, a: 1}
+    - dominantColor: {r: 0.24313727, g: 0.97647065, b: 0.32941177, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.24313727, g: 0.97647065, b: 0.32941177, a: 1}
+  - name: peach
+    dominantColors:
+    - dominantColor: {r: 0.9725491, g: 0.6313726, b: 0.7058824, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9725491, g: 0.6313726, b: 0.7058824, a: 1}
+      - {r: 0.9843138, g: 0.54901963, b: 0.6431373, a: 1}
+    - dominantColor: {r: 0.023529414, g: 0.5686275, b: 0.21960786, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.023529414, g: 0.5686275, b: 0.21960786, a: 1}
+  - name: orange
+    dominantColors:
+    - dominantColor: {r: 0.9686275, g: 0.59607846, b: 0, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.9686275, g: 0.59607846, b: 0, a: 1}
+      - {r: 1, g: 0.77647066, b: 0.41960788, a: 1}
+    - dominantColor: {r: 0.4039216, g: 0.8235295, b: 0, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.4039216, g: 0.8235295, b: 0, a: 1}
+  - name: lemon
+    dominantColors:
+    - dominantColor: {r: 0.9686275, g: 0.8000001, b: 0.023529414, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9686275, g: 0.8000001, b: 0.023529414, a: 1}
+      - {r: 0.9686275, g: 0.92549026, b: 0.023529414, a: 1}
+      - {r: 1, g: 0.9843138, b: 0.6666667, a: 1}
+    - dominantColor: {r: 0.03529412, g: 0.5568628, b: 0.24705884, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.03529412, g: 0.5568628, b: 0.24705884, a: 1}
+  - name: kiwi
+    dominantColors:
+    - dominantColor: {r: 0.65882355, g: 0.52156866, b: 0.25882354, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.7843138, g: 0.63529414, b: 0.34901962, a: 1}
+      - {r: 0.65882355, g: 0.52156866, b: 0.25882354, a: 1}
+      - {r: 0.5647059, g: 0.43529415, b: 0.19215688, a: 1}
+    - dominantColor: {r: 0.6784314, g: 0.7725491, b: 0.22352943, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.6784314, g: 0.7725491, b: 0.22352943, a: 1}
+      - {r: 0.59607846, g: 0.6862745, b: 0.16470589, a: 1}
+      - {r: 0.54901963, g: 0.64705884, b: 0.08235294, a: 1}
+  - name: grape
+    dominantColors:
+    - dominantColor: {r: 0.5803922, g: 0.019607844, b: 0.5137255, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.5803922, g: 0.019607844, b: 0.5137255, a: 1}
+      - {r: 0.64705884, g: 0.039215688, b: 0.5764706, a: 1}
+      - {r: 0.8117648, g: 0.24705884, b: 0.74509805, a: 1}
+      - {r: 0.72156864, g: 0.1254902, b: 0.6509804, a: 1}
+    - dominantColor: {r: 0.2392157, g: 0.13333334, b: 0.09019608, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.2392157, g: 0.13333334, b: 0.09019608, a: 1}
+    - dominantColor: {r: 0.054901965, g: 0.8745099, b: 0, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.054901965, g: 0.8745099, b: 0, a: 1}
+      - {r: 0.054901965, g: 0.7254902, b: 0, a: 1}
+  - name: chestnut
+    dominantColors:
+    - dominantColor: {r: 0.42352945, g: 0.227451, b: 0.015686275, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.42352945, g: 0.227451, b: 0.015686275, a: 1}
+    - dominantColor: {r: 0.5137255, g: 0.41960788, b: 0.050980397, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.5137255, g: 0.41960788, b: 0.050980397, a: 1}
+      - {r: 0.60784316, g: 0.5019608, b: 0.078431375, a: 1}
+      - {r: 1, g: 0.86274517, b: 0.30980393, a: 1}
+  - name: sparrow
+    dominantColors:
+    - dominantColor: {r: 0.49411768, g: 0.3529412, b: 0.26666668, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.49411768, g: 0.3529412, b: 0.26666668, a: 1}
+      - {r: 0.007843138, g: 0.003921569, b: 0, a: 1}
+    - dominantColor: {r: 0.9843138, g: 0.85098046, b: 0.6627451, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9843138, g: 0.85098046, b: 0.6627451, a: 1}
+      - {r: 1, g: 0.89019614, b: 0.7686275, a: 1}
+    - dominantColor: {r: 0.74509805, g: 0.5137255, b: 0.20784315, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.74509805, g: 0.5137255, b: 0.20784315, a: 1}
+      - {r: 0.9960785, g: 0.8000001, b: 0.1764706, a: 1}
+      - {r: 1, g: 0.7568628, b: 0.019607844, a: 1}
+      - {r: 0.97647065, g: 0.76470596, b: 0.03529412, a: 1}
+  - name: capybara
+    dominantColors:
+    - dominantColor: {r: 0.29803923, g: 0.21176472, b: 0.09411766, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.29803923, g: 0.21176472, b: 0.09411766, a: 1}
+      - {r: 0.18823531, g: 0.11764707, b: 0.019607844, a: 1}
+    - dominantColor: {r: 0.6117647, g: 0.40784317, b: 0.21960786, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.6117647, g: 0.40784317, b: 0.21960786, a: 1}
+      - {r: 0.58431375, g: 0.36862746, b: 0.16862746, a: 1}
+  - name: black cat
+    dominantColors:
+    - dominantColor: {r: 0.07058824, g: 0.07058824, b: 0.07058824, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.07058824, g: 0.07058824, b: 0.07058824, a: 1}
+    - dominantColor: {r: 0.5411765, g: 0.7686275, b: 0.23529413, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.5411765, g: 0.7686275, b: 0.23529413, a: 1}
+  - name: mouse
+    dominantColors:
+    - dominantColor: {r: 0.89019614, g: 0.45882356, b: 0.454902, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.89019614, g: 0.45882356, b: 0.454902, a: 1}
+      - {r: 0.87843144, g: 0.48235297, b: 0.5372549, a: 1}
+      - {r: 0.9333334, g: 0.6039216, b: 0.6039216, a: 1}
+      - {r: 0.89019614, g: 0.45882356, b: 0.5019608, a: 1}
+      - {r: 0.9058824, g: 0.5137255, b: 0.5137255, a: 1}
+    - dominantColor: {r: 0.61960787, g: 0.61960787, b: 0.61960787, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.61960787, g: 0.61960787, b: 0.61960787, a: 1}
+      - {r: 0.4666667, g: 0.47450984, b: 0.47058827, a: 1}
+      - {r: 0.19215688, g: 0.19215688, b: 0.19215688, a: 1}
+      - {r: 0.61960787, g: 0.6156863, b: 0.60784316, a: 1}
+      - {r: 0.62352943, g: 0.6156863, b: 0.627451, a: 1}
+      - {r: 0.54509807, g: 0.54509807, b: 0.54509807, a: 1}
+      - {r: 0.61960787, g: 0.6117647, b: 0.6156863, a: 1}
+      - {r: 0.6156863, g: 0.6156863, b: 0.6156863, a: 1}
+      - {r: 0.007843138, g: 0, b: 0.003921569, a: 1}
+    - dominantColor: {r: 0.86274517, g: 0.83921576, b: 0.8470589, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.86274517, g: 0.83921576, b: 0.8470589, a: 1}
+      - {r: 0.7803922, g: 0.76470596, b: 0.7607844, a: 1}
+      - {r: 0.7607844, g: 0.75294125, b: 0.7568628, a: 1}
+      - {r: 0.72156864, g: 0.76470596, b: 0.7490196, a: 1}
+      - {r: 0.7490196, g: 0.7411765, b: 0.74509805, a: 1}
+      - {r: 0.75294125, g: 0.74509805, b: 0.7490196, a: 1}
+      - {r: 0.77647066, g: 0.75294125, b: 0.7607844, a: 1}
+      - {r: 0.7568628, g: 0.7568628, b: 0.7568628, a: 1}
+      - {r: 0.7568628, g: 0.75294125, b: 0.74509805, a: 1}
+  - name: frog
+    dominantColors:
+    - dominantColor: {r: 0.1764706, g: 0.4039216, b: 0.17254902, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.18431373, g: 0.39607847, b: 0.16078432, a: 1}
+      - {r: 0.16862746, g: 0.4156863, b: 0.13725491, a: 1}
+      - {r: 0.22352943, g: 0.38823533, b: 0.14117648, a: 1}
+    - dominantColor: {r: 0.882353, g: 0.6156863, b: 0.46274513, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.882353, g: 0.6156863, b: 0.46274513, a: 1}
+      - {r: 0.8705883, g: 0.654902, b: 0.4431373, a: 1}
+    - dominantColor: {r: 0.34901962, g: 0.95294124, b: 0.18039216, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.7019608, g: 0.9058824, b: 0.34117648, a: 1}
+      - {r: 0.54901963, g: 0.7568628, b: 0.33333334, a: 1}
+      - {r: 0.5529412, g: 0.7843138, b: 0.32156864, a: 1}
+      - {r: 0.5411765, g: 0.76470596, b: 0.3137255, a: 1}
+  - name: tabby cat
+    dominantColors:
+    - dominantColor: {r: 0.7607844, g: 0.37254903, b: 0.21176472, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.7607844, g: 0.37254903, b: 0.21176472, a: 1}
+      - {r: 0.854902, g: 0.45098042, b: 0.28235295, a: 1}
+    - dominantColor: {r: 0.9294118, g: 0.67058825, b: 0.3019608, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.93725497, g: 0.67058825, b: 0.2901961, a: 1}
+      - {r: 0.9294118, g: 0.6666667, b: 0.3254902, a: 1}
+      - {r: 0.9294118, g: 0.6627451, b: 0.34509805, a: 1}
+    - dominantColor: {r: 0.5647059, g: 0.16078432, b: 0.1254902, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.5647059, g: 0.16078432, b: 0.1254902, a: 1}
+      - {r: 0.6, g: 0.14117648, b: 0.1137255, a: 1}
+      - {r: 0.17254902, g: 0.14509805, b: 0.1137255, a: 1}
+  - name: toad
+    dominantColors:
+    - dominantColor: {r: 0.16078432, g: 0.10588236, b: 0.0627451, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.16078432, g: 0.10588236, b: 0.0627451, a: 1}
+      - {r: 0.32156864, g: 0.21568629, b: 0.10196079, a: 1}
+    - dominantColor: {r: 0.9215687, g: 0.45098042, b: 0.21176472, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9215687, g: 0.45098042, b: 0.21176472, a: 1}
+      - {r: 0.6117647, g: 0.4784314, b: 0.3803922, a: 1}
+    - dominantColor: {r: 0.47058827, g: 0.31764707, b: 0.19607845, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.47058827, g: 0.31764707, b: 0.19607845, a: 1}
+  - name: dove
+    dominantColors:
+    - dominantColor: {r: 0.1254902, g: 0.121568635, b: 0.10588236, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
+      - {r: 0.11764707, g: 0.11764707, b: 0.11764707, a: 1}
+      - {r: 0.29411766, g: 0.2901961, b: 0.28235295, a: 1}
+    - dominantColor: {r: 0.4901961, g: 0.48627454, b: 0.47058827, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.5019608, g: 0.4901961, b: 0.47058827, a: 1}
+      - {r: 0.49803925, g: 0.48235297, b: 0.47058827, a: 1}
+      - {r: 0.654902, g: 0.6392157, b: 0.627451, a: 1}
+  - name: singing cat
+    dominantColors:
+    - dominantColor: {r: 0.1254902, g: 0.121568635, b: 0.1137255, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.1254902, g: 0.11764707, b: 0.121568635, a: 1}
+    - dominantColor: {r: 0.5568628, g: 0.32941177, b: 0.14117648, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.5568628, g: 0.32941177, b: 0.14117648, a: 1}
+    - dominantColor: {r: 0.93725497, g: 0.70980394, b: 0.7058824, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.93725497, g: 0.70980394, b: 0.7058824, a: 1}
+      - {r: 0.75294125, g: 0.37647063, b: 0.48235297, a: 1}
+      - {r: 0.6431373, g: 0.19607845, b: 0.28627452, a: 1}
+      - {r: 0.654902, g: 0.19215688, b: 0.31764707, a: 1}
+      - {r: 0.74509805, g: 0.36862746, b: 0.4784314, a: 1}
+    - dominantColor: {r: 0.37254903, g: 0.08627451, b: 0.16470589, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.36862746, g: 0.08627451, b: 0.16470589, a: 1}
+      - {r: 0.3803922, g: 0.08627451, b: 0.16862746, a: 1}
+      - {r: 0.36078432, g: 0.08627451, b: 0.18039216, a: 1}
+  - name: turtle
+    dominantColors:
+    - dominantColor: {r: 0.4039216, g: 0.42352945, b: 0.17254902, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.4039216, g: 0.42352945, b: 0.17254902, a: 1}
+      - {r: 0.007843138, g: 0.007843138, b: 0, a: 1}
+      - {r: 0.7490196, g: 0.24313727, b: 0, a: 1}
+    - dominantColor: {r: 0.5568628, g: 0.654902, b: 0.25882354, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.5568628, g: 0.654902, b: 0.25882354, a: 1}
+    - dominantColor: {r: 1, g: 0.9176471, b: 0, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 1, g: 0.9176471, b: 0, a: 1}
+      - {r: 0.7411765, g: 0.70980394, b: 0.2901961, a: 1}
+  - name: crow
+    dominantColors:
+    - dominantColor: {r: 0.13333334, g: 0.11764707, b: 0.1137255, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.13333334, g: 0.11764707, b: 0.1137255, a: 1}
+      - {r: 0.121568635, g: 0.11764707, b: 0.10980393, a: 1}
+      - {r: 0.09019608, g: 0.12941177, b: 0.1764706, a: 1}
+    - dominantColor: {r: 0.20392159, g: 0.2901961, b: 0.38431376, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.20392159, g: 0.2901961, b: 0.38431376, a: 1}
+      - {r: 0.1137255, g: 0.18039216, b: 0.24313727, a: 1}
+    - dominantColor: {r: 0.454902, g: 0.43921572, b: 0.53333336, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.454902, g: 0.43921572, b: 0.5254902, a: 1}
+      - {r: 0.18823531, g: 0.3372549, b: 0.48235297, a: 1}
+  - name: cobra
+    dominantColors:
+    - dominantColor: {r: 0.7254902, g: 0.5882353, b: 0.4784314, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.7254902, g: 0.5882353, b: 0.4784314, a: 1}
+      - {r: 0.427451, g: 0.34117648, b: 0.25882354, a: 1}
+      - {r: 0.427451, g: 0.34117648, b: 0.25882354, a: 1}
+      - {r: 0.50980395, g: 0.3803922, b: 0.2509804, a: 1}
+      - {r: 0.5372549, g: 0.4039216, b: 0.29411766, a: 1}
+      - {r: 0.5411765, g: 0.4039216, b: 0.2784314, a: 1}
+      - {r: 0.8862746, g: 0.6784314, b: 0.41960788, a: 1}
+      - {r: 0.3529412, g: 0.25490198, b: 0.16862746, a: 1}
+      - {r: 0.5411765, g: 0.4039216, b: 0.2784314, a: 1}
+      - {r: 0.4039216, g: 0.26666668, b: 0.15686275, a: 1}
+    - dominantColor: {r: 0.21568629, g: 0.13333334, b: 0.050980397, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.21568629, g: 0.13333334, b: 0.050980397, a: 1}
+      - {r: 0.3529412, g: 0.2509804, b: 0.16078432, a: 1}
+      - {r: 0.25490198, g: 0.15686275, b: 0.07058824, a: 1}
+      - {r: 0.30588236, g: 0.19607845, b: 0.10196079, a: 1}
+      - {r: 0.26666668, g: 0.19607845, b: 0.11764707, a: 1}
+      - {r: 0.22352943, g: 0.15294118, b: 0.098039225, a: 1}
+      - {r: 0.23529413, g: 0.16470589, b: 0.10980393, a: 1}
+      - {r: 1, g: 0, b: 0, a: 1}
+  - name: triceratops
+    dominantColors:
+    - dominantColor: {r: 0.28627452, g: 0.427451, b: 0.15294118, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.28627452, g: 0.427451, b: 0.15294118, a: 1}
+    - dominantColor: {r: 0.16470589, g: 0.24705884, b: 0.08627451, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.16470589, g: 0.24705884, b: 0.08627451, a: 1}
+      - {r: 0.15294118, g: 0.25490198, b: 0.06666667, a: 1}
+      - {r: 0.16862746, g: 0.23529413, b: 0.07058824, a: 1}
+      - {r: 0.10980393, g: 0.1254902, b: 0.13725491, a: 1}
+      - {r: 0.69411767, g: 0.82745105, b: 0.5254902, a: 1}
+  - name: whoreson
+    dominantColors:
+    - dominantColor: {r: 0.16078432, g: 0.1254902, b: 0.12941177, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.16078432, g: 0.1254902, b: 0.12941177, a: 1}
+      - {r: 0.54509807, g: 0.5803922, b: 0.89019614, a: 1}
+      - {r: 0.5568628, g: 0.5803922, b: 0.81568635, a: 1}
+    - dominantColor: {r: 0.59607846, g: 0.4901961, b: 0.40784317, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.59607846, g: 0.4901961, b: 0.40784317, a: 1}
+    - dominantColor: {r: 0.34509805, g: 0.34509805, b: 0.3372549, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.34509805, g: 0.34509805, b: 0.3372549, a: 1}
+  - name: rhino
+    dominantColors:
+    - dominantColor: {r: 0.49803925, g: 0.7372549, b: 0.9215687, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.49803925, g: 0.7372549, b: 0.9215687, a: 1}
+    - dominantColor: {r: 0.003921569, g: 0.3372549, b: 0.6509804, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.003921569, g: 0.3372549, b: 0.6509804, a: 1}
+      - {r: 0, g: 0.007843138, b: 0.078431375, a: 1}
+  - name: hornet
+    dominantColors:
+    - dominantColor: {r: 0.7843138, g: 0.3921569, b: 0.098039225, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.7843138, g: 0.3921569, b: 0.098039225, a: 1}
+      - {r: 0.7960785, g: 0.41960788, b: 0.14117648, a: 1}
+    - dominantColor: {r: 0.9450981, g: 0.7568628, b: 0.67058825, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9450981, g: 0.7568628, b: 0.67058825, a: 1}
+      - {r: 0.9058824, g: 0.6627451, b: 0.5176471, a: 1}
+      - {r: 0.7960785, g: 0.7960785, b: 0.7960785, a: 1}
+    - dominantColor: {r: 0.21176472, g: 0.121568635, b: 0.06666667, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.21176472, g: 0.121568635, b: 0.06666667, a: 1}
+      - {r: 0.19607845, g: 0.1254902, b: 0.078431375, a: 1}
+      - {r: 0.26666668, g: 0.1137255, b: 0.04705883, a: 1}
+  - name: penguin
+    dominantColors:
+    - dominantColor: {r: 0, g: 0, b: 0, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0.04705883, g: 0.04705883, b: 0.04705883, a: 1}
+    - dominantColor: {r: 1, g: 0.4784314, b: 0.007843138, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 1, g: 0.4784314, b: 0.007843138, a: 1}
+    - dominantColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+  - name: rooster
+    dominantColors:
+    - dominantColor: {r: 0.69803923, g: 0.14117648, b: 0.13333334, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.69803923, g: 0.14117648, b: 0.13333334, a: 1}
+    - dominantColor: {r: 0.9960785, g: 0.6784314, b: 0, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9960785, g: 0.6784314, b: 0, a: 1}
+    - dominantColor: {r: 0.36078432, g: 0.3372549, b: 0.3529412, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.36078432, g: 0.3372549, b: 0.3529412, a: 1}
+    - dominantColor: {r: 0.18039216, g: 0.18431373, b: 0.16078432, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.18039216, g: 0.18431373, b: 0.16078432, a: 1}
+  - name: micrurus surinamensis
+    dominantColors:
+    - dominantColor: {r: 0.03529412, g: 0.4039216, b: 0.9843138, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.03529412, g: 0.4039216, b: 0.9843138, a: 1}
+      - {r: 0.007843138, g: 0.16470589, b: 0.50980395, a: 1}
+      - {r: 0, g: 0.10980393, b: 0.29803923, a: 1}
+      - {r: 0.011764707, g: 0.2509804, b: 0.8117648, a: 1}
+      - {r: 0.039215688, g: 0.25490198, b: 0.75294125, a: 1}
+      - {r: 0.3529412, g: 1, b: 0.97647065, a: 1}
+    - dominantColor: {r: 1, g: 0.8588236, b: 0.227451, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 1, g: 0.8705883, b: 0.21960786, a: 1}
+      - {r: 0.9843138, g: 0.9058824, b: 0.15686275, a: 1}
+      - {r: 0.97647065, g: 0.77647066, b: 0, a: 1}
+      - {r: 1, g: 0.6156863, b: 0.003921569, a: 1}
+      - {r: 0.89019614, g: 0.52156866, b: 0, a: 1}
+      - {r: 0.9607844, g: 0.7137255, b: 0.03529412, a: 1}
+    - dominantColor: {r: 0.9960785, g: 0.22352943, b: 0.34117648, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9921569, g: 0.23137257, b: 0.33333334, a: 1}
+      - {r: 0.5686275, g: 0.015686275, b: 0.050980397, a: 1}
+      - {r: 0.6313726, g: 0, b: 0.04705883, a: 1}
+      - {r: 0.37647063, g: 0.007843138, b: 0, a: 1}
+      - {r: 0.8313726, g: 0.023529414, b: 0.10588236, a: 1}
+  - name: rabbit
+    dominantColors:
+    - dominantColor: {r: 0, g: 0.23137257, b: 0.35686275, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0, g: 0.23137257, b: 0.35686275, a: 1}
+    - dominantColor: {r: 0.7607844, g: 0.8862746, b: 0.93725497, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.7607844, g: 0.8862746, b: 0.9450981, a: 1}
+    - dominantColor: {r: 0.882353, g: 0.9450981, b: 0.9960785, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.882353, g: 0.9450981, b: 0.9960785, a: 1}
+  - name: pikachu
+    dominantColors:
+    - dominantColor: {r: 0.9607844, g: 0.92549026, b: 0.3254902, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9607844, g: 0.92549026, b: 0.3254902, a: 1}
+    - dominantColor: {r: 0.4901961, g: 0.18823531, b: 0.007843138, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.54509807, g: 0.38823533, b: 0.18823531, a: 1}
+      - {r: 0.3019608, g: 0.11764707, b: 0.003921569, a: 1}
+      - {r: 0.4901961, g: 0.18823531, b: 0.007843138, a: 1}
+      - {r: 0.9215687, g: 0.62352943, b: 0.2784314, a: 1}
+      - {r: 0.9215687, g: 0.6156863, b: 0.32156864, a: 1}
+    - dominantColor: {r: 0.1254902, g: 0.1254902, b: 0.11764707, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.1254902, g: 0.1254902, b: 0.11764707, a: 1}
+      - {r: 0.89019614, g: 0.23137257, b: 0.227451, a: 1}
+  - name: donald
+    dominantColors:
+    - dominantColor: {r: 0.011764707, g: 0, b: 0, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.003921569, g: 0, b: 0, a: 1}
+    - dominantColor: {r: 0.24705884, g: 0.40000004, b: 1, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.25490198, g: 0.40000004, b: 0.9921569, a: 1}
+      - {r: 0.41176474, g: 0.9803922, b: 0.9215687, a: 1}
+      - {r: 0.41176474, g: 0.9725491, b: 0.96470594, a: 1}
+      - {r: 0.45882356, g: 0.9725491, b: 0.8705883, a: 1}
+    - dominantColor: {r: 1, g: 0.9843138, b: 0.4784314, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 1, g: 0.9843138, b: 0.4784314, a: 1}
+      - {r: 0.9176471, g: 0.91372555, b: 0.121568635, a: 1}
+    - dominantColor: {r: 0.9725491, g: 0.027450982, b: 0, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9725491, g: 0.023529414, b: 0.015686275, a: 1}
+    - dominantColor: {r: 0.9843138, g: 0.59607846, b: 0.23137257, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.96470594, g: 0.6, b: 0.23529413, a: 1}
+  - name: tuacan
+    dominantColors:
+    - dominantColor: {r: 0.003921569, g: 0.003921569, b: 0.003921569, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.003921569, g: 0, b: 0, a: 1}
+    - dominantColor: {r: 0.97647065, g: 0.54509807, b: 0.09411766, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 1, g: 0.54901963, b: 0.011764707, a: 1}
+      - {r: 0.97647065, g: 0.8117648, b: 0.16862746, a: 1}
+      - {r: 0.49411768, g: 0.2392157, b: 0.07450981, a: 1}
+      - {r: 0.98823535, g: 0.54509807, b: 0.06666667, a: 1}
+      - {r: 0.9960785, g: 0.5411765, b: 0.058823533, a: 1}
+      - {r: 1, g: 0.5372549, b: 0.10588236, a: 1}
+    - dominantColor: {r: 0.21176472, g: 0.5686275, b: 0.19215688, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.21176472, g: 0.5686275, b: 0.19215688, a: 1}
+  - name: koala
+    dominantColors:
+    - dominantColor: {r: 0.7411765, g: 0.78823537, b: 0.7411765, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.7411765, g: 0.78823537, b: 0.7411765, a: 1}
+    - dominantColor: {r: 0.003921569, g: 0, b: 0.007843138, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0.5254902, g: 0.48627454, b: 0.4901961, a: 1}
+    - dominantColor: {r: 0.53333336, g: 0.7725491, b: 0.227451, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.53333336, g: 0.7725491, b: 0.227451, a: 1}
+    - dominantColor: {r: 0.7607844, g: 0.33333334, b: 0.2509804, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.7607844, g: 0.33333334, b: 0.2509804, a: 1}
+  - name: jackrabbit
+    dominantColors:
+    - dominantColor: {r: 0.41960788, g: 0.39607847, b: 0.41176474, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.41960788, g: 0.39607847, b: 0.41176474, a: 1}
+    - dominantColor: {r: 0.5254902, g: 0.7725491, b: 0.2509804, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 1, g: 0.54901963, b: 0.7294118, a: 1}
+      - {r: 0.5411765, g: 0.7686275, b: 0.23529413, a: 1}
+  - name: chicken
+    dominantColors:
+    - dominantColor: {r: 0.9921569, g: 0.94117653, b: 0.098039225, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9921569, g: 0.94117653, b: 0.098039225, a: 1}
+    - dominantColor: {r: 0.9921569, g: 0.43529415, b: 0.098039225, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.9921569, g: 0.43529415, b: 0.098039225, a: 1}
+      - {r: 0.82745105, g: 0.098039225, b: 0.19215688, a: 1}
+      - {r: 0.82745105, g: 0.09411766, b: 0.21568629, a: 1}
+    - dominantColor: {r: 0, g: 0, b: 0, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0, g: 0, b: 0, a: 1}
+    - dominantColor: {r: 0.5019608, g: 0.7843138, b: 0.25882354, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.5019608, g: 0.7843138, b: 0.25882354, a: 1}
+  - name: cute rabbit
+    dominantColors:
+    - dominantColor: {r: 0.8431373, g: 0.427451, b: 0.37254903, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.8431373, g: 0.427451, b: 0.37254903, a: 1}
+    - dominantColor: {r: 0.38431376, g: 0.3254902, b: 0.3137255, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.38431376, g: 0.3254902, b: 0.3137255, a: 1}
+    - dominantColor: {r: 0.07058824, g: 0.039215688, b: 0.027450982, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.07058824, g: 0.039215688, b: 0.027450982, a: 1}
+    - dominantColor: {r: 0.59607846, g: 0.5647059, b: 0.5529412, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.59607846, g: 0.5647059, b: 0.5529412, a: 1}
+      - {r: 0.9450981, g: 0.91372555, b: 0.83921576, a: 1}
+  - name: tulip
+    dominantColors:
+    - dominantColor: {r: 0.2627451, g: 0.3529412, b: 0.14117648, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.2627451, g: 0.3529412, b: 0.14117648, a: 1}
+      - {r: 0.28235295, g: 0.3372549, b: 0.13725491, a: 1}
+      - {r: 0.37254903, g: 0.4666667, b: 0.12941177, a: 1}
+      - {r: 0.45882356, g: 0.54509807, b: 0.15294118, a: 1}
+      - {r: 0.37254903, g: 0.4666667, b: 0.12941177, a: 1}
+    - dominantColor: {r: 0.50980395, g: 0.03529412, b: 0.054901965, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.50980395, g: 0.03529412, b: 0.054901965, a: 1}
+      - {r: 0.6509804, g: 0.16862746, b: 0.14901961, a: 1}
+      - {r: 0.59607846, g: 0.14901961, b: 0.14509805, a: 1}
+      - {r: 0.64705884, g: 0.24313727, b: 0.16862746, a: 1}
+      - {r: 0.7137255, g: 0.30588236, b: 0.20784315, a: 1}
+      - {r: 0.64705884, g: 0.13725491, b: 0.13725491, a: 1}
+      - {r: 0.67058825, g: 0.27450982, b: 0.19607845, a: 1}
+    - dominantColor: {r: 0.77647066, g: 0.4784314, b: 0.2509804, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.8000001, g: 0.48235297, b: 0.27450982, a: 1}
+      - {r: 0.77647066, g: 0.4784314, b: 0.2509804, a: 1}
+      - {r: 0.8941177, g: 0.6, b: 0.28235295, a: 1}
+  - name: pear khshabi
+    dominantColors:
+    - dominantColor: {r: 0.015686275, g: 0.3647059, b: 0.13725491, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.015686275, g: 0.3647059, b: 0.13725491, a: 1}
+      - {r: 0.427451, g: 0.5921569, b: 0.2627451, a: 1}
+    - dominantColor: {r: 0.53333336, g: 0.77647066, b: 0.21568629, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.53333336, g: 0.7803922, b: 0.19607845, a: 1}
+      - {r: 0.62352943, g: 0.86274517, b: 0.2901961, a: 1}
+      - {r: 0.8235295, g: 0.92549026, b: 0.64705884, a: 1}
+      - {r: 0.53333336, g: 0.7686275, b: 0.2509804, a: 1}
+      - {r: 0.58431375, g: 0.8235295, b: 0.24705884, a: 1}
+    - dominantColor: {r: 0.75294125, g: 0.34117648, b: 0.22352943, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.7254902, g: 0.35686275, b: 0.22352943, a: 1}
+  - name: lavender
+    dominantColors:
+    - dominantColor: {r: 0.16862746, g: 0.427451, b: 0.08235294, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.16862746, g: 0.427451, b: 0.08235294, a: 1}
+      - {r: 0.13725491, g: 0.34509805, b: 0.078431375, a: 1}
+      - {r: 0.13725491, g: 0.34509805, b: 0.078431375, a: 1}
+      - {r: 0.15686275, g: 0.38431376, b: 0.09411766, a: 1}
+      - {r: 0.21568629, g: 0.49411768, b: 0.13333334, a: 1}
+    - dominantColor: {r: 0.5764706, g: 0.28235295, b: 0.6392157, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.5764706, g: 0.28235295, b: 0.6392157, a: 1}
+      - {r: 0.6039216, g: 0.32941177, b: 0.7176471, a: 1}
+      - {r: 0.61960787, g: 0.30980393, b: 0.7294118, a: 1}
+      - {r: 0.5764706, g: 0.28235295, b: 0.6392157, a: 1}
+    - dominantColor: {r: 0.34901962, g: 0.18823531, b: 0.42352945, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.34901962, g: 0.18823531, b: 0.42352945, a: 1}
+      - {r: 0.40000004, g: 0.20784315, b: 0.46274513, a: 1}
+      - {r: 0.43529415, g: 0.2392157, b: 0.50980395, a: 1}
+      - {r: 0.4901961, g: 0.24705884, b: 0.58431375, a: 1}
+      - {r: 0.3019608, g: 0.16862746, b: 0.36862746, a: 1}
+  - name: Viola pedunculata
+    dominantColors:
+    - dominantColor: {r: 0.03137255, g: 0.41176474, b: 0, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.03137255, g: 0.41176474, b: 0, a: 1}
+      - {r: 0.04705883, g: 0.23529413, b: 0, a: 1}
+      - {r: 0.10588236, g: 0.40000004, b: 0.03529412, a: 1}
+    - dominantColor: {r: 0.9686275, g: 0.75294125, b: 0.011764707, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9686275, g: 0.75294125, b: 0.011764707, a: 1}
+      - {r: 1, g: 0.5686275, b: 0, a: 1}
+      - {r: 1, g: 0.5803922, b: 0, a: 1}
+    - dominantColor: {r: 0.4039216, g: 0, b: 0.46274513, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.4039216, g: 0, b: 0.46274513, a: 1}
+      - {r: 0.40000004, g: 0, b: 0.43137258, a: 1}
+    - dominantColor: {r: 0.13333334, g: 0.6627451, b: 0.015686275, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.13333334, g: 0.6627451, b: 0.015686275, a: 1}
+    - dominantColor: {r: 0.9490197, g: 1, b: 0.28235295, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9490197, g: 1, b: 0.28235295, a: 1}
+      - {r: 0.9490197, g: 0.9960785, b: 0.36862746, a: 1}
+      - {r: 0.9568628, g: 1, b: 0.34901962, a: 1}
+      - {r: 0.96470594, g: 0.9960785, b: 0.34901962, a: 1}
+  - name: goat horn pepper
+    dominantColors:
+    - dominantColor: {r: 0.38431376, g: 0.07450981, b: 0.015686275, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.4039216, g: 0.0627451, b: 0, a: 1}
+      - {r: 0.38431376, g: 0.07450981, b: 0.015686275, a: 1}
+    - dominantColor: {r: 0.9176471, g: 0.121568635, b: 0.09019608, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9176471, g: 0.121568635, b: 0.09019608, a: 1}
+      - {r: 0.7490196, g: 0.039215688, b: 0.011764707, a: 1}
+    - dominantColor: {r: 0.058823533, g: 0.48627454, b: 0, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.003921569, g: 0.37647063, b: 0.11764707, a: 1}
+      - {r: 0.058823533, g: 0.48627454, b: 0, a: 1}
+  - name: seed
+    dominantColors:
+    - dominantColor: {r: 0.2509804, g: 0.38823533, b: 0.027450982, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.2509804, g: 0.38823533, b: 0.027450982, a: 1}
+      - {r: 0.2901961, g: 0.41176474, b: 0.043137256, a: 1}
+      - {r: 0.31764707, g: 0.46274513, b: 0.050980397, a: 1}
+      - {r: 0.41960788, g: 0.56078434, b: 0.1764706, a: 1}
+    - dominantColor: {r: 0.29803923, g: 0.07058824, b: 0.015686275, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.3019608, g: 0.07450981, b: 0.027450982, a: 1}
+      - {r: 0.3254902, g: 0.0627451, b: 0.03137255, a: 1}
+      - {r: 0.42352945, g: 0.12941177, b: 0.039215688, a: 1}
+      - {r: 0.43529415, g: 0.12941177, b: 0.050980397, a: 1}
+      - {r: 0.5294118, g: 0.16862746, b: 0.07058824, a: 1}
+      - {r: 0.4901961, g: 0.1764706, b: 0.078431375, a: 1}
+    - dominantColor: {r: 0.7058824, g: 0.28235295, b: 0.18039216, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.7058824, g: 0.28235295, b: 0.18039216, a: 1}
+      - {r: 0.9490197, g: 0.6862745, b: 0.61960787, a: 1}
+  - name: yellow chrysanthemum
+    dominantColors:
+    - dominantColor: {r: 0.19607845, g: 0.28235295, b: 0.039215688, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.19607845, g: 0.28235295, b: 0.039215688, a: 1}
+      - {r: 0.34117648, g: 0.45098042, b: 0.10980393, a: 1}
+      - {r: 0.24705884, g: 0.30588236, b: 0.07450981, a: 1}
+      - {r: 0.19607845, g: 0.28235295, b: 0.039215688, a: 1}
+    - dominantColor: {r: 0.9686275, g: 0.86666673, b: 0.18823531, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.7960785, g: 0.56078434, b: 0.12941177, a: 1}
+      - {r: 0.8352942, g: 0.6156863, b: 0.13333334, a: 1}
+      - {r: 0.9686275, g: 0.86666673, b: 0.18823531, a: 1}
+  - name: tomato
+    dominantColors:
+    - dominantColor: {r: 0.1254902, g: 0.3372549, b: 0.03137255, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.11764707, g: 0.34117648, b: 0.03137255, a: 1}
+      - {r: 0.098039225, g: 0.46274513, b: 0.043137256, a: 1}
+    - dominantColor: {r: 0.9960785, g: 0.019607844, b: 0.003921569, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9960785, g: 0.019607844, b: 0.003921569, a: 1}
+    - dominantColor: {r: 0.56078434, g: 0.039215688, b: 0.019607844, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.56078434, g: 0.039215688, b: 0.019607844, a: 1}
+      - {r: 0.58431375, g: 0.015686275, b: 0, a: 1}
+      - {r: 0.79215693, g: 0.039215688, b: 0, a: 1}
+      - {r: 0.73333335, g: 0.039215688, b: 0, a: 1}
+      - {r: 0.6392157, g: 0.003921569, b: 0, a: 1}
+  - name: Campanula
+    dominantColors:
+    - dominantColor: {r: 0.050980397, g: 0.41960788, b: 0.09019608, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.07450981, g: 0.2901961, b: 0.06666667, a: 1}
+      - {r: 0.050980397, g: 0.41960788, b: 0.09019608, a: 1}
+      - {r: 0.09019608, g: 0.5921569, b: 0.10980393, a: 1}
+    - dominantColor: {r: 0.70980394, g: 0.3254902, b: 0.7607844, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.50980395, g: 0.21960786, b: 0.5686275, a: 1}
+      - {r: 0.70980394, g: 0.3254902, b: 0.7607844, a: 1}
+      - {r: 0.8196079, g: 0.50980395, b: 0.8705883, a: 1}
+      - {r: 0.93725497, g: 0.7294118, b: 1, a: 1}
+    - dominantColor: {r: 0.96470594, g: 0.78823537, b: 0.078431375, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.7960785, g: 0.63529414, b: 0.039215688, a: 1}
+      - {r: 0.96470594, g: 0.78823537, b: 0.078431375, a: 1}
+  - name: grape
+    dominantColors:
+    - dominantColor: {r: 0.22352943, g: 0.20000002, b: 0.48235297, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.22352943, g: 0.20000002, b: 0.48235297, a: 1}
+      - {r: 0.24705884, g: 0.24705884, b: 0.49803925, a: 1}
+      - {r: 0.2509804, g: 0.2392157, b: 0.50980395, a: 1}
+    - dominantColor: {r: 0.46274513, g: 0.30588236, b: 0.75294125, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.47450984, g: 0.30980393, b: 0.7490196, a: 1}
+      - {r: 0.46274513, g: 0.30588236, b: 0.75294125, a: 1}
+      - {r: 0.6784314, g: 0.49803925, b: 0.85098046, a: 1}
+    - dominantColor: {r: 0.3372549, g: 0.121568635, b: 0, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.3372549, g: 0.121568635, b: 0, a: 1}
+  - name: coral
+    dominantColors:
+    - dominantColor: {r: 0.91372555, g: 0.21568629, b: 0, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.91372555, g: 0.227451, b: 0.058823533, a: 1}
+      - {r: 0.91372555, g: 0.21568629, b: 0, a: 1}
+      - {r: 0.9333334, g: 0.23529413, b: 0, a: 1}
+      - {r: 0.96470594, g: 0.19215688, b: 0.023529414, a: 1}
+    - dominantColor: {r: 0.9921569, g: 0.6, b: 0.40784317, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9921569, g: 0.6, b: 0.40784317, a: 1}
+      - {r: 1, g: 0.37254903, b: 0.11764707, a: 1}
+      - {r: 0.9333334, g: 0.39607847, b: 0.12941177, a: 1}
+      - {r: 0.9803922, g: 0.59607846, b: 0.45882356, a: 1}
+  - name: lucky clover
+    dominantColors:
+    - dominantColor: {r: 0.058823533, g: 0.2627451, b: 0.08235294, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.058823533, g: 0.2627451, b: 0.08235294, a: 1}
+      - {r: 0.11764707, g: 0.4156863, b: 0.17254902, a: 1}
+      - {r: 0.19607845, g: 0.54901963, b: 0.20392159, a: 1}
+      - {r: 0.1764706, g: 0.54901963, b: 0.227451, a: 1}
+    - dominantColor: {r: 0.26666668, g: 0.8431373, b: 0.24313727, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.26666668, g: 0.8431373, b: 0.2509804, a: 1}
+      - {r: 0.21960786, g: 0.62352943, b: 0.26666668, a: 1}
+      - {r: 0.21960786, g: 0.6313726, b: 0.25882354, a: 1}
+      - {r: 0.24313727, g: 0.7490196, b: 0.24313727, a: 1}
+      - {r: 0.26666668, g: 0.8470589, b: 0.26666668, a: 1}
+      - {r: 0.5254902, g: 0.9843138, b: 0.36078432, a: 1}
+      - {r: 0.26666668, g: 0.8470589, b: 0.26666668, a: 1}
+      - {r: 0.2784314, g: 0.9568628, b: 0.2627451, a: 1}
+  - name: strawberry
+    dominantColors:
+    - dominantColor: {r: 0.8745099, g: 0.10588236, b: 0.2627451, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.8745099, g: 0.10588236, b: 0.2627451, a: 1}
+      - {r: 0.11764707, g: 0.4156863, b: 0.17254902, a: 1}
+    - dominantColor: {r: 0.45098042, g: 0.08235294, b: 0.22352943, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.454902, g: 0.07450981, b: 0.23529413, a: 1}
+      - {r: 0.6156863, g: 0.078431375, b: 0.18823531, a: 1}
+    - dominantColor: {r: 0.18431373, g: 0.32156864, b: 0.07058824, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.18431373, g: 0.32156864, b: 0.07058824, a: 1}
+    - dominantColor: {r: 0.38823533, g: 0.5254902, b: 0.19607845, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.38823533, g: 0.5254902, b: 0.19607845, a: 1}
+    - dominantColor: {r: 1, g: 0.8235295, b: 0.86274517, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 1, g: 0.8235295, b: 0.86274517, a: 1}
+  - name: watermelon
+    dominantColors:
+    - dominantColor: {r: 0.1764706, g: 0.29411766, b: 0.019607844, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.1764706, g: 0.29411766, b: 0.019607844, a: 1}
+      - {r: 0.2784314, g: 0.454902, b: 0, a: 1}
+    - dominantColor: {r: 0.59607846, g: 0.7137255, b: 0.37647063, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.59607846, g: 0.7137255, b: 0.37647063, a: 1}
+      - {r: 0.9843138, g: 0.9294118, b: 0.82745105, a: 1}
+    - dominantColor: {r: 1, g: 0.76470596, b: 0.7843138, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 1, g: 0.76470596, b: 0.7843138, a: 1}
+      - {r: 0.37647063, g: 0, b: 0.007843138, a: 1}
+      - {r: 0.37647063, g: 0, b: 0.007843138, a: 1}
+      - {r: 0.4901961, g: 0.09411766, b: 0.10980393, a: 1}
+    - dominantColor: {r: 0.7960785, g: 0.13333334, b: 0.121568635, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.7960785, g: 0.13333334, b: 0.121568635, a: 1}
+  - name: sweet berries
+    dominantColors:
+    - dominantColor: {r: 0.10980393, g: 0.21960786, b: 0.13333334, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.10980393, g: 0.21960786, b: 0.13333334, a: 1}
+      - {r: 0.16470589, g: 0.32156864, b: 0.18823531, a: 1}
+      - {r: 0.11764707, g: 0.21568629, b: 0.13333334, a: 1}
+    - dominantColor: {r: 0.27058825, g: 0.08235294, b: 0.08235294, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.21960786, g: 0.054901965, b: 0.058823533, a: 1}
+      - {r: 0.2627451, g: 0.08235294, b: 0.08235294, a: 1}
+      - {r: 0.4156863, g: 0.1137255, b: 0.13725491, a: 1}
+      - {r: 0.27058825, g: 0.08235294, b: 0.08235294, a: 1}
+      - {r: 0.4156863, g: 0.11764707, b: 0.13333334, a: 1}
+    - dominantColor: {r: 0.64705884, g: 0.023529414, b: 0, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.87843144, g: 0.27058825, b: 0.49411768, a: 1}
+      - {r: 0.64705884, g: 0.023529414, b: 0, a: 1}
+      - {r: 0.5176471, g: 0.039215688, b: 0.019607844, a: 1}
+  - name: fruit tree
+    dominantColors:
+    - dominantColor: {r: 0.29803923, g: 0.10588236, b: 0.18039216, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.29803923, g: 0.10588236, b: 0.18039216, a: 1}
+      - {r: 0.3254902, g: 0.13333334, b: 0.20784315, a: 1}
+    - dominantColor: {r: 0, g: 0.3921569, b: 0.3372549, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0, g: 0.3921569, b: 0.3372549, a: 1}
+      - {r: 0, g: 0.70980394, b: 0.5176471, a: 1}
+      - {r: 0, g: 0.6117647, b: 0.5294118, a: 1}
+      - {r: 0, g: 0.6117647, b: 0.5294118, a: 1}
+      - {r: 0, g: 0.7176471, b: 0.49411768, a: 1}
+    - dominantColor: {r: 1, g: 0.39607847, b: 0.003921569, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 1, g: 0.39607847, b: 0.003921569, a: 1}
+      - {r: 0.9607844, g: 0.41960788, b: 0, a: 1}
+      - {r: 1, g: 0.64705884, b: 0.4039216, a: 1}
+      - {r: 1, g: 0.23137257, b: 0.003921569, a: 1}
+      - {r: 0.9843138, g: 0.24313727, b: 0, a: 1}
+      - {r: 1, g: 0.38823533, b: 0, a: 1}
+      - {r: 1, g: 0.3921569, b: 0.011764707, a: 1}
+    - dominantColor: {r: 0, g: 0.49411768, b: 0.54901963, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0, g: 0.49411768, b: 0.54901963, a: 1}
+  - name: hamster
+    dominantColors:
+    - dominantColor: {r: 0.37647063, g: 0.18039216, b: 0.043137256, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.37647063, g: 0.18431373, b: 0.043137256, a: 1}
+      - {r: 0.37254903, g: 0.18431373, b: 0.043137256, a: 1}
+      - {r: 0.3803922, g: 0.18039216, b: 0.043137256, a: 1}
+      - {r: 0.37647063, g: 0.18039216, b: 0.043137256, a: 1}
+      - {r: 0.37647063, g: 0.18039216, b: 0.043137256, a: 1}
+      - {r: 0.3803922, g: 0.18039216, b: 0.043137256, a: 1}
+      - {r: 0.37647063, g: 0.18431373, b: 0.04705883, a: 1}
+      - {r: 0.37647063, g: 0.18431373, b: 0.04705883, a: 1}
+      - {r: 0.37647063, g: 0.18039216, b: 0.043137256, a: 1}
+      - {r: 0.3803922, g: 0.18431373, b: 0.043137256, a: 1}
+    - dominantColor: {r: 0.9960785, g: 0.4784314, b: 0.2901961, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 1, g: 0.39607847, b: 0.003921569, a: 1}
+      - {r: 0.9607844, g: 0.41960788, b: 0, a: 1}
+      - {r: 1, g: 0.64705884, b: 0.4039216, a: 1}
+      - {r: 1, g: 0.23137257, b: 0.003921569, a: 1}
+      - {r: 0.9843138, g: 0.24313727, b: 0, a: 1}
+      - {r: 1, g: 0.38823533, b: 0, a: 1}
+      - {r: 1, g: 0.3921569, b: 0.011764707, a: 1}
+      - {r: 1, g: 0.47058827, b: 0.3254902, a: 1}
+      - {r: 1, g: 0.47058827, b: 0.30980393, a: 1}
+      - {r: 0.882353, g: 0.5254902, b: 0.20784315, a: 1}
+      - {r: 0.882353, g: 0.5254902, b: 0.20784315, a: 1}
+      - {r: 0.882353, g: 0.5254902, b: 0.20784315, a: 1}
+      - {r: 0.87843144, g: 0.5058824, b: 0.18431373, a: 1}
+      - {r: 0.882353, g: 0.5254902, b: 0.20784315, a: 1}
+      - {r: 0.882353, g: 0.5254902, b: 0.20784315, a: 1}
+      - {r: 0.882353, g: 0.5254902, b: 0.20784315, a: 1}
+      - {r: 0.882353, g: 0.5254902, b: 0.20784315, a: 1}
+      - {r: 0.9960785, g: 0.4784314, b: 0.2901961, a: 1}
+      - {r: 1, g: 0.47058827, b: 0.2901961, a: 1}
+      - {r: 0.882353, g: 0.5254902, b: 0.20784315, a: 1}
+      - {r: 0.882353, g: 0.5254902, b: 0.20784315, a: 1}
+      - {r: 0.882353, g: 0.5254902, b: 0.20784315, a: 1}
+      - {r: 0.882353, g: 0.5254902, b: 0.20784315, a: 1}
+    - dominantColor: {r: 1, g: 0.81568635, b: 0.54901963, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9333334, g: 0.6901961, b: 0.35686275, a: 1}
+      - {r: 0.9333334, g: 0.6901961, b: 0.35686275, a: 1}
+      - {r: 0.9215687, g: 0.69803923, b: 0.35686275, a: 1}
+      - {r: 0.9215687, g: 0.69803923, b: 0.35686275, a: 1}
+      - {r: 1, g: 0.80392164, b: 0.57254905, a: 1}
+      - {r: 1, g: 0.80392164, b: 0.5568628, a: 1}
+      - {r: 0.9450981, g: 0.69411767, b: 0.3529412, a: 1}
+      - {r: 0.94117653, g: 0.6862745, b: 0.35686275, a: 1}
+      - {r: 0.9450981, g: 0.7058824, b: 0.3803922, a: 1}
+      - {r: 0.9490197, g: 0.7019608, b: 0.38823533, a: 1}
+      - {r: 0.9333334, g: 0.6901961, b: 0.3647059, a: 1}
+      - {r: 0.9333334, g: 0.69411767, b: 0.34509805, a: 1}
+      - {r: 0.93725497, g: 0.7019608, b: 0.3647059, a: 1}
+      - {r: 0.94117653, g: 0.69803923, b: 0.3647059, a: 1}
+      - {r: 0.9333334, g: 0.69411767, b: 0.36862746, a: 1}
+      - {r: 0.92549026, g: 0.69803923, b: 0.36862746, a: 1}
+      - {r: 0.9450981, g: 0.7019608, b: 0.37647063, a: 1}
+      - {r: 0.9333334, g: 0.69411767, b: 0.36862746, a: 1}
+      - {r: 0.93725497, g: 0.69411767, b: 0.36862746, a: 1}
+      - {r: 0.9607844, g: 0.72156864, b: 0.37254903, a: 1}
+      - {r: 0.94117653, g: 0.69803923, b: 0.3647059, a: 1}
+      - {r: 0.93725497, g: 0.69411767, b: 0.36862746, a: 1}
+      - {r: 0.94117653, g: 0.69803923, b: 0.37254903, a: 1}
+      - {r: 0.93725497, g: 0.69411767, b: 0.36862746, a: 1}
+      - {r: 0.93725497, g: 0.69411767, b: 0.36862746, a: 1}
+      - {r: 0.9490197, g: 0.73333335, b: 0.40784317, a: 1}
+      - {r: 0.9490197, g: 0.73333335, b: 0.40784317, a: 1}
+      - {r: 1, g: 0.81568635, b: 0.54901963, a: 1}
+      - {r: 1, g: 0.81568635, b: 0.54901963, a: 1}
+      - {r: 1, g: 0.81568635, b: 0.54901963, a: 1}
+      - {r: 0.9607844, g: 0.7019608, b: 0.37254903, a: 1}
+      - {r: 0.9333334, g: 0.69803923, b: 0.3529412, a: 1}
+      - {r: 0.9803922, g: 0.8078432, b: 0.52156866, a: 1}
+      - {r: 1, g: 0.8117648, b: 0.52156866, a: 1}
+      - {r: 0.9294118, g: 0.69803923, b: 0.38431376, a: 1}
+      - {r: 0.96470594, g: 0.7058824, b: 0.3372549, a: 1}
+  - name: kitty
+    dominantColors:
+    - dominantColor: {r: 0.41176474, g: 0.41176474, b: 0.4039216, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.41176474, g: 0.41176474, b: 0.4039216, a: 1}
+      - {r: 0.50980395, g: 0.5254902, b: 0.52156866, a: 1}
+      - {r: 0.52156866, g: 0.52156866, b: 0.5137255, a: 1}
+      - {r: 0.41176474, g: 0.41176474, b: 0.4039216, a: 1}
+      - {r: 0.7725491, g: 0.80392164, b: 0.86274517, a: 1}
+      - {r: 0.69411767, g: 0.69411767, b: 0.69411767, a: 1}
+      - {r: 0.7725491, g: 0.80392164, b: 0.86274517, a: 1}
+      - {r: 0.59607846, g: 0.62352943, b: 0.67058825, a: 1}
+      - {r: 0.7843138, g: 0.81568635, b: 0.8745099, a: 1}
+      - {r: 0.7058824, g: 0.7058824, b: 0.7058824, a: 1}
+      - {r: 0.5254902, g: 0.5176471, b: 0.5137255, a: 1}
+    - dominantColor: {r: 0.9960785, g: 0.63529414, b: 0.07058824, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9960785, g: 0.63529414, b: 0.07058824, a: 1}
+      - {r: 0.9215687, g: 0.4666667, b: 0.054901965, a: 1}
+      - {r: 0.7568628, g: 0.37254903, b: 0.03529412, a: 1}
+      - {r: 0.98823535, g: 0.64705884, b: 0.0627451, a: 1}
+      - {r: 0.9176471, g: 0.46274513, b: 0.0627451, a: 1}
+      - {r: 0.9176471, g: 0.46274513, b: 0.0627451, a: 1}
+      - {r: 1, g: 0.3921569, b: 0.011764707, a: 1}
+      - {r: 0.96470594, g: 0.627451, b: 0.21176472, a: 1}
+      - {r: 0.6862745, g: 0.34509805, b: 0.04705883, a: 1}
+      - {r: 0.97647065, g: 0.6313726, b: 0.07450981, a: 1}
+    - dominantColor: {r: 0.25882354, g: 0.30980393, b: 0.44705886, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.25882354, g: 0.30980393, b: 0.44705886, a: 1}
+      - {r: 0, g: 0.5921569, b: 0.854902, a: 1}
+    - dominantColor: {r: 0, g: 0, b: 0, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0, g: 0, b: 0, a: 1}
+      - {r: 0.039215688, g: 0.027450982, b: 0.10196079, a: 1}
+      - {r: 0.050980397, g: 0.023529414, b: 0.098039225, a: 1}
+    - dominantColor: {r: 1, g: 0.98823535, b: 0.054901965, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 1, g: 0.98823535, b: 0.054901965, a: 1}
+      - {r: 0.9490197, g: 0.5176471, b: 0.7490196, a: 1}
+  - name: shrimp
+    dominantColors:
+    - dominantColor: {r: 0.454902, g: 0.058823533, b: 0.12941177, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.4784314, g: 0.050980397, b: 0.14117648, a: 1}
+      - {r: 0.49803925, g: 0.043137256, b: 0.13333334, a: 1}
+      - {r: 0.53333336, g: 0.007843138, b: 0.13725491, a: 1}
+      - {r: 0.09019608, g: 0.07058824, b: 0, a: 1}
+      - {r: 0.43529415, g: 0.050980397, b: 0.10980393, a: 1}
+    - dominantColor: {r: 0.909804, g: 0.37647063, b: 0.32941177, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.90196085, g: 0.38431376, b: 0.3254902, a: 1}
+    - dominantColor: {r: 1, g: 0.5882353, b: 0.5176471, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9921569, g: 0.59607846, b: 0.5254902, a: 1}
+  - name: froggy
+    dominantColors:
+    - dominantColor: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
+    - dominantColor: {r: 0.3254902, g: 0.47058827, b: 0.16862746, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.3254902, g: 0.47058827, b: 0.16862746, a: 1}
+    - dominantColor: {r: 0.8862746, g: 0.9843138, b: 0.9725491, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.8862746, g: 0.9843138, b: 0.9725491, a: 1}
+    - dominantColor: {r: 0.5294118, g: 0.7725491, b: 0.2509804, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.5372549, g: 0.7686275, b: 0.27450982, a: 1}
+      - {r: 0.7607844, g: 0.94117653, b: 0.59607846, a: 1}
+  - name: lone wolf
+    dominantColors:
+    - dominantColor: {r: 0.18039216, g: 0.16862746, b: 0.14117648, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.18039216, g: 0.16862746, b: 0.14117648, a: 1}
+      - {r: 0.27058825, g: 0.2509804, b: 0.23529413, a: 1}
+      - {r: 0.24313727, g: 0.227451, b: 0.18431373, a: 1}
+      - {r: 0.27058825, g: 0.25882354, b: 0.23137257, a: 1}
+      - {r: 0.2509804, g: 0.24705884, b: 0.227451, a: 1}
+    - dominantColor: {r: 0.28627452, g: 0.27450982, b: 0.24705884, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.28627452, g: 0.27450982, b: 0.24705884, a: 1}
+      - {r: 0.4039216, g: 0.40784317, b: 0.38431376, a: 1}
+      - {r: 0.44705886, g: 0.4431373, b: 0.42352945, a: 1}
+      - {r: 0.4039216, g: 0.40784317, b: 0.38431376, a: 1}
+    - dominantColor: {r: 0.7019608, g: 0.70980394, b: 0.6901961, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.7019608, g: 0.70980394, b: 0.6901961, a: 1}
+  - name: kitty
+    dominantColors:
+    - dominantColor: {r: 0, g: 0, b: 0, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0, g: 0.011764707, b: 0, a: 1}
+    - dominantColor: {r: 0.882353, g: 0.6431373, b: 0.45882356, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.882353, g: 0.6431373, b: 0.45882356, a: 1}
+    - dominantColor: {r: 1, g: 0.67058825, b: 0.67058825, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 1, g: 0.67058825, b: 0.67058825, a: 1}
+    - dominantColor: {r: 0.8196079, g: 0.8235295, b: 0.80392164, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.82745105, g: 0.82745105, b: 0.8352942, a: 1}
+      - {r: 0.9058824, g: 0.9058824, b: 0.9058824, a: 1}
+      - {r: 0.8078432, g: 0.8431373, b: 0.8313726, a: 1}
+  - name: cool rat
+    dominantColors:
+    - dominantColor: {r: 0.23137257, g: 0.2392157, b: 0.227451, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.23137257, g: 0.2392157, b: 0.227451, a: 1}
+      - {r: 0.454902, g: 0.454902, b: 0.454902, a: 1}
+    - dominantColor: {r: 1, g: 0.5294118, b: 0.53333336, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 1, g: 0.5294118, b: 0.53333336, a: 1}
+    - dominantColor: {r: 0.6431373, g: 0.6431373, b: 0.6431373, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.6431373, g: 0.6431373, b: 0.6431373, a: 1}
+      - {r: 0.62352943, g: 0.62352943, b: 0.62352943, a: 1}
+      - {r: 0.8431373, g: 0.8235295, b: 0.8470589, a: 1}
+  - name: chubby hamster
+    dominantColors:
+    - dominantColor: {r: 0.60784316, g: 0.47450984, b: 0.36862746, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.60784316, g: 0.47450984, b: 0.36862746, a: 1}
+    - dominantColor: {r: 0.31764707, g: 0.227451, b: 0.16470589, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.31764707, g: 0.227451, b: 0.16470589, a: 1}
+  - name: sad hamster
+    dominantColors:
+    - dominantColor: {r: 0.33333334, g: 0.3019608, b: 0.2901961, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.33333334, g: 0.3019608, b: 0.2901961, a: 1}
+      - {r: 0.5058824, g: 0.47450984, b: 0.46274513, a: 1}
+      - {r: 0.48235297, g: 0.45098042, b: 0.43921572, a: 1}
+    - dominantColor: {r: 0.18039216, g: 0.16078432, b: 0.1764706, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.18039216, g: 0.16078432, b: 0.1764706, a: 1}
+      - {r: 0.19607845, g: 0.18823531, b: 0.20784315, a: 1}
+    - dominantColor: {r: 0.7294118, g: 0.69803923, b: 0.6862745, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.7294118, g: 0.69803923, b: 0.6862745, a: 1}
+      - {r: 0.7137255, g: 0.68235296, b: 0.67058825, a: 1}
+      - {r: 0.73333335, g: 0.72156864, b: 0.7019608, a: 1}
+  - name: cow
+    dominantColors:
+    - dominantColor: {r: 0.11764707, g: 0.12941177, b: 0.19607845, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.11764707, g: 0.12941177, b: 0.19607845, a: 1}
+      - {r: 0.003921569, g: 0.019607844, b: 0.06666667, a: 1}
+    - dominantColor: {r: 0.4156863, g: 0.47058827, b: 0.5764706, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.4156863, g: 0.47058827, b: 0.5764706, a: 1}
+      - {r: 0.3803922, g: 0.3921569, b: 0.45882356, a: 1}
+    - dominantColor: {r: 0.3921569, g: 0.227451, b: 0.027450982, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.3921569, g: 0.227451, b: 0.027450982, a: 1}
+      - {r: 0.37254903, g: 0.25490198, b: 0.25490198, a: 1}
+      - {r: 0.73333335, g: 0.72156864, b: 0.7019608, a: 1}
+    - dominantColor: {r: 0.68235296, g: 0.67058825, b: 0.69803923, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.68235296, g: 0.67058825, b: 0.69803923, a: 1}
+    - dominantColor: {r: 1, g: 0.54901963, b: 0.58431375, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 1, g: 0.54901963, b: 0.58431375, a: 1}
+      - {r: 0.83921576, g: 0.28627452, b: 0.32156864, a: 1}
+  - name: dinosaur
+    dominantColors:
+    - dominantColor: {r: 0.20784315, g: 0.24705884, b: 0.039215688, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.20784315, g: 0.24705884, b: 0.039215688, a: 1}
+    - dominantColor: {r: 0.6313726, g: 0.7411765, b: 0.27450982, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.6313726, g: 0.7411765, b: 0.27450982, a: 1}
+    - dominantColor: {r: 0.20000002, g: 0.11764707, b: 0.050980397, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.20000002, g: 0.11764707, b: 0.050980397, a: 1}
+      - {r: 0.2784314, g: 0.20000002, b: 0.20392159, a: 1}
+      - {r: 0.6039216, g: 0.34117648, b: 0.26666668, a: 1}
+    - dominantColor: {r: 0.9921569, g: 0.9450981, b: 0.7411765, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9921569, g: 0.9450981, b: 0.7411765, a: 1}
+      - {r: 0.9725491, g: 0.90196085, b: 0.7058824, a: 1}
+      - {r: 0.9960785, g: 1, b: 0.8313726, a: 1}
+  - name: golden dragon
+    dominantColors:
+    - dominantColor: {r: 0.42352945, g: 0.19607845, b: 0.015686275, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.42352945, g: 0.19607845, b: 0.015686275, a: 1}
+      - {r: 0, g: 0.023529414, b: 0, a: 1}
+      - {r: 0.54509807, g: 0.25882354, b: 0, a: 1}
+    - dominantColor: {r: 0.9803922, g: 0.8980393, b: 0.44705886, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9803922, g: 0.8980393, b: 0.44705886, a: 1}
+      - {r: 0.9568628, g: 0.7960785, b: 0.20784315, a: 1}
+      - {r: 0.9490197, g: 0.8196079, b: 0.17254902, a: 1}
+    - dominantColor: {r: 0.64705884, g: 0.37647063, b: 0.07058824, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.64705884, g: 0.37647063, b: 0.07058824, a: 1}
+  - name: dragon fly
+    dominantColors:
+    - dominantColor: {r: 0.69803923, g: 0.9490197, b: 0.9960785, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.69803923, g: 0.9490197, b: 0.9960785, a: 1}
+      - {r: 0.32156864, g: 0.7960785, b: 0.96470594, a: 1}
+      - {r: 0.56078434, g: 0.8941177, b: 1, a: 1}
+    - dominantColor: {r: 0, g: 0.17254902, b: 0.5568628, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0, g: 0.17254902, b: 0.5568628, a: 1}
+      - {r: 0.5019608, g: 0.6745098, b: 1, a: 1}
+      - {r: 0.058823533, g: 0.33333334, b: 0.8588236, a: 1}
+      - {r: 0, g: 0.14509805, b: 0.13333334, a: 1}
+    - dominantColor: {r: 0.9686275, g: 0.7058824, b: 0.019607844, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.9686275, g: 0.7058824, b: 0.019607844, a: 1}
+      - {r: 1, g: 0.77647066, b: 0.07450981, a: 1}
+      - {r: 0.98823535, g: 0.85098046, b: 0.28627452, a: 1}
+    - dominantColor: {r: 0.007843138, g: 0.6901961, b: 0.6509804, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.007843138, g: 0.6901961, b: 0.6509804, a: 1}
+      - {r: 0.098039225, g: 0.8705883, b: 0.8313726, a: 1}
+      - {r: 0.24705884, g: 0.9960785, b: 0.9333334, a: 1}
+      - {r: 0.62352943, g: 1, b: 1, a: 1}
+  - name: giraffe
+    dominantColors:
+    - dominantColor: {r: 0.7568628, g: 0.37254903, b: 0.023529414, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.7568628, g: 0.37254903, b: 0.023529414, a: 1}
+      - {r: 0.8431373, g: 0.454902, b: 0.054901965, a: 1}
+      - {r: 0.8470589, g: 0.47058827, b: 0.06666667, a: 1}
+      - {r: 0.06666667, g: 0.078431375, b: 0.10588236, a: 1}
+    - dominantColor: {r: 0.9725491, g: 0.7137255, b: 0.27450982, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9725491, g: 0.7137255, b: 0.27450982, a: 1}
+      - {r: 0.93725497, g: 0.54901963, b: 0.14901961, a: 1}
+  - name: mallard
+    dominantColors:
+    - dominantColor: {r: 0.8117648, g: 0.30980393, b: 0.03137255, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.8117648, g: 0.30980393, b: 0.03137255, a: 1}
+      - {r: 0.9921569, g: 0.38823533, b: 0.050980397, a: 1}
+      - {r: 1, g: 0.5058824, b: 0.007843138, a: 1}
+      - {r: 0.97647065, g: 0.5411765, b: 0, a: 1}
+    - dominantColor: {r: 0.9725491, g: 0.7490196, b: 0.23529413, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9725491, g: 0.7490196, b: 0.23529413, a: 1}
+      - {r: 1, g: 0.7960785, b: 0, a: 1}
+      - {r: 0.8431373, g: 0.6509804, b: 0.10588236, a: 1}
+      - {r: 0.98823535, g: 0.9960785, b: 0.5764706, a: 1}
+      - {r: 0.9725491, g: 0.9686275, b: 0.31764707, a: 1}
+      - {r: 0.9803922, g: 0.9450981, b: 0.30588236, a: 1}
+    - dominantColor: {r: 0.30980393, g: 0.13725491, b: 0, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.29803923, g: 0.12941177, b: 0, a: 1}
+      - {r: 0.41176474, g: 0.18431373, b: 0.003921569, a: 1}
+      - {r: 0.41960788, g: 0.18823531, b: 0.015686275, a: 1}
+      - {r: 0.60784316, g: 0.2901961, b: 0.07058824, a: 1}
+      - {r: 0, g: 0, b: 0.1764706, a: 1}
+    - dominantColor: {r: 0, g: 0.21568629, b: 0, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0, g: 0.21568629, b: 0, a: 1}
+      - {r: 0.04705883, g: 0.3803922, b: 0.011764707, a: 1}
+      - {r: 0.13725491, g: 0.56078434, b: 0.1254902, a: 1}
+      - {r: 0.058823533, g: 0.36862746, b: 0.043137256, a: 1}
+  - name: inchworm
+    dominantColors:
+    - dominantColor: {r: 0.47058827, g: 0.18039216, b: 0, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.47058827, g: 0.18039216, b: 0, a: 1}
+      - {r: 0.5254902, g: 0.21568629, b: 0.023529414, a: 1}
+    - dominantColor: {r: 0.9725491, g: 0.39607847, b: 0.03137255, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.9725491, g: 0.39607847, b: 0.03137255, a: 1}
+      - {r: 1, g: 0.67058825, b: 0.043137256, a: 1}
+    - dominantColor: {r: 0.015686275, g: 0.003921569, b: 0.46274513, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.015686275, g: 0, b: 0.47450984, a: 1}
+      - {r: 1, g: 0.17254902, b: 0.6392157, a: 1}
+    - dominantColor: {r: 0, g: 0.29411766, b: 0, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0, g: 0.29411766, b: 0, a: 1}
+      - {r: 0.26666668, g: 0.5372549, b: 0, a: 1}
+      - {r: 0.2509804, g: 0.5568628, b: 0.015686275, a: 1}
+      - {r: 0.227451, g: 0.56078434, b: 0, a: 1}
+      - {r: 0.050980397, g: 0.6627451, b: 0, a: 1}
+      - {r: 0.37647063, g: 0.7843138, b: 0.003921569, a: 1}
+      - {r: 0.3529412, g: 0.77647066, b: 0, a: 1}
+      - {r: 0.427451, g: 0.87843144, b: 0, a: 1}
+    - dominantColor: {r: 0.8117648, g: 0.97647065, b: 0, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.8117648, g: 0.97647065, b: 0, a: 1}
+      - {r: 0.68235296, g: 0.90196085, b: 0.027450982, a: 1}
+      - {r: 0.6156863, g: 0.9921569, b: 0.21568629, a: 1}
+  - name: chameleon
+    dominantColors:
+    - dominantColor: {r: 0.10588236, g: 0.06666667, b: 0.10980393, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.10588236, g: 0.06666667, b: 0.10980393, a: 1}
+    - dominantColor: {r: 0.8196079, g: 0.22352943, b: 0.454902, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.8196079, g: 0.22352943, b: 0.454902, a: 1}
+    - dominantColor: {r: 0.3921569, g: 0.15686275, b: 0.04705883, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.3921569, g: 0.15686275, b: 0.04705883, a: 1}
+      - {r: 0.5176471, g: 0.2901961, b: 0.14509805, a: 1}
+    - dominantColor: {r: 0.5019608, g: 0.63529414, b: 0.0627451, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.5019608, g: 0.63529414, b: 0.0627451, a: 1}
+      - {r: 0.6745098, g: 0.78823537, b: 0.121568635, a: 1}
+    - dominantColor: {r: 0.14117648, g: 0.454902, b: 0.34901962, a: 1}
+      fontColor: {r: 1, g: 0.9858491, b: 0.9858491, a: 1}
+      uniformColor:
+      - {r: 0.14117648, g: 0.454902, b: 0.34901962, a: 1}
+      - {r: 0.027450982, g: 0.24705884, b: 0.14901961, a: 1}
+      - {r: 0.23137257, g: 0.654902, b: 0.46274513, a: 1}
+  - name: tribal chicken
+    dominantColors:
+    - dominantColor: {r: 0.9960785, g: 0.31764707, b: 0.015686275, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.9960785, g: 0.31764707, b: 0.015686275, a: 1}
+      - {r: 0.80392164, g: 0.043137256, b: 0.007843138, a: 1}
+      - {r: 0.54509807, g: 0.10196079, b: 0.039215688, a: 1}
+      - {r: 0.3137255, g: 0.015686275, b: 0.015686275, a: 1}
+      - {r: 1, g: 0.7294118, b: 0.21960786, a: 1}
+    - dominantColor: {r: 0.098039225, g: 0.078431375, b: 0.44705886, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.098039225, g: 0.078431375, b: 0.44705886, a: 1}
+      - {r: 0.03137255, g: 0.28627452, b: 0.64705884, a: 1}
+    - dominantColor: {r: 0.050980397, g: 0.48627454, b: 0.94117653, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.050980397, g: 0.48627454, b: 0.94117653, a: 1}
+  - name: cotton plant
+    dominantColors:
+    - dominantColor: {r: 1, g: 0.86666673, b: 0.80392164, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 1, g: 0.86666673, b: 0.80392164, a: 1}
+      - {r: 0.9725491, g: 0.7803922, b: 0.654902, a: 1}
+      - {r: 0.9725491, g: 0.7803922, b: 0.654902, a: 1}
+    - dominantColor: {r: 0.52156866, g: 0.36078432, b: 0.2509804, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.52156866, g: 0.36078432, b: 0.2509804, a: 1}
+      - {r: 0.6784314, g: 0.5058824, b: 0.40000004, a: 1}
+      - {r: 0.8980393, g: 0.67058825, b: 0.5254902, a: 1}
+      - {r: 0.81568635, g: 0.54509807, b: 0.3803922, a: 1}
+  - name: pine nuts
+    dominantColors:
+    - dominantColor: {r: 0.227451, g: 0.13333334, b: 0.09411766, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.227451, g: 0.13333334, b: 0.09411766, a: 1}
+      - {r: 0.30588236, g: 0.14117648, b: 0.14509805, a: 1}
+    - dominantColor: {r: 0.5372549, g: 0.20784315, b: 0.1137255, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.5372549, g: 0.20784315, b: 0.1137255, a: 1}
+      - {r: 0.7725491, g: 0.39607847, b: 0.29803923, a: 1}
+      - {r: 0.6431373, g: 0.28627452, b: 0.17254902, a: 1}
+    - dominantColor: {r: 1, g: 0.69411767, b: 0.5137255, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 1, g: 0.69411767, b: 0.5137255, a: 1}
+      - {r: 0.9803922, g: 0.5882353, b: 0.39607847, a: 1}
+  - name: sulfur cosmos
+    dominantColors:
+    - dominantColor: {r: 0.50980395, g: 0.21568629, b: 0.050980397, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.50980395, g: 0.21568629, b: 0.050980397, a: 1}
+      - {r: 0.59607846, g: 0.24705884, b: 0, a: 1}
+      - {r: 0.6117647, g: 0.27450982, b: 0.043137256, a: 1}
+      - {r: 0.909804, g: 0.43529415, b: 0.11764707, a: 1}
+      - {r: 0.7019608, g: 0.3254902, b: 0.08627451, a: 1}
+      - {r: 0.59607846, g: 0.24705884, b: 0, a: 1}
+      - {r: 0.6627451, g: 0.33333334, b: 0.058823533, a: 1}
+      - {r: 0.59607846, g: 0.24705884, b: 0, a: 1}
+    - dominantColor: {r: 0.7843138, g: 0.627451, b: 0.14117648, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.7843138, g: 0.627451, b: 0.14117648, a: 1}
+      - {r: 1, g: 0.85098046, b: 0.16862746, a: 1}
+      - {r: 1, g: 0.8431373, b: 0.16862746, a: 1}
+      - {r: 1, g: 0.8470589, b: 0.16470589, a: 1}
+    - dominantColor: {r: 0.22352943, g: 0.61960787, b: 0.10196079, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.22352943, g: 0.61960787, b: 0.10196079, a: 1}
+      - {r: 0.098039225, g: 0.3372549, b: 0.06666667, a: 1}
+    - dominantColor: {r: 0.9607844, g: 0.9686275, b: 0.40784317, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9607844, g: 0.9686275, b: 0.40784317, a: 1}
+      - {r: 0.9960785, g: 0.98823535, b: 0.58431375, a: 1}
+      - {r: 0.9607844, g: 0.9686275, b: 0.40784317, a: 1}
+  - name: poisonous mushroom
+    dominantColors:
+    - dominantColor: {r: 0.4666667, g: 0.27450982, b: 0.45098042, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.27058825, g: 0.121568635, b: 0.27450982, a: 1}
+      - {r: 0.2901961, g: 0.12941177, b: 0.24705884, a: 1}
+      - {r: 0.37254903, g: 0.21960786, b: 0.3254902, a: 1}
+      - {r: 0.47058827, g: 0.29411766, b: 0.44705886, a: 1}
+      - {r: 0.53333336, g: 0.35686275, b: 0.5176471, a: 1}
+      - {r: 0.33333334, g: 0.18823531, b: 0.31764707, a: 1}
+    - dominantColor: {r: 0.8705883, g: 0.8235295, b: 0.5411765, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.854902, g: 0.81568635, b: 0.54509807, a: 1}
+      - {r: 0.7176471, g: 0.7019608, b: 0.5137255, a: 1}
+    - dominantColor: {r: 0.98823535, g: 0.7411765, b: 0.57254905, a: 1}
+      fontColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}
+      uniformColor:
+      - {r: 0.98823535, g: 0.7411765, b: 0.57254905, a: 1}
+      - {r: 0.96470594, g: 0.6745098, b: 0.48235297, a: 1}
+      - {r: 0.882353, g: 0.5882353, b: 0.43137258, a: 1}
+      - {r: 0.8196079, g: 0.427451, b: 0.23137257, a: 1}
+  - name: rose thorns
+    dominantColors:
+    - dominantColor: {r: 0.98823535, g: 0.5647059, b: 0.5529412, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.98823535, g: 0.5647059, b: 0.5529412, a: 1}
+      - {r: 1, g: 0.39607847, b: 0.40000004, a: 1}
+    - dominantColor: {r: 0.5568628, g: 0.0627451, b: 0.078431375, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.5568628, g: 0.0627451, b: 0.078431375, a: 1}
+      - {r: 0.75294125, g: 0.121568635, b: 0.09019608, a: 1}
+      - {r: 0.9450981, g: 0.14901961, b: 0.16078432, a: 1}
+      - {r: 0.64705884, g: 0.07450981, b: 0.078431375, a: 1}
+    - dominantColor: {r: 0.627451, g: 0.854902, b: 0.04705883, a: 1}
+      fontColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}
+      uniformColor:
+      - {r: 0.627451, g: 0.854902, b: 0.04705883, a: 1}
+      - {r: 0.5568628, g: 0.7490196, b: 0.08627451, a: 1}
+      - {r: 0.4666667, g: 0.60784316, b: 0.121568635, a: 1}
+      - {r: 0.30980393, g: 0.5254902, b: 0.058823533, a: 1}
+      - {r: 0.38823533, g: 0.6666667, b: 0.04705883, a: 1}
+      - {r: 0.32156864, g: 0.52156866, b: 0.058823533, a: 1}
+      - {r: 0.3921569, g: 0.654902, b: 0.098039225, a: 1}
+      - {r: 0.29803923, g: 0.5372549, b: 0.0627451, a: 1}
+    - dominantColor: {r: 0.03137255, g: 0.20784315, b: 0.08627451, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.043137256, g: 0.20392159, b: 0.03137255, a: 1}
+      - {r: 0.027450982, g: 0.29411766, b: 0.07058824, a: 1}
+      - {r: 0.027450982, g: 0.30588236, b: 0.039215688, a: 1}
+      - {r: 0.007843138, g: 0.3647059, b: 0.050980397, a: 1}
+  - name: marigold
+    dominantColors:
+    - dominantColor: {r: 0.9568628, g: 0.47058827, b: 0.8000001, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.7372549, g: 0, b: 0.53333336, a: 1}
+      - {r: 0.854902, g: 0.14117648, b: 0.6156863, a: 1}
+      - {r: 0.9803922, g: 0.45882356, b: 0.81568635, a: 1}
+    - dominantColor: {r: 0.16470589, g: 0.41176474, b: 0.13725491, a: 1}
+      fontColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 1}
+      uniformColor:
+      - {r: 0.16470589, g: 0.41176474, b: 0.13725491, a: 1}
+      - {r: 0.17254902, g: 0.4039216, b: 0.14509805, a: 1}
+      - {r: 0.09411766, g: 0.2784314, b: 0.098039225, a: 1}
+      - {r: 0.10980393, g: 0.2901961, b: 0.098039225, a: 1}
+      - {r: 0.09411766, g: 0.28235295, b: 0.09411766, a: 1}
+      - {r: 0.10196079, g: 0.28235295, b: 0.09019608, a: 1}
+      - {r: 0.10196079, g: 0.2784314, b: 0.10980393, a: 1}
+      - {r: 0.050980397, g: 0.30980393, b: 0.06666667, a: 1}
+      - {r: 0.1137255, g: 0.26666668, b: 0.09411766, a: 1}
+    - dominantColor: {r: 0, g: 0.1254902, b: 0, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0, g: 0.1254902, b: 0, a: 1}
+      - {r: 0.039215688, g: 0.15294118, b: 0.06666667, a: 1}
+  - name: cherry
+    dominantColors:
+    - dominantColor: {r: 0.3254902, g: 0.011764707, b: 0.0627451, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.3254902, g: 0.011764707, b: 0.0627451, a: 1}
+    - dominantColor: {r: 0.121568635, g: 0.29803923, b: 0.027450982, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.09411766, g: 0.3137255, b: 0.019607844, a: 1}
+    - dominantColor: {r: 0.6313726, g: 0.7176471, b: 0.15686275, a: 1}
+      fontColor: {r: 0.01886791, g: 0.01886791, b: 0.01886791, a: 1}
+      uniformColor:
+      - {r: 0.6313726, g: 0.7176471, b: 0.15686275, a: 1}
+    - dominantColor: {r: 0.60784316, g: 0.0627451, b: 0.19215688, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.60784316, g: 0.0627451, b: 0.19215688, a: 1}
+      - {r: 0.909804, g: 0.078431375, b: 0.23529413, a: 1}
+      - {r: 0.62352943, g: 0.078431375, b: 0.20784315, a: 1}
+    - dominantColor: {r: 0.89019614, g: 0.8000001, b: 0.8196079, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.89019614, g: 0.8000001, b: 0.8196079, a: 1}
+  - name: vase
+    dominantColors:
+    - dominantColor: {r: 0.3137255, g: 0.5764706, b: 0.85098046, a: 1}
+      fontColor: {r: 0.047169805, g: 0.047169805, b: 0.047169805, a: 1}
+      uniformColor:
+      - {r: 0.3137255, g: 0.5764706, b: 0.85098046, a: 1}
+      - {r: 0.2627451, g: 0.49411768, b: 0.75294125, a: 1}
+      - {r: 0.6431373, g: 0.8313726, b: 0.98823535, a: 1}
+    - dominantColor: {r: 0.56078434, g: 0.06666667, b: 0.34509805, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.56078434, g: 0.06666667, b: 0.34509805, a: 1}
+      - {r: 0.6901961, g: 0.121568635, b: 0.42352945, a: 1}
+      - {r: 0.80392164, g: 0.13333334, b: 0.49411768, a: 1}
+    - dominantColor: {r: 0.32941177, g: 0.4901961, b: 0.07450981, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.32941177, g: 0.4901961, b: 0.07450981, a: 1}
+      - {r: 0.4431373, g: 0.6666667, b: 0.10588236, a: 1}
+      - {r: 0.6509804, g: 0.9843138, b: 0.23529413, a: 1}
+      - {r: 0.52156866, g: 0.8117648, b: 0.14117648, a: 1}
+  - name: eggplant
+    dominantColors:
+    - dominantColor: {r: 0.050980397, g: 0, b: 0.24705884, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.050980397, g: 0, b: 0.24705884, a: 1}
+    - dominantColor: {r: 0.3137255, g: 0.023529414, b: 0.60784316, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.30980393, g: 0.019607844, b: 0.6039216, a: 1}
+      - {r: 0.16470589, g: 0, b: 0.427451, a: 1}
+      - {r: 0.65882355, g: 0.121568635, b: 0.882353, a: 1}
+    - dominantColor: {r: 0.03137255, g: 0.7607844, b: 0.13725491, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0, g: 0.77647066, b: 0.14509805, a: 1}
+      - {r: 0, g: 0.6117647, b: 0.098039225, a: 1}
+  - name: avocado
+    dominantColors:
+    - dominantColor: {r: 0.19215688, g: 0.40000004, b: 0.039215688, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.19215688, g: 0.40000004, b: 0.039215688, a: 1}
+      - {r: 0.39607847, g: 0.59607846, b: 0, a: 1}
+      - {r: 0.38431376, g: 0.6, b: 0, a: 1}
+      - {r: 0.34509805, g: 0.5411765, b: 0.011764707, a: 1}
+      - {r: 0.20000002, g: 0.19607845, b: 0.023529414, a: 1}
+    - dominantColor: {r: 0.9960785, g: 1, b: 0.6, a: 1}
+      fontColor: {r: 0.028301895, g: 0.028301895, b: 0.028301895, a: 1}
+      uniformColor:
+      - {r: 0.9960785, g: 1, b: 0.6, a: 1}
+      - {r: 0.7960785, g: 0.8117648, b: 0, a: 1}
+      - {r: 0.9921569, g: 0.8000001, b: 0.38823533, a: 1}
+    - dominantColor: {r: 0.38823533, g: 0.003921569, b: 0.007843138, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.38823533, g: 0.003921569, b: 0.007843138, a: 1}
+      - {r: 0.5803922, g: 0.20784315, b: 0.19215688, a: 1}
+    - dominantColor: {r: 0.8000001, g: 0.39607847, b: 0.21960786, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.8196079, g: 0.39607847, b: 0.20392159, a: 1}
+      - {r: 1, g: 0.6, b: 0.41176474, a: 1}
+  - name: juicy orange
+    dominantColors:
+    - dominantColor: {r: 0.011764707, g: 0.3803922, b: 0.03529412, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.011764707, g: 0.3803922, b: 0.03529412, a: 1}
+      - {r: 0, g: 0.4784314, b: 0.03137255, a: 1}
+      - {r: 0, g: 0.4784314, b: 0.03137255, a: 1}
+      - {r: 0, g: 0.50980395, b: 0.04705883, a: 1}
+      - {r: 0.098039225, g: 0.6666667, b: 0.15294118, a: 1}
+      - {r: 0.09411766, g: 0.64705884, b: 0.13333334, a: 1}
+    - dominantColor: {r: 0.9843138, g: 0.9294118, b: 0.5019608, a: 1}
+      fontColor: {r: 0.028301895, g: 0.028301895, b: 0.028301895, a: 1}
+      uniformColor:
+      - {r: 0.9803922, g: 0.93725497, b: 0.43529415, a: 1}
+    - dominantColor: {r: 0.9450981, g: 0.40784317, b: 0.09019608, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.9450981, g: 0.40784317, b: 0.09019608, a: 1}
+      - {r: 0.9333334, g: 0.45882356, b: 0.050980397, a: 1}
+      - {r: 0.9725491, g: 0.454902, b: 0.058823533, a: 1}
+    - dominantColor: {r: 1, g: 0.8000001, b: 0.10588236, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9960785, g: 0.6627451, b: 0, a: 1}
+      - {r: 0.8000001, g: 0.5803922, b: 0.003921569, a: 1}
+      - {r: 1, g: 0.7960785, b: 0.121568635, a: 1}
+  - name: snowdrop flower
+    dominantColors:
+    - dominantColor: {r: 0.454902, g: 0.93725497, b: 1, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.45882356, g: 0.9333334, b: 1, a: 1}
+      - {r: 0.16862746, g: 0.7686275, b: 0.9960785, a: 1}
+    - dominantColor: {r: 0.04705883, g: 0.48627454, b: 0.63529414, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.04705883, g: 0.48627454, b: 0.6313726, a: 1}
+    - dominantColor: {r: 0, g: 0.24313727, b: 0.13333334, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0, g: 0.24313727, b: 0.13333334, a: 1}
+      - {r: 0, g: 0.40784317, b: 0.24705884, a: 1}
+      - {r: 0, g: 0.5803922, b: 0.3529412, a: 1}
+    - dominantColor: {r: 0.027450982, g: 0.62352943, b: 0.058823533, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.027450982, g: 0.62352943, b: 0.058823533, a: 1}
+      - {r: 0, g: 0.9725491, b: 0.12941177, a: 1}
+      - {r: 0.027450982, g: 0.62352943, b: 0.058823533, a: 1}
+  - name: chestnut
+    dominantColors:
+    - dominantColor: {r: 0.7294118, g: 0.11764707, b: 0.03137255, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.7411765, g: 0.10980393, b: 0.03137255, a: 1}
+      - {r: 0.62352943, g: 0.10196079, b: 0.027450982, a: 1}
+    - dominantColor: {r: 1, g: 0.7019608, b: 0.03137255, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.5647059, g: 0.3803922, b: 0, a: 1}
+      - {r: 0.41960788, g: 0.30588236, b: 0.007843138, a: 1}
+      - {r: 1, g: 0.70980394, b: 0.015686275, a: 1}
+    - dominantColor: {r: 1, g: 0.40000004, b: 0.003921569, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 1, g: 0.39607847, b: 0, a: 1}
+      - {r: 1, g: 0.5568628, b: 0.007843138, a: 1}
+    - dominantColor: {r: 0.7686275, g: 0.28627452, b: 0.011764707, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.7686275, g: 0.28627452, b: 0.011764707, a: 1}
+      - {r: 0.909804, g: 0.34117648, b: 0.015686275, a: 1}
+    - dominantColor: {r: 0.43529415, g: 0.043137256, b: 0, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.43529415, g: 0.043137256, b: 0, a: 1}
+      - {r: 0.35686275, g: 0.023529414, b: 0.011764707, a: 1}
+      - {r: 0.5137255, g: 0.058823533, b: 0, a: 1}
+      - {r: 0.5764706, g: 0.078431375, b: 0.003921569, a: 1}
+  - name: bonsai pot
+    dominantColors:
+    - dominantColor: {r: 0.32156864, g: 0.054901965, b: 0.003921569, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.31764707, g: 0.050980397, b: 0.054901965, a: 1}
+      - {r: 0.62352943, g: 0.10196079, b: 0.027450982, a: 1}
+      - {r: 0.8941177, g: 0.5137255, b: 0.24705884, a: 1}
+      - {r: 0.7803922, g: 0.42352945, b: 0.098039225, a: 1}
+    - dominantColor: {r: 1, g: 0.89019614, b: 0.7176471, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.9921569, g: 0.8862746, b: 0.7019608, a: 1}
+      - {r: 1, g: 0.7960785, b: 0.54509807, a: 1}
+    - dominantColor: {r: 0.23529413, g: 0.4431373, b: 0.027450982, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.32941177, g: 0.54901963, b: 0.06666667, a: 1}
+      - {r: 0.2509804, g: 0.43529415, b: 0, a: 1}
+      - {r: 0.32941177, g: 0.56078434, b: 0.054901965, a: 1}
+      - {r: 0.18039216, g: 0.34509805, b: 0.007843138, a: 1}
+      - {r: 0.18823531, g: 0.3372549, b: 0.011764707, a: 1}
+      - {r: 0.23529413, g: 0.43137258, b: 0, a: 1}
+    - dominantColor: {r: 0.70980394, g: 0.9686275, b: 0.23137257, a: 1}
+      fontColor: {r: 0, g: 0, b: 0, a: 1}
+      uniformColor:
+      - {r: 0.70980394, g: 0.9686275, b: 0.23137257, a: 1}
+      - {r: 0.6, g: 0.8588236, b: 0.121568635, a: 1}
+      - {r: 0.47450984, g: 0.7372549, b: 0.09019608, a: 1}
+      - {r: 0.6, g: 0.87843144, b: 0.10196079, a: 1}
+      - {r: 0.5058824, g: 0.69803923, b: 0.13333334, a: 1}
+      - {r: 0.6, g: 0.8745099, b: 0.10980393, a: 1}
+      - {r: 0.6, g: 0.8745099, b: 0.10980393, a: 1}
+  - name: bonsai pot
+    dominantColors:
+    - dominantColor: {r: 0.38823533, g: 0.6431373, b: 0.7294118, a: 1}
+      fontColor: {r: 0.009433985, g: 0.009433985, b: 0.009433985, a: 1}
+      uniformColor:
+      - {r: 0.38823533, g: 0.6431373, b: 0.7294118, a: 1}
+      - {r: 0.6627451, g: 0.8431373, b: 0.9058824, a: 1}
+      - {r: 0.7803922, g: 0.9294118, b: 0.9803922, a: 1}
+      - {r: 0.87843144, g: 0.9725491, b: 0.98823535, a: 1}
+    - dominantColor: {r: 0.24705884, g: 0.36862746, b: 0.13333334, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.24705884, g: 0.36862746, b: 0.13333334, a: 1}
+      - {r: 0.34117648, g: 0.48235297, b: 0.19215688, a: 1}
+      - {r: 0.34117648, g: 0.48235297, b: 0.19215688, a: 1}
+    - dominantColor: {r: 0.427451, g: 0.58431375, b: 0.23529413, a: 1}
+      fontColor: {r: 1, g: 1, b: 1, a: 1}
+      uniformColor:
+      - {r: 0.43137258, g: 0.58431375, b: 0.23529413, a: 1}
+      - {r: 0.5921569, g: 0.7490196, b: 0.36862746, a: 1}
+      - {r: 0.5921569, g: 0.7490196, b: 0.37254903, a: 1}
