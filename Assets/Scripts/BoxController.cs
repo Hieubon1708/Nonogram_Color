@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class BoxController : MonoBehaviour
 {
@@ -46,6 +47,22 @@ public class BoxController : MonoBehaviour
             x[indexRandom].IsX();
             x.RemoveAt(indexRandom);
             xCount--;
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            for (int i = 0; i < boxes.Length; i++)
+            {
+                for (int j = 0; j < boxes[i].Length; j++)
+                {
+                    Color color;
+                    ColorUtility.TryParseHtmlString(boxes[i][j].mainHex, out color);
+                    boxes[i][j].image.color = color;
+                }
+            }
         }
     }
 
@@ -118,7 +135,7 @@ public class BoxController : MonoBehaviour
         }
         return -1;
     }
-    
+
     public int GetCol(Box box)
     {
         for (int i = 0; i < boxes.Length; i++)
