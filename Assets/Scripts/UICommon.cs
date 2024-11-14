@@ -31,10 +31,12 @@ public class UICommon : MonoBehaviour
         settingOption.SwitchStateHandle(isActive, time);
     }
 
-    public void DOLayerCover(float alpha, float duration, Action callback)
+    public void DOLayerCover(float alpha, float duration, bool isActive, Action callback)
     {
+        if(isActive) layerCover.gameObject.SetActive(true);
         layerCover.DOFade(alpha, duration).OnComplete(delegate
         {
+            if (!isActive) layerCover.gameObject.SetActive(false);
             if (callback != null) callback.Invoke();
         });
     }

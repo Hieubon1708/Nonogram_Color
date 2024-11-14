@@ -9,6 +9,9 @@ public class ButtonSelector : MonoBehaviour, IPointerClickHandler
     public Image selected;
     public Image bgSelected;
     public string fontHex;
+    public bool isDone;
+    public CanvasGroup canvasGroup;
+    public Animation ani;
 
     public void LoadLevel(string hex, string fontHex)
     {
@@ -24,8 +27,14 @@ public class ButtonSelector : MonoBehaviour, IPointerClickHandler
         gameObject.SetActive(true);
     }
 
+    public void ButtonFade()
+    {
+        ani.Play();
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
+        if(isDone) return;
         if(GameController.instance.uIController.gamePlay.hint) GameController.instance.uIController.gamePlay.hint.HideHint();
         GameController.instance.playerController.SetColorSelect(hex);
         GameController.instance.uIController.ButtonSelect(GameController.instance.playerController.buttonSelectors, this, 0.15f, 0.25f);
@@ -33,6 +42,8 @@ public class ButtonSelector : MonoBehaviour, IPointerClickHandler
 
     public void ResetButton()
     {
+        canvasGroup.alpha = 1f;
+        isDone = false;
         gameObject.SetActive(false);
     }
 }

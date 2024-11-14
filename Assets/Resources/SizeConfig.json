@@ -11,7 +11,7 @@
         "percentX": 50,
         "amountBox": 10,
         "boxCellSize": 85,
-        "fontSize": 20.0,
+        "fontSize": 30.0,
         "contrainCount": 10,
         "limitSpaceInCluster": 5
     },

@@ -62,4 +62,71 @@ public class UIController : MonoBehaviour
             }
         }
     }
+
+    public int GetButtonIndex()
+    {
+        for (int i = 0; i < GameController.instance.playerController.buttonSelectors.Length; i++)
+        {
+            if (GameController.instance.playerController.buttonSelectors[i].hex == GameController.instance.playerController.hexSelected)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public ButtonSelector GetButtonByHex(string hex)
+    {
+        for (int i = 0; i < GameController.instance.playerController.buttonSelectors.Length; i++)
+        {
+            if (GameController.instance.playerController.buttonSelectors[i].hex == hex)
+            {
+                return GameController.instance.playerController.buttonSelectors[i];
+            }
+        }
+        return null;
+    }
+
+    public void CheckRemainingDominantColor(string hex)
+    {
+        Box[][] boxes = GameController.instance.boxController.boxes;
+
+        bool isRemaining = false;
+
+        for (int i = 0; i < boxes.Length; i++)
+        {
+            for (int j = 0; j < boxes.Length; j++)
+            {
+                if (boxes[i][j].mainHex == hex && !boxes[i][j].isVisible)
+                {
+                    isRemaining = true;
+                    break;
+                }
+            }
+            if (isRemaining) break;
+        }
+
+        if (!isRemaining)
+        {
+            ButtonSelector buttonSelector = GetButtonByHex(hex);
+            if (buttonSelector != null)
+            {
+                buttonSelector.isDone = true;
+                buttonSelector.ButtonFade();
+
+                for (int i = 0; i < GameController.instance.playerController.buttonSelectors.Length; i++)
+                {
+                    if (!GameController.instance.playerController.buttonSelectors[i].isDone && GameController.instance.playerController.buttonSelectors[i].hex != "#FFFFFF")
+                    {
+                        GameController.instance.playerController.buttonSelectors[i].OnPointerClick(null);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                Debug.LogError("Button is null");
+            }
+        }
+    }
 }

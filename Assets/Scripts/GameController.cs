@@ -17,12 +17,15 @@ public class GameController : MonoBehaviour
 
     public void Awake()
     {
+        Application.targetFrameRate = 60;
         DOTween.SetTweensCapacity(200, 500);
         instance = this;
         lineGenerator.Generate();
         dataManager.DataReader();
         uIController.home.UpdateTextLevel();
         PlayerPrefs.SetInt("Level", level);
+
+        PlayerPrefs.GetInt("Tutorial", 0);
     }
 
     public void LoadLevel(int level)

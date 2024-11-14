@@ -43,9 +43,14 @@ public class GamePlay : MonoBehaviour
 
     public void Back()
     {
-        gamePlay.SetActive(false);
-        home.SetActive(true);
-        UIController.instance.home.inputField.gameObject.SetActive(true);
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
+        {
+            gamePlay.SetActive(false);
+            home.SetActive(true);
+            UIController.instance.home.inputField.gameObject.SetActive(true);
+
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
+        });
     }
 
     public void Book()
@@ -99,18 +104,28 @@ public class GamePlay : MonoBehaviour
 
     public void NextLevel()
     {
-        ResetWin();
-        for (int i = 0; i < healths.Length; i++)
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
         {
-            healths[i].Replay();
-        }
-        GameController.instance.LoadLevel(PlayerPrefs.GetInt("Level", 1));
+            ResetWin();
+            for (int i = 0; i < healths.Length; i++)
+            {
+                healths[i].Replay();
+            }
+            GameController.instance.LoadLevel(PlayerPrefs.GetInt("Level", 1));
+
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
+        });
     }
 
     public void Home()
     {
-        ResetWin();
-        Back();
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
+        {
+            ResetWin();
+            Back();
+
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
+        });
     }
 
     public void HidePanelLose()

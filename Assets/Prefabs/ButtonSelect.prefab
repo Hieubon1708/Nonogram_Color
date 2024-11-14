@@ -313,6 +313,8 @@ GameObject:
   - component: {fileID: 4920062565269782484}
   - component: {fileID: 7926643697914787706}
   - component: {fileID: 5432848568051546331}
+  - component: {fileID: 2236836296670131180}
+  - component: {fileID: 616812477803959781}
   m_Layer: 5
   m_Name: ButtonSelect
   m_TagString: Untagged
@@ -365,3 +367,35 @@ MonoBehaviour:
   initial: {fileID: 8270016577424543991}
   selected: {fileID: 7578507885607327670}
   bgSelected: {fileID: 7223936366174557979}
+  fontHex: 
+  isDone: 0
+  canvasGroup: {fileID: 2236836296670131180}
+  ani: {fileID: 616812477803959781}
+--- !u!225 &2236836296670131180
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7421208126999196394}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!111 &616812477803959781
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7421208126999196394}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 2b1615879147c164e8038d1b8e8e878a, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 2b1615879147c164e8038d1b8e8e878a, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0

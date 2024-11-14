@@ -12,11 +12,8 @@ public class Home : MonoBehaviour
     public void ChangeLevel()
     {
         int level = int.Parse(inputField.text);
-        if (level >= 1 && level <= 16)
-        {
-            PlayerPrefs.SetInt("Level", level);
-            Play();
-        }
+        PlayerPrefs.SetInt("Level", level);
+        Play();
     }
 
     public void NoAds()
@@ -26,10 +23,15 @@ public class Home : MonoBehaviour
 
     public void Play()
     {
-        inputField.gameObject.SetActive(false);
-        home.SetActive(false);
-        gamePlay.SetActive(true);
-        GameController.instance.LoadLevel(PlayerPrefs.GetInt("Level", 1));
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
+        {
+            inputField.gameObject.SetActive(false);
+            home.SetActive(false);
+            gamePlay.SetActive(true);
+            GameController.instance.LoadLevel(PlayerPrefs.GetInt("Level", 1));
+
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
+        });
     }
 
     public void UpdateTextLevel()

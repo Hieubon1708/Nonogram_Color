@@ -21,11 +21,11 @@ public class Hint : MonoBehaviour
             
         }
         isHint = true;
-        indexButtonSelect = GameController.instance.playerController.GetButtonIndex();
+        indexButtonSelect = UIController.instance.GetButtonIndex();
         selected.SetActive(true);
         ads.SetActive(false);
         transform.DOKill();
-        transform.DOScale(1.1f, 0.25f);
+        transform.DOScale(1.2f, 0.25f);
         GameController.instance.uIController.ButtonSelect(GameController.instance.playerController.buttonSelectors, null, 0.15f, 0.25f);
     }
 

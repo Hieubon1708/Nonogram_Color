@@ -8,6 +8,7 @@ public class ClusterIndex : MonoBehaviour
     public TextMeshProUGUI num;
     public Animation flicker;
     public CanvasGroup canvasGroup;
+    public bool isDone;
 
     public void LoadData(int amount, string hex)
     {
@@ -22,7 +23,7 @@ public class ClusterIndex : MonoBehaviour
         if (GameController.instance.ColorConvert(hex, out color)) bg.color = color;
         else Debug.LogError("Not found " + gameObject.name + " / " + hex);
         num.text = amount.ToString();
-        num.fontSize = GameController.instance.dataManager.sizeConfig[(int)GameController.instance.typeLevel].fontSize;
+        num.fontSizeMax = GameController.instance.dataManager.sizeConfig[(int)GameController.instance.typeLevel].fontSize;
 
         if (GameController.instance.ColorConvert(GameController.instance.GetFontColor(hex), out color)) num.color = color;
         else Debug.LogError("Not found " + gameObject.name + " / " + hex);
@@ -30,11 +31,18 @@ public class ClusterIndex : MonoBehaviour
 
     public void Flicker()
     {
+        if (canvasGroup.alpha == 0.5f) return;
         flicker.Play("FadeCluster");
+    }
+
+    public void CompletedCluster()
+    {
+        isDone = true;
     }
 
     public void ResetClusterIndex()
     {
+        isDone = false;
         canvasGroup.alpha = 1f;
         gameObject.SetActive(false);
         bg.color = Vector4.one;

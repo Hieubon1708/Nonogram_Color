@@ -106,13 +106,13 @@ public class BoxController : MonoBehaviour
         }
     }
 
-    public Box GetBox(Box box)
+    public Box GetBox(GameObject box)
     {
         for (int i = 0; i < boxes.Length; i++)
         {
             for (int j = 0; j < boxes[i].Length; j++)
             {
-                if (boxes[i][j] == box)
+                if (boxes[i][j].gameObject == box)
                 {
                     return boxes[i][j];
                 }
