@@ -13,6 +13,9 @@ public class GameController : MonoBehaviour
     public DataManager dataManager;
     public UIController uIController;
     public LineGenerator lineGenerator;
+
+    public GameObject tutorial;
+
     public int level;
 
     public void Awake()
@@ -23,9 +26,12 @@ public class GameController : MonoBehaviour
         lineGenerator.Generate();
         dataManager.DataReader();
         uIController.home.UpdateTextLevel();
-        PlayerPrefs.SetInt("Level", level);
+        //PlayerPrefs.SetInt("Level", level);
 
-        PlayerPrefs.GetInt("Tutorial", 0);
+        if(PlayerPrefs.GetInt("Tutorial", 0) == 0)
+        {
+            tutorial.SetActive(true);
+        }
     }
 
     public void LoadLevel(int level)

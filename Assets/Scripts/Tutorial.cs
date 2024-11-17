@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class Tutorial : MonoBehaviour
 {
-    public GameObject home;
-    public GameObject gamePlay;
     public int step = 1;
     public string[] content;
     public GameObject panelStart;
@@ -21,7 +19,6 @@ public class Tutorial : MonoBehaviour
     public RectTransform hand;
     public Animation handAni;
     public Vector2 startHand;
-    public Vector2 targetHand;
     public float timeTarget;
 
     public RectTransform[] line1;
@@ -30,13 +27,22 @@ public class Tutorial : MonoBehaviour
     public RectTransform[] line4;
     public RectTransform[] line5;
 
+    public RowCluster[] rowClusters;
+    public ColCluster[] colClusters;
+
     public Box[] boxLine1;
     public Box[] boxLine2;
     public Box[] boxLine3;
     public Box[] boxLine4;
     public Box[] boxLine5;
 
+    public Color[] colorFade;
+
+    public Box[][] boxes = new Box[5][];
+
     public GameObject[] lights;
+    public GameObject light;
+    public GameObject[] lightStep9;
 
     public Box[] boxCheck;
 
@@ -44,24 +50,97 @@ public class Tutorial : MonoBehaviour
     public Animation[] handButtonAni;
     public Image[] handButtonImage;
 
-    public GameObject layerCover;
-
     public List<GameObject> boxPassed = new List<GameObject>();
     public List<GameObject> boxPassedFade = new List<GameObject>();
 
+    public string targetHex;
+    public string[] hex;
+
     bool isDrag;
     bool isStepOk = true;
+    bool isRoting;
+    public bool isCanClickBox;
     public int totalSelect;
     public int indexBox;
+    public int totalToWin;
+    public int totalX;
+    public int totalBoxSelected;
+    public int indexButtonCanSelect;
+    Tween delayCallStep;
+    Tween delayStep1;
+    Tween delayStep2;
 
-    public void Start()
+    public CanvasGroup[] canvasBeforeWin;
+    public CanvasGroup frameWin;
+    public CanvasGroup panelWinFront;
+    public CanvasGroup panelWinBack;
+
+    public GameObject panelEndTutorial;
+
+    public Image bgMask;
+    public Mask mask;
+    public GameObject wooden;
+    public RectTransform boxAreaParent;
+    public RectTransform target;
+    public GameObject tutorial;
+    public GameObject home;
+    public GameObject gamePlay;
+
+    void ActiveLightStep9(bool isActive)
     {
-        Step();
+        for (int i = 0; i < lightStep9.Length; i++)
+        {
+            lightStep9[i].SetActive(isActive);
+        }
+    }
+
+    public void Skip()
+    {
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
+        {
+            DoKill();
+            tutorial.SetActive(false);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
+        });
+    }
+
+    public void HidePanelEnd()
+    {
+        panelEndTutorial.SetActive(false);
+        PlayerPrefs.SetInt("Tutorial", 1);
+    }
+
+    public void NextLevel()
+    {
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
+        {
+            DoKill();
+            tutorial.SetActive(false);
+            home.SetActive(false);
+            gamePlay.SetActive(true);
+            GameController.instance.LoadLevel(PlayerPrefs.GetInt("Level", 1));
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
+        });
+    }
+
+    public void Home()
+    {
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
+        {
+            DoKill();
+            tutorial.SetActive(false);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
+        });
     }
 
     public void StartTutorial()
     {
-        layerCover.SetActive(true);
+        boxes[0] = boxLine1;
+        boxes[1] = boxLine2;
+        boxes[2] = boxLine3;
+        boxes[3] = boxLine4;
+        boxes[4] = boxLine5;
+
         panelStart.SetActive(false);
         Step();
     }
@@ -103,6 +182,7 @@ public class Tutorial : MonoBehaviour
 
         if (isDrag)
         {
+            if (!isCanClickBox) return;
             Vector2 mousePosition = Input.mousePosition;
             if (boxPassed.Count >= 2)
             {
@@ -122,11 +202,11 @@ public class Tutorial : MonoBehaviour
             for (int i = 0; i < results.Count; i++)
             {
                 GameObject e = results[i].gameObject;
-                if (e.CompareTag("Box") && !boxPassed.Contains(e))
+                if (e.CompareTag("Box") && !boxPassed.Contains(e) && IsContains(e))
                 {
                     boxPassed.Add(e);
                     Box box = GetBox(e);
-                    if (box.mainHex == "" || box.isVisible) return;
+                    if (box.mainHex != targetHex || box.isVisible) return;
                     BoxSelect(box);
                 }
             }
@@ -144,35 +224,37 @@ public class Tutorial : MonoBehaviour
         for (int i = 0; i < results.Count; i++)
         {
             GameObject e = results[i].gameObject;
+
             if (e.CompareTag("Box") && !boxPassedFade.Contains(e) && IsContains(e))
             {
                 boxPassedFade.Add(e);
                 Box box = GetBox(e);
-                if (box.mainHex == "" || box.isVisible) return;
-                Color color;
-                if (GameController.instance.ColorConvert(box.mainHex, out color))
-                {
-                    color.a = 0.85f;
-                    box.image.color = color;
-                }
-                else
-                {
-                    Debug.LogWarning(e + " " + box.mainHex);
-                }
+                if (box.mainHex != targetHex || box.isVisible) return;
+                box.image.color = colorFade[box.mainHex == "#D80E0E" ? 0 : 1];
             }
         }
     }
 
-    void ResetBoxHover()
+    void ResetBoxHover(Box box)
     {
         for (int i = 0; i < boxCheck.Length; i++)
         {
-            if (!boxCheck[i].isVisible) boxCheck[i].image.DOColor(Vector4.one, 0.1f).SetEase(Ease.Linear).SetUpdate(true);
+            if (!boxCheck[i].isVisible && boxCheck[i] != box) boxCheck[i].image.DOColor(Vector4.one, 0.1f).SetEase(Ease.Linear).SetUpdate(true);
         }
     }
 
     bool IsContains(GameObject box)
     {
+        if (targetHex == "#FFFFFF")
+        {
+            for (int i = 0; i < boxes.Length; i++)
+            {
+                for (int j = 0; j < boxes[i].Length; j++)
+                {
+                    if (boxes[i][j].gameObject == box) return true;
+                }
+            }
+        }
         for (int i = 0; i < boxCheck.Length; i++)
         {
             if (boxCheck[i].gameObject == box) return true;
@@ -182,6 +264,16 @@ public class Tutorial : MonoBehaviour
 
     Box GetBox(GameObject box)
     {
+        if (targetHex == "#FFFFFF")
+        {
+            for (int i = 0; i < boxes.Length; i++)
+            {
+                for (int j = 0; j < boxes[i].Length; j++)
+                {
+                    if (boxes[i][j].gameObject == box) return boxes[i][j];
+                }
+            }
+        }
         for (int i = 0; i < boxCheck.Length; i++)
         {
             if (boxCheck[i].gameObject == box) return boxCheck[i];
@@ -191,65 +283,185 @@ public class Tutorial : MonoBehaviour
 
     public void BoxSelect(Box box)
     {
+        if (box.isVisible) return;
         DoKill();
-        ResetBoxHover();
+        ResetBoxHover(box);
         hand.gameObject.SetActive(false);
-        Color color;
+        boxPassedFade.Clear();
         box.isVisible = true;
-        if (GameController.instance.ColorConvert(box.mainHex, out color))
+        isRoting = false;
+        float time = 2f;
+        if (box.mainHex == "#FFFFFF")
         {
-            box.image.DOColor(color, 0.1f);
+            totalX++;
+            box.x.gameObject.SetActive(true);
+            if (totalX == totalSelect)
+            {
+                isStepOk = true;
+                isCanClickBox = false;
+                ActiveLightStep9(false);
+                time = 0.75f;
+                step++;
+            }
+            else isStepOk = false;
         }
         else
         {
-            Debug.LogWarning(box + " " + box.mainHex);
+            Color color;
+            if (GameController.instance.ColorConvert(box.mainHex, out color))
+            {
+                box.image.DOColor(color, 0.1f);
+            }
+            else
+            {
+                Debug.LogWarning(box + " " + box.mainHex);
+            }
+            if (GetAmountBoxSelect() == totalSelect)
+            {
+                isCanClickBox = false;
+                light.SetActive(false);
+                isStepOk = true;
+                time = 0.75f;
+                if(step == 12)
+                {
+                    totalToWin = 20;
+                    Win1();
+                }
+                step++;
+                if (step == 5)
+                {
+                    handButtonImage[2].transform.parent.gameObject.SetActive(true);
+                }
+            }
+            else isStepOk = false;
+            CheckLine(box);
         }
-        float time = 2f;
-        if (GetAmountBoxSelect() == totalSelect)
+        delayCallStep = DOVirtual.DelayedCall(time, delegate
         {
-            isStepOk = true;
-            time = 0f;
-            step++;
-        }
-        DOVirtual.DelayedCall(time, delegate
-        {
-            isStepOk = false;
             Step();
         });
+    }
+
+    public void Win1()
+    {
+        for (int i = 0; i < boxes.Length; i++)
+        {
+            for (int j = 0; j < boxes[i].Length; j++)
+            {
+                Box box = boxes[j][i];
+                DOVirtual.DelayedCall(0.25f * (j * 0.25f), delegate
+                {
+                    box.EndDo(0.25f);
+                });
+            }
+        }
+        DOVirtual.DelayedCall((boxes.Length) * (0.25f * 0.25f), delegate
+        {
+            Win2();
+        });
+    }
+
+    public void Win2()
+    {
+        for (int i = 0; i < canvasBeforeWin.Length; i++)
+        {
+            canvasBeforeWin[i].DOFade(0f, 0.5f).SetEase(Ease.Linear);
+        }
+        DOVirtual.DelayedCall(0.5f, delegate
+        {
+            mask.enabled = true;
+            bgMask.enabled = true;
+            frameWin.gameObject.SetActive(true);
+            frameWin.DOFade(1f, 0.5f).SetEase(Ease.Linear).OnComplete(delegate
+            {
+                DOVirtual.DelayedCall(0.5f, delegate
+                {
+                    wooden.SetActive(true);
+                    panelWinFront.gameObject.SetActive(true);
+                    panelWinFront.DOFade(1f, 0.5f).SetEase(Ease.Linear);
+                    panelWinBack.gameObject.SetActive(true);
+                    panelWinBack.DOFade(1f, 0.5f).SetEase(Ease.Linear).OnComplete(delegate
+                    {
+                        panelEndTutorial.SetActive(true);
+                    });
+                });
+                boxAreaParent.DOMove(target.position, 0.5f).SetEase(Ease.Linear);
+                boxAreaParent.DOScale(0.725f, 0.5f).SetEase(Ease.Linear);
+            });
+        });
+    }
+
+    int GetBoxStart()
+    {
+        int index = 0;
+        for (int i = 0; i < boxCheck.Length; i++)
+        {
+            if (!boxCheck[i].isVisible && boxCheck[i].mainHex == targetHex) return i;
+        }
+        return index;
     }
 
     public void MoveHand()
     {
         if (indexBox < boxCheck.Length)
         {
-            bool isContinue = false;
-            hand.DOMoveX(boxCheck[indexBox].transform.position.x, 1f / 5f).SetEase(Ease.Linear).OnComplete(delegate
-            {
-                if (boxCheck[indexBox].mainHex == "#FFFFFF" || boxCheck[indexBox].isVisible)
-                {
-                    indexBox += 2;
-                    hand.DOKill();
-                    handAni.Play("TutorialHandUp");
-                }
-                else
-                {
-                    MoveHand();
-                    isContinue = true;
-                }
-            }).OnUpdate(delegate
+            if (boxCheck[indexBox].mainHex != targetHex || boxCheck[indexBox].isVisible)
             {
                 CheckBox();
-            });
-            if (!isContinue) hand.DORotate(new Vector3(0, 0, -13.4f), 1f).SetEase(Ease.Linear);
-
+                DoKill();
+                indexBox = GetIndexBoxCanSelect(indexBox);
+                if (indexBox == -1)
+                {
+                    EndHand();
+                    return;
+                }
+                handAni.Play("TutorialHandUp");
+                isRoting = false;
+            }
+            else
+            {
+                if (!isRoting)
+                {
+                    hand.DORotate(new Vector3(0, 0, -13.4f), 1f).SetEase(Ease.Linear);
+                    isRoting = true;
+                }
+                hand.DOMoveX(boxCheck[indexBox].transform.position.x, 1f / 5f).SetEase(Ease.Linear).OnComplete(delegate
+                {
+                    indexBox++;
+                    MoveHand();
+                }).OnUpdate(delegate
+                {
+                    CheckBox();
+                });
+            }
         }
         else
         {
-            boxPassedFade.Clear();
-            ResetBoxHover();
-            hand.DOKill();
-            handAni.Play("TutorialHandHide");
+            CheckBox();
+            EndHand();
         }
+    }
+
+    void EndHand()
+    {
+        DoKill();
+        DOVirtual.DelayedCall(0.5f, delegate
+        {
+            isRoting = false;
+            indexBox = GetBoxStart() + 1;
+            boxPassedFade.Clear();
+            ResetBoxHover(null);
+            handAni.Play("TutorialHandHide");
+        });
+    }
+
+    int GetIndexBoxCanSelect(int currentIndex)
+    {
+        for (int i = currentIndex; i < boxCheck.Length; i++)
+        {
+            if (!boxCheck[i].isVisible && boxCheck[i].mainHex == targetHex) return i;
+        }
+        return -1;
     }
 
     public void HandUp()
@@ -257,31 +469,67 @@ public class Tutorial : MonoBehaviour
         hand.DORotate(new Vector3(0, 0, 31f), 0.4f).SetEase(Ease.Linear);
         hand.DOMoveX(boxCheck[indexBox].transform.position.x, 0.4f).SetEase(Ease.Linear).OnComplete(delegate
         {
-            hand.DOKill();
+            DoKill();
             handAni.Play("TutorialHandDown");
         });
     }
 
     public void HandDown()
     {
-        hand.DOMoveX(boxCheck[indexBox].transform.position.x, 1f / line1.Length).SetEase(Ease.Linear).OnComplete(delegate
-        {
-            indexBox++;
-            MoveHand();
-        });
+        CheckBox();
+        indexBox++;
+        MoveHand();
     }
 
     public void ButtonSelect(int index)
     {
+        if (index != indexButtonCanSelect) return;
         isStepOk = true;
         DoKill();
         if (step == 1)
         {
+            light = lights[0];
+            light.SetActive(true);
             handButtonImage[1].gameObject.SetActive(false);
-            lights[0].SetActive(true);
-            UIController.instance.ButtonSelect(buttonSelectors, buttonSelectors[index], 0.15f, 0.25f);
-            layerCover.SetActive(true);
+            Color color = handButtonImage[1].color;
+            color.a = 0f;
+            handButtonImage[1].color = color;
         }
+        if (step == 5)
+        {
+            light = lights[3];
+            light.SetActive(true);
+            handButtonImage[2].gameObject.SetActive(false);
+            isCanClickBox = true;
+            Color color = handButtonImage[2].color;
+            color.a = 0f;
+            handButtonImage[2].color = color;
+        }
+        if (step == 7)
+        {
+            light = lights[4];
+            light.SetActive(true);
+            isCanClickBox = true;
+            handButtonImage[1].gameObject.SetActive(false);
+            Color color = handButtonImage[1].color;
+            color.a = 0f;
+            handButtonImage[1].color = color;
+        }
+        if (step == 9)
+        {
+            ActiveLightStep9(true);
+            isCanClickBox = true;
+            handButtonImage[0].gameObject.SetActive(false);
+        }
+        if (step == 11)
+        {
+            light = lights[5];
+            light.SetActive(true);
+            isCanClickBox = true;
+            handButtonImage[2].gameObject.SetActive(false);
+        }
+        UIController.instance.ButtonSelect(buttonSelectors, buttonSelectors[index], 0.15f, 0.25f);
+        indexButtonCanSelect = -1;
         step++;
         Step();
     }
@@ -296,6 +544,8 @@ public class Tutorial : MonoBehaviour
         return amount;
     }
 
+
+
     public void Step()
     {
         if (step <= 12)
@@ -305,9 +555,10 @@ public class Tutorial : MonoBehaviour
 
             if (step == 1)
             {
-                DOVirtual.DelayedCall(1f, delegate
+                indexButtonCanSelect = 1;
+                targetHex = hex[0];
+                delayStep1 = DOVirtual.DelayedCall(1f, delegate
                 {
-                    layerCover.SetActive(false);
                     handButtonImage[1].gameObject.SetActive(true);
                     handButtonImage[1].DOFade(1f, 0.25f).SetEase(Ease.Linear);
                     handButtonAni[1].Play();
@@ -316,49 +567,159 @@ public class Tutorial : MonoBehaviour
 
             if (step == 2)
             {
-                DOVirtual.DelayedCall(1f, delegate
+                boxCheck = boxLine1;
+                totalSelect = 5;
+                targetHex = hex[0];
+                isCanClickBox = true;
+                delayStep1 = DOVirtual.DelayedCall(1f, delegate
                 {
-                    indexBox = 1;
-                    totalSelect = 5;
-                    boxCheck = boxLine1;
-                    layerCover.SetActive(false);
+                    int indexStart = GetBoxStart();
+                    indexBox = indexStart + 1;
                     hand.gameObject.SetActive(true);
-                    startHand = line1[0].position;
-                    targetHand = line1[4].position;
+                    startHand = line1[indexStart].position;
                     StartHand();
                 });
             }
 
             if (step == 3)
             {
-                MoveRow(1);
-                MoveLine();
+                if (isStepOk)
+                {
+                    MoveRow(1);
+                    MoveLine();
+                    light = lights[1];
+                    boxCheck = boxLine2;
+                    totalSelect = 4;
+                    targetHex = hex[0];
+                }
+                delayStep2 = DOVirtual.DelayedCall(1f, delegate
+                {
+                    int indexStart = GetBoxStart();
+                    indexBox = indexStart + 1;
+                    hand.gameObject.SetActive(true);
+                    startHand = line2[indexStart].position;
+                    StartHand();
+                });
             }
             if (step == 4)
             {
-                MoveRow(2);
-                MoveLine();
+                if (isStepOk)
+                {
+                    MoveRow(2);
+                    MoveLine();
+                    light = lights[2];
+                    boxCheck = boxLine3;
+                    totalSelect = 4;
+                    targetHex = hex[0];
+                }
+                delayStep2 = DOVirtual.DelayedCall(1f, delegate
+                {
+                    int indexStart = GetBoxStart();
+                    indexBox = indexStart + 1;
+                    hand.gameObject.SetActive(true);
+                    startHand = line3[indexStart].position;
+                    StartHand();
+                }); 
             }
+
+            //line 4 3 cai mau xanh
             if (step == 5)
             {
                 MoveRow(3);
                 MoveLine();
+                boxCheck = boxLine4;
+                totalSelect = 3;
+                indexButtonCanSelect = 2;
+                targetHex = hex[1];
+                delayStep2 = DOVirtual.DelayedCall(1f, delegate
+                {
+                    handButtonImage[2].gameObject.SetActive(true);
+                    handButtonImage[2].DOFade(1f, 0.25f).SetEase(Ease.Linear);
+                    handButtonAni[2].Play();
+                });
             }
+
+            if (step == 6)
+            {
+                delayStep2 = DOVirtual.DelayedCall(1f, delegate
+                {
+                    int indexStart = GetBoxStart();
+                    indexBox = indexStart + 1;
+                    hand.gameObject.SetActive(true);
+                    startHand = line4[indexStart].position;
+                    StartHand();
+                });
+            }
+
+            //line 4 2 cai mau do
+            if (step == 7)
+            {
+                indexButtonCanSelect = 1;
+                totalSelect = 5;
+                targetHex = hex[0];
+                delayStep2 = DOVirtual.DelayedCall(1f, delegate
+                {
+                    handButtonImage[1].gameObject.SetActive(true);                   
+                    handButtonImage[1].DOFade(1f, 0.25f).SetEase(Ease.Linear);
+                    handButtonAni[1].Play();
+                });
+            }
+
+            if (step == 8)
+            {
+                delayStep2 = DOVirtual.DelayedCall(1f, delegate
+                {
+                    int indexStart = GetBoxStart();
+                    indexBox = indexStart + 1;
+                    hand.gameObject.SetActive(true);
+                    startHand = line4[indexStart].position;
+                    StartHand();
+                });
+            }
+
             if (step == 9)
             {
                 MoveRow(4);
                 MoveLine();
-
                 DOVirtual.DelayedCall(0.25f, delegate
                 {
-                    MoveRow(0);
-                    maskLine.DOAnchorPosY(maskLine.anchoredPosition.y - 170, 0.25f).SetEase(Ease.Linear);
+                    delayStep1 = DOVirtual.DelayedCall(0.25f, delegate
+                    {
+                        MoveRow(0);
+                        maskLine.DOAnchorPosY(maskLine.anchoredPosition.y - 170, 0.25f).SetEase(Ease.Linear);
+                        indexButtonCanSelect = 0;
+                        totalSelect = 6;
+                        targetHex = hex[2];
+                        delayStep2 = DOVirtual.DelayedCall(1f, delegate
+                        {
+                            handButtonImage[0].gameObject.SetActive(true);
+                            handButtonImage[0].DOFade(1f, 0.25f).SetEase(Ease.Linear);
+                            handButtonAni[0].Play();
+                        });
+                    });
+                });
+            }
+
+            if (step == 11)
+            {
+                indexButtonCanSelect = 2;
+                totalSelect = 5;
+                boxCheck = boxLine5;
+                targetHex = hex[1];
+                delayStep2 = DOVirtual.DelayedCall(1f, delegate
+                {
+                    handButtonImage[2].gameObject.SetActive(true);
+                    handButtonImage[2].DOFade(1f, 0.25f).SetEase(Ease.Linear);
+                    handButtonAni[2].Play();
                 });
             }
 
             if (!isStepOk) return;
-            popupContent.SetActive(false);
-            popupContent.SetActive(true);
+            if(step != 8 && step != 12)
+            {
+                popupContent.SetActive(false);
+                popupContent.SetActive(true);
+            }
         }
     }
 
@@ -372,7 +733,13 @@ public class Tutorial : MonoBehaviour
     }
     void MoveLine()
     {
-        maskLine.DOSizeDelta(new Vector2(-230, maskLine.sizeDelta.y + 170), 0.25f).SetEase(Ease.Linear);
+        maskLine.DOSizeDelta(new Vector2(-230, maskLine.sizeDelta.y + 170), 0.25f).SetEase(Ease.Linear).OnComplete(delegate
+        {
+            if (step == 3 || step == 4)
+            {
+                isCanClickBox = true;
+            }
+        });
     }
 
     void DoKill()
@@ -393,6 +760,219 @@ public class Tutorial : MonoBehaviour
         for (int i = 0; i < boxCheck.Length; i++)
         {
             boxCheck[i].DOKill();
+        }
+        for (int i = 0; i < boxes.Length; i++)
+        {
+            for (int j = 0; j < boxes[i].Length; j++)
+            {
+               boxes[i][j].DOKill();
+            }
+        }
+        delayCallStep.Kill();
+        delayStep1.Kill();
+        delayStep2.Kill();
+        for (int i = 0; i < canvasBeforeWin.Length; i++)
+        {
+            canvasBeforeWin[i].DOKill();
+        }
+        panelWinBack.DOKill();
+        panelWinFront.DOKill();
+        frameWin.DOKill();
+    }
+
+    public int GetRow(Box box)
+    {
+        for (int i = 0; i < boxes.Length; i++)
+        {
+            for (int j = 0; j < boxes[i].Length; j++)
+            {
+                if (boxes[i][j] == box)
+                {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
+    public int GetCol(Box box)
+    {
+        for (int i = 0; i < boxes.Length; i++)
+        {
+            for (int j = 0; j < boxes[i].Length; j++)
+            {
+                if (boxes[i][j] == box)
+                {
+                    return j;
+                }
+            }
+        }
+        return -1;
+    }
+
+    public void CheckLine(Box box)
+    {
+        int row = GetRow(box);
+        int col = GetCol(box);
+
+        bool isRowOk = true;
+        bool isColOk = true;
+
+        if (totalToWin != totalBoxSelected)
+        {
+            for (int i = 0; i < boxes[row].Length; i++)
+            {
+                if (!boxes[row][i].isVisible
+                    && boxes[row][i].mainHex != "#FFFFFF") isRowOk = false;
+            }
+            if (isRowOk)
+            {
+                for (int i = col; i >= 0; i--)
+                {
+                    if (boxes[row][i].mainHex == "#FFFFFF")
+                    {
+                        int index = i;
+                        DOVirtual.DelayedCall(0.15f * ((col - i) * 0.15f), delegate
+                        {
+                            boxes[row][index].ani.Play("Flicker");
+                        });
+                    }
+                }
+                DOVirtual.DelayedCall(0.15f * ((col + 1) * 0.15f), delegate
+                {
+                    rowClusters[row].Flicker();
+                    CheckRowClusterIndex(boxes, row);
+                });
+                for (int i = col; i < boxes[row].Length; i++)
+                {
+                    if (boxes[row][i].mainHex == "#FFFFFF")
+                    {
+                        int index = i;
+                        DOVirtual.DelayedCall(0.15f * ((col - i) * 0.15f), delegate
+                        {
+                            boxes[row][index].ani.Play("Flicker");
+                        });
+                    }
+                }
+            }
+            /*for (int i = 0; i < boxes.Length; i++)
+            {
+                if (!boxes[i][col].isVisible
+                    && boxes[i][col].mainHex != "#FFFFFF") isColOk = false;
+            }
+            if (isColOk)
+            {
+                for (int i = row; i >= 0; i--)
+                {
+                    if (boxes[i][col].mainHex == "#FFFFFF")
+                    {
+                        int index = i;
+                        DOVirtual.DelayedCall(0.15f * ((row - i) * 0.15f), delegate
+                        {
+                            boxes[index][col].ani.Play("Flicker");
+                        });
+                    }
+                }
+                DOVirtual.DelayedCall(0.15f * ((row + 1) * 0.15f), delegate
+                {
+                    colClusters[col].Flicker();
+                    CheckColClusterIndex(boxes, col);
+                });
+                for (int i = row; i < boxes.Length; i++)
+                {
+                    if (boxes[i][col].mainHex == "#FFFFFF")
+                    {
+                        int index = i;
+                        DOVirtual.DelayedCall(0.15f * ((row - i) * 0.15f), delegate
+                        {
+                            boxes[index][col].ani.Play("Flicker");
+                        });
+                    }
+                }
+            }*/
+        }
+
+        bool isClusterOk = true;
+        for (int i = 0; i < box.rowClusters.Count; i++)
+        {
+            if (!box.rowClusters[i].isVisible) isClusterOk = false;
+        }
+        if (isClusterOk)
+        {
+            box.rowClusterIndex.CompletedCluster();
+            if (!isRowOk)
+            {
+                CheckRowClusterIndex(boxes, row);
+            }
+        }
+        /*isClusterOk = true;
+        for (int i = 0; i < box.colClusters.Count; i++)
+        {
+            if (!box.colClusters[i].isVisible) isClusterOk = false;
+        }
+        if (isClusterOk)
+        {
+            box.colClusterIndex.CompletedCluster();
+            if (!isColOk)
+            {
+                CheckColClusterIndex(boxes, col);
+            }
+        }*/
+    }
+
+    void CheckRowClusterIndex(Box[][] boxes, int index)
+    {
+        for (int i = 0; i < boxes[index].Length; i++)
+        {
+            if (boxes[index][i].isVisible)
+            {
+                if (boxes[index][i].rowClusterIndex == null) continue;
+                if (boxes[index][i].rowClusterIndex.isDone)
+                {
+                    boxes[index][i].rowClusterIndex.Flicker();
+                }
+            }
+            else break;
+        }
+        for (int i = boxes.Length - 1; i >= 0; i--)
+        {
+            if (boxes[index][i].isVisible)
+            {
+                if (boxes[index][i].rowClusterIndex == null) continue;
+                if (boxes[index][i].rowClusterIndex.isDone)
+                {
+                    boxes[index][i].rowClusterIndex.Flicker();
+                }
+            }
+            else break;
+        }
+    }
+
+    void CheckColClusterIndex(Box[][] boxes, int index)
+    {
+        for (int i = 0; i < boxes.Length; i++)
+        {
+            if (boxes[i][index].isVisible)
+            {
+                if (boxes[i][index].colClusterIndex == null) continue;
+                if (boxes[i][index].colClusterIndex.isDone)
+                {
+                    boxes[i][index].colClusterIndex.Flicker();
+                }
+            }
+            else break;
+        }
+        for (int i = boxes.Length - 1; i >= 0; i--)
+        {
+            if (boxes[i][index].isVisible)
+            {
+                if (boxes[i][index].colClusterIndex == null) continue;
+                if (boxes[i][index].colClusterIndex.isDone)
+                {
+                    boxes[i][index].colClusterIndex.Flicker();
+                }
+            }
+            else break;
         }
     }
 
