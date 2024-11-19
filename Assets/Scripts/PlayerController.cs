@@ -41,14 +41,18 @@ public class PlayerController : MonoBehaviour
     float GetSameBoxPassed(ref int isSameRow)
     {
         float value = 0f;
-        if (boxPassed[0].transform.position.x == boxPassed[1].transform.position.x)
+
+        Vector2 box0 = UIController.instance.WorldToScreenPoint(boxPassed[0].transform.position);
+        Vector2 box1 = UIController.instance.WorldToScreenPoint(boxPassed[1].transform.position);
+
+        if (box0.x == box1.x)
         {
-            value = boxPassed[0].transform.position.x;
+            value = box0.x;
             isSameRow = 1;
         }
-        if (boxPassed[0].transform.position.y == boxPassed[1].transform.position.y)
+        if (box0.y == box1.y)
         {
-            value = boxPassed[0].transform.position.y;
+            value = box0.y;
             isSameRow = -1;
         }
         return value;
@@ -70,6 +74,7 @@ public class PlayerController : MonoBehaviour
 
         if (isDrag)
         {
+            if (UIController.instance.collection.barBackCollection.activeSelf) return;
             Vector2 mousePosition = Input.mousePosition;
             if (boxPassed.Count >= 2)
             {
@@ -105,8 +110,12 @@ public class PlayerController : MonoBehaviour
         {
             GameController.instance.boxController.Win();
             GameController.instance.uIController.gamePlay.layerCover.SetActive(true);
-            PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level", 1) + 1);
-            GameController.instance.uIController.home.UpdateTextLevel();
+            if (!UIController.instance.collection.back.activeSelf)
+            {
+                UIController.instance.collection.AddCollector(PlayerPrefs.GetInt("Level", 1) - 1);
+                PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level", 1) + 1);
+                GameController.instance.uIController.home.UpdateTextLevel();
+            }
         }
     }
 

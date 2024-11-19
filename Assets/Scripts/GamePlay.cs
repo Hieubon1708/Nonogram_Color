@@ -25,13 +25,19 @@ public class GamePlay : MonoBehaviour
     public TextMeshProUGUI textLevel;
     public TextMeshProUGUI textNextLevel;
     public Mask mask;
-    Vector2 startBoxAreaParent;
+    Vector3 startBoxAreaParent;
 
     public Health[] healths;
 
     private void Awake()
     {
         startBoxAreaParent = boxAreaParent.position;
+    }
+
+    public void SwitchFontWin(CanvasGroup canvas, out CanvasGroup temp)
+    {
+        temp = panelWinFront;
+        panelWinFront = canvas;
     }
 
     public void LoadLevel(LevelConfig levelConfig)
@@ -85,6 +91,7 @@ public class GamePlay : MonoBehaviour
                     {
                         layerCover.SetActive(false);
                     });
+                    UIController.instance.PlayFxWin();
                 });
                 boxAreaParent.DOMove(target.position, 0.5f).SetEase(Ease.Linear);
                 boxAreaParent.DOScale(0.725f, 0.5f).SetEase(Ease.Linear);
@@ -98,6 +105,7 @@ public class GamePlay : MonoBehaviour
         DOVirtual.DelayedCall(1.25f, delegate
         {
             panelLose.gameObject.SetActive(true);
+            layerCover.SetActive(false);
             UIController.instance.uICommon.ScalePopup(panelLose, popupLose, 234f / 255f, 0.1f, 1f, 0.5f);
         });
     }
@@ -111,8 +119,8 @@ public class GamePlay : MonoBehaviour
             {
                 healths[i].Replay();
             }
+            UIController.instance.StopFxWin();
             GameController.instance.LoadLevel(PlayerPrefs.GetInt("Level", 1));
-
             UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
         });
     }
@@ -121,9 +129,11 @@ public class GamePlay : MonoBehaviour
     {
         UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
         {
+            UIController.instance.StopFxWin();
             ResetWin();
-            Back();
-
+            gamePlay.SetActive(false);
+            home.SetActive(true);
+            UIController.instance.home.inputField.gameObject.SetActive(true);
             UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
         });
     }
@@ -137,12 +147,17 @@ public class GamePlay : MonoBehaviour
 
     public void Replay()
     {
-        GameController.instance.LoadLevel(PlayerPrefs.GetInt("Level", 1));
-        HidePanelLose();
-        for (int i = 0; i < healths.Length; i++)
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
         {
-            healths[i].Replay();
-        }
+            GameController.instance.LoadLevel(PlayerPrefs.GetInt("Level", 1));
+            HidePanelLose();
+            for (int i = 0; i < healths.Length; i++)
+            {
+                healths[i].Replay();
+            }
+            UIController.instance.home.inputField.gameObject.SetActive(true);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
+        });
     }
 
     public void PlusHealth()

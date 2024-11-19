@@ -81,4 +81,9 @@ public class UICommon : MonoBehaviour
     {
         None, Sound, Music, Vibrate
     }
+
+    public void OnDestroy()
+    {
+        layerCover.DOKill();
+    }
 }

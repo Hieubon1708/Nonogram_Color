@@ -7,7 +7,12 @@ public class UIController : MonoBehaviour
 
     public UICommon uICommon;
     public GamePlay gamePlay;
+    public Collection collection;
+    public Daily daily;
     public Home home;
+
+    public ParticleSystem fxWin;
+    public Camera cam;
 
     public FalseCircle[] falseCircles;
     int falseIndex;
@@ -15,6 +20,16 @@ public class UIController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    public Vector2 WorldToScreenPoint(Vector2 input)
+    {
+        return cam.WorldToScreenPoint(input);
+    }
+    
+    public Vector3 ScreenToWorldPoint(Vector3 input)
+    {
+        return cam.ScreenToWorldPoint(input);
     }
 
     public void LoadLevel(LevelConfig levelConfig)
@@ -26,7 +41,17 @@ public class UIController : MonoBehaviour
         gamePlay.LoadLevel(levelConfig);
     }
 
-    public void PlayFalse(Vector2 pos, Box box)
+    public void PlayFxWin()
+    {
+        fxWin.gameObject.SetActive(true);
+    }
+
+    public void StopFxWin()
+    {
+        fxWin.gameObject.SetActive(false);
+    }
+
+    public void PlayFalse(Vector3 pos, Box box)
     {
         FalseCircle falseCircle = falseCircles[falseIndex];
         falseCircle.boxSelected = box;

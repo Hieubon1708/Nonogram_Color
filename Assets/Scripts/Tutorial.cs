@@ -98,6 +98,7 @@ public class Tutorial : MonoBehaviour
     {
         UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
         {
+            PlayerPrefs.SetInt("Tutorial", 1);
             DoKill();
             tutorial.SetActive(false);
             UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
@@ -115,6 +116,7 @@ public class Tutorial : MonoBehaviour
         UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
         {
             DoKill();
+            UIController.instance.StopFxWin();
             tutorial.SetActive(false);
             home.SetActive(false);
             gamePlay.SetActive(true);
@@ -128,6 +130,7 @@ public class Tutorial : MonoBehaviour
         UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
         {
             DoKill();
+            UIController.instance.StopFxWin();
             tutorial.SetActive(false);
             UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
         });
@@ -154,14 +157,18 @@ public class Tutorial : MonoBehaviour
     float GetSameBoxPassed(ref int isSameRow)
     {
         float value = 0f;
-        if (boxPassed[0].transform.position.x == boxPassed[1].transform.position.x)
+
+        Vector2 box0 = UIController.instance.WorldToScreenPoint(boxPassed[0].transform.position);
+        Vector2 box1 = UIController.instance.WorldToScreenPoint(boxPassed[1].transform.position);
+
+        if (box0.x == box1.x)
         {
-            value = boxPassed[0].transform.position.x;
+            value = box0.x;
             isSameRow = 1;
         }
-        if (boxPassed[0].transform.position.y == boxPassed[1].transform.position.y)
+        if (box0.y == box1.y)
         {
-            value = boxPassed[0].transform.position.y;
+            value = box0.y;
             isSameRow = -1;
         }
         return value;
@@ -322,7 +329,7 @@ public class Tutorial : MonoBehaviour
                 light.SetActive(false);
                 isStepOk = true;
                 time = 0.75f;
-                if(step == 12)
+                if (step == 12)
                 {
                     totalToWin = 20;
                     Win1();
@@ -384,6 +391,7 @@ public class Tutorial : MonoBehaviour
                     {
                         panelEndTutorial.SetActive(true);
                     });
+                    UIController.instance.PlayFxWin();
                 });
                 boxAreaParent.DOMove(target.position, 0.5f).SetEase(Ease.Linear);
                 boxAreaParent.DOScale(0.725f, 0.5f).SetEase(Ease.Linear);
@@ -619,7 +627,7 @@ public class Tutorial : MonoBehaviour
                     hand.gameObject.SetActive(true);
                     startHand = line3[indexStart].position;
                     StartHand();
-                }); 
+                });
             }
 
             //line 4 3 cai mau xanh
@@ -659,7 +667,7 @@ public class Tutorial : MonoBehaviour
                 targetHex = hex[0];
                 delayStep2 = DOVirtual.DelayedCall(1f, delegate
                 {
-                    handButtonImage[1].gameObject.SetActive(true);                   
+                    handButtonImage[1].gameObject.SetActive(true);
                     handButtonImage[1].DOFade(1f, 0.25f).SetEase(Ease.Linear);
                     handButtonAni[1].Play();
                 });
@@ -715,7 +723,7 @@ public class Tutorial : MonoBehaviour
             }
 
             if (!isStepOk) return;
-            if(step != 8 && step != 12)
+            if (step != 8 && step != 12)
             {
                 popupContent.SetActive(false);
                 popupContent.SetActive(true);
@@ -763,9 +771,10 @@ public class Tutorial : MonoBehaviour
         }
         for (int i = 0; i < boxes.Length; i++)
         {
+            if (boxes[i] == null) break;
             for (int j = 0; j < boxes[i].Length; j++)
             {
-               boxes[i][j].DOKill();
+                boxes[i][j].DOKill();
             }
         }
         delayCallStep.Kill();
