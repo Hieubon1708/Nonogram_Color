@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System.IO;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
@@ -8,7 +9,7 @@ public class DataManager : MonoBehaviour
         Level5x5, Level10x10, Level15x15, Level20x20
     }
 
-    public SizeConfig[] sizeConfig;   
+    public SizeConfig[] sizeConfig;
 
     public void DataReader()
     {
@@ -22,9 +23,22 @@ public class DataManager : MonoBehaviour
         return JsonConvert.DeserializeObject<LevelConfig>(js.text);
     }
 
-    public void SaveLevel()
+    public LevelDataStorage GetLevelStorage(int level)
     {
+        string dataJs = Path.Combine(Application.persistentDataPath, level + ".json");
+        if (File.Exists(dataJs))
+        {
+            string levelDataStorage = File.ReadAllText(dataJs);
+            return JsonConvert.DeserializeObject<LevelDataStorage>(levelDataStorage);
+        }
+        return new LevelDataStorage();
+    }
 
+    public void SaveLevel(LevelDataStorage levelDataStorage, int level)
+    {
+        string js = JsonConvert.SerializeObject(levelDataStorage);
+        string path = Path.Combine(Application.persistentDataPath, level + ".json");
+        File.WriteAllText(path, js);
     }
 }
 
@@ -48,6 +62,30 @@ public class LevelConfig
     public ButtonConfig[] buttonConfigs;
     public BoxConfig[][] boxConfigs;
 }
+
+[System.Serializable]
+public class LevelDataStorage
+{
+    public bool isClicked;
+    public int healthRemaining;
+    public int totalSelect;
+    public ButtonDataStorage[] buttonDataStorage;
+    public BoxDataStorage[][] boxDataStorage;
+}
+
+
+[System.Serializable]
+public class ButtonDataStorage
+{
+    public bool isDone;
+}
+
+[System.Serializable]
+public class BoxDataStorage
+{
+    public bool isVisible;
+}
+
 
 [System.Serializable]
 public class ButtonConfig

@@ -163,6 +163,7 @@ public class GamePlay : MonoBehaviour
     public void PlusHealth()
     {
         GameController.instance.playerController.health++;
+        GameController.instance.SaveLevel(GameController.instance.playerController.health);
         HidePanelLose();
         healths[0].Replay();
     }

@@ -11,7 +11,7 @@ public class BoxController : MonoBehaviour
     public Box[] pool;
     public Box[][] boxes;
 
-    public void LoadLevel(LevelConfig levelConfig)
+    public void LoadLevel(LevelConfig levelConfig, LevelDataStorage levelDataStorage)
     {
         ResetBoxes();
 
@@ -40,6 +40,16 @@ public class BoxController : MonoBehaviour
             }
             boxes[i] = boxesInRow;
         }
+        if(levelDataStorage.boxDataStorage == null)
+        {
+            levelDataStorage.boxDataStorage = new BoxDataStorage[boxes.Length][];
+            for (int i = 0; i < boxes.Length; i++)
+            {
+                BoxDataStorage[] boxDataStorageChild = new BoxDataStorage[boxes[i].Length];
+                levelDataStorage.boxDataStorage[i] = boxDataStorageChild;
+            }
+        }
+
         int xCount = x.Count * GameController.instance.dataManager.sizeConfig[(int)levelConfig.typeLevel].percentX / 100;
         while (xCount > 0)
         {

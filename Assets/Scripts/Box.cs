@@ -113,6 +113,7 @@ public class Box : MonoBehaviour
     {
         int row = GameController.instance.boxController.GetRow(this);
         int col = GameController.instance.boxController.GetCol(this);
+        GameController.instance.SaveLevel(row, col, mainHex);
         Box[][] boxes = GameController.instance.boxController.boxes;
         CheckRowClusterIndex(boxes, row);
         CheckColClusterIndex(boxes, col);
@@ -128,7 +129,7 @@ public class Box : MonoBehaviour
     {
         int row = GameController.instance.boxController.GetRow(this);
         int col = GameController.instance.boxController.GetCol(this);
-
+        GameController.instance.SaveLevel(row, col, mainHex);
         bool isRowOk = true;
         bool isColOk = true;
 

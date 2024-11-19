@@ -1,9 +1,12 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DailyDay : MonoBehaviour
 {
-    public Animation bgAni;
+    public Animation ani;
+    public Image progress;
+    public Image image;
     public TextMeshProUGUI num;
     public int index;
     public int level;
@@ -26,16 +29,30 @@ public class DailyDay : MonoBehaviour
     {
         if(num.text == "" || num.color == Color.gray) return;
         UIController.instance.daily.SelectDay(index, level);
-        BgShowAni();
+        BgShow();
     }
 
-    public void BgShowAni()
+    public void BgShow()
     {
-        bgAni.Play("DailyBgShowAni");
+        /*if (isCompleted)
+        {
+            ani.Play("DailyDayShowBgCompleted");
+        }
+        else
+        {
+            ani.Play("DailyDayShowBg");
+        }*/
     }
 
-    public void BgHideAni()
+    public void BgHide()
     {
-        bgAni.Play("DailyBgHideAni");
+       /* if (isCompleted)
+        {
+            ani.Play("DailyDayHideBgCompleted");
+        }
+        else
+        {
+            ani.Play("DailyDayHide.Bg");
+        }*/
     }
 }

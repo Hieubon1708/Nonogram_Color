@@ -26,7 +26,7 @@ public class UIController : MonoBehaviour
     {
         return cam.WorldToScreenPoint(input);
     }
-    
+
     public Vector3 ScreenToWorldPoint(Vector3 input)
     {
         return cam.ScreenToWorldPoint(input);
@@ -143,6 +143,7 @@ public class UIController : MonoBehaviour
                 {
                     if (!GameController.instance.playerController.buttonSelectors[i].isDone && GameController.instance.playerController.buttonSelectors[i].hex != "#FFFFFF")
                     {
+                        GameController.instance.SaveLevel(true, i);
                         GameController.instance.playerController.buttonSelectors[i].OnPointerClick(null);
                         break;
                     }

@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public int totalToWin;
     public List<GameObject> boxPassed = new List<GameObject>();
 
-    public void LoadLevel(LevelConfig levelConfig)
+    public void LoadLevel(LevelConfig levelConfig, LevelDataStorage levelDataStorage)
     {
         ResetButtons();
         UIController.instance.gamePlay.ResetHealth(out health);
@@ -23,8 +23,9 @@ public class PlayerController : MonoBehaviour
         {
             buttonSelectors[i + 1].LoadLevel(levelConfig.buttonConfigs[i].buttonHex, levelConfig.buttonConfigs[i].fontHex);
         }
-        gridButton.localScale = Vector3.one * (0.6f + ((5 - levelConfig.buttonConfigs.Length) * 0.08f));
+        if (levelDataStorage.buttonDataStorage == null) levelDataStorage.buttonDataStorage = new ButtonDataStorage[levelConfig.buttonConfigs.Length];
         GameController.instance.uIController.ButtonSelect(buttonSelectors, buttonSelectors[1], 0f, 0f);
+        gridButton.localScale = Vector3.one * (0.6f + ((5 - levelConfig.buttonConfigs.Length) * 0.08f));
         SetColorSelect(buttonSelectors[1].hex);
     }
 
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         UIController.instance.gamePlay.HealthSubstractAni(health - 1);
         health--;
+        GameController.instance.SaveLevel(health);
         if (health == 0 && totalBoxSelected != totalToWin)
         {
             GameController.instance.uIController.gamePlay.ShowPanelLose();
@@ -112,6 +114,7 @@ public class PlayerController : MonoBehaviour
             GameController.instance.uIController.gamePlay.layerCover.SetActive(true);
             if (!UIController.instance.collection.back.activeSelf)
             {
+                GameController.instance.SaveLevel();
                 UIController.instance.collection.AddCollector(PlayerPrefs.GetInt("Level", 1) - 1);
                 PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level", 1) + 1);
                 GameController.instance.uIController.home.UpdateTextLevel();

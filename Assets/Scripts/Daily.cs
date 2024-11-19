@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 
 public class Daily : MonoBehaviour
 {
+    public Sprite[] sprites;
     public GameObject dayPre;
     public int level;
     public RectTransform[] container;
@@ -22,8 +23,15 @@ public class Daily : MonoBehaviour
     int indexPage;
     DateTime dateSelect;
     bool isLessThan0;
+    DateTime releaseDate = new DateTime(2024, 10, 1);
 
     public TextMeshProUGUI[] date;
+
+    public void LoadDaily()
+    {
+
+    }
+
 
     public void Awake()
     {
@@ -111,33 +119,13 @@ public class Daily : MonoBehaviour
             if (isMovingPage || EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.CompareTag("Arrow")) return;
             isDrag = false;
             isLessThan0 = startX - UIController.instance.ScreenToWorldPoint(Input.mousePosition).x < 0;
-            indexPage = isLessThan0 ? indexPage + 1 : indexPage - 1;
-            isMovingPage = true;
             if (!isLessThan0)
             {
-                pages[0].position = new Vector3(pages[pages.Length - 1].position.x + distancePage, pages[pages.Length - 1].position.y, pages[pages.Length - 1].position.z);
-                RectTransform rect = pages[0];
-                DailyDay[] d = day[0];
-                for (int i = 0; i < pages.Length - 1; i++)
-                {
-                    pages[i] = pages[i + 1];
-                    day[i] = day[i + 1];
-                }
-                pages[pages.Length - 1] = rect;
-                day[day.Length - 1] = d;
+                Next();
             }
             else
             {
-                pages[pages.Length - 1].position = new Vector3(pages[0].position.x - distancePage, pages[0].position.y, pages[0].position.z);
-                RectTransform rect = pages[pages.Length - 1];
-                DailyDay[] d = day[day.Length - 1];
-                for (int i = pages.Length - 1; i > 0; i--)
-                {
-                    pages[i] = pages[i - 1];
-                    day[i] = day[i - 1];
-                }
-                pages[0] = rect;
-                day[0] = d;
+                Back();
             }
             /*pageParent.DOMoveX(distancePage * indexPage, 0.25f).SetEase(Ease.Linear).OnComplete(delegate
             {
@@ -158,26 +146,33 @@ public class Daily : MonoBehaviour
                 if (pageParent.position.x == indexPage * distancePage)
                 {
                     isMovingPage = false;
-                    LoadPage(dateSelect.AddMonths(1));
+                    if (isLessThan0) LoadPage(dateSelect.AddMonths(-1));
+                    else LoadPage(dateSelect.AddMonths(1));
+
                 }
             }
         }
     }
 
+
     public void Next()
     {
         if (isMovingPage) return;
         isMovingPage = true;
+        isLessThan0 = false;
         pages[0].position = new Vector3(pages[pages.Length - 1].position.x + distancePage, pages[pages.Length - 1].position.y, pages[pages.Length - 1].position.z);
         RectTransform rect = pages[0];
         DailyDay[] d = day[0];
+        TextMeshProUGUI t = date[0];
         for (int i = 0; i < pages.Length - 1; i++)
         {
             pages[i] = pages[i + 1];
             day[i] = day[i + 1];
+            date[i] = date[i + 1];
         }
         pages[pages.Length - 1] = rect;
         day[day.Length - 1] = d;
+        date[date.Length - 1] = t;
         indexPage--;
     }
 
@@ -185,29 +180,28 @@ public class Daily : MonoBehaviour
     {
         if (isMovingPage) return;
         isMovingPage = true;
+        isLessThan0 = true;
         pages[pages.Length - 1].position = new Vector3(pages[0].position.x - distancePage, pages[0].position.y, pages[0].position.z);
         RectTransform rect = pages[pages.Length - 1];
         DailyDay[] d = day[day.Length - 1];
+        TextMeshProUGUI t = date[date.Length - 1];
         for (int i = pages.Length - 1; i > 0; i--)
         {
             pages[i] = pages[i - 1];
             day[i] = day[i - 1];
+            date[i] = date[i - 1];
         }
         pages[0] = rect;
         day[0] = d;
+        date[0] = t;
         indexPage++;
-    }
-
-    public void LoadDaily()
-    {
-
     }
 
     void HideBgAll(int index)
     {
         for (int i = 0; i < day[1].Length; i++)
         {
-            if (i != index) day[1][i].BgHideAni();
+            if (i != index) day[1][i].BgHide();
         }
     }
 
