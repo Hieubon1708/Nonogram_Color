@@ -41,7 +41,6 @@ public class GameController : MonoBehaviour
 
     public void Resume(int level)
     {
-        levelDataStorage = dataManager.GetLevelStorage(level);
 
     }
 
@@ -54,12 +53,19 @@ public class GameController : MonoBehaviour
     public void SaveLevel(int i, int j, string mainHex, string hexSelect)
     {
         levelDataStorage.boxDataStorage[i][j].isVisible = true;
+        levelDataStorage.isClicked = true;
         levelDataStorage.boxDataStorage[i][j].hexSelect = hexSelect;
-        if (mainHex != "#FFFFFFF")
+        if (mainHex != "#FFFFFF")
         {
             levelDataStorage.totalSelect++;
-            levelDataStorage.isClicked = true;
+            if(levelDataStorage.totalSelect == levelConfig.totalToWin) levelDataStorage.isCompleted = true;
         }
+        dataManager.SaveLevel(levelDataStorage, level);
+    }
+
+    public void SaveLevel(int i, int j)
+    {
+        levelDataStorage.boxDataStorage[i][j].isX = true;
         dataManager.SaveLevel(levelDataStorage, level);
     }
 
@@ -81,16 +87,15 @@ public class GameController : MonoBehaviour
     public void LoadLevel(int level)
     {
         levelConfig = dataManager.GetLevel(level);
+        levelDataStorage = dataManager.GetLevelStorage(this.level);
+
         typeLevel = levelConfig.typeLevel;
 
-        playerController.LoadLevel(levelConfig);
-        boxController.LoadLevel(levelConfig);
+        boxController.LoadLevel(levelConfig, levelDataStorage);
+        playerController.LoadLevel(levelConfig, levelDataStorage);
         clusterController.LoadLevel(levelConfig);
         lineGenerator.LoadLevel(levelConfig);
         uIController.LoadLevel(levelConfig);
-
-        boxController.LoadDataStorage(levelDataStorage);
-        playerController.LoadDataStorage(levelDataStorage);
     }
 
     public string GetFontColor(string bgHex)

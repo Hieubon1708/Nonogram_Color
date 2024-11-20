@@ -20,6 +20,7 @@ public class UIController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        daily.LoadData();
     }
 
     public Vector2 WorldToScreenPoint(Vector2 input)

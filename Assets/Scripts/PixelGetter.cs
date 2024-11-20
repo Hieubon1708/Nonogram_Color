@@ -5,6 +5,7 @@ using UnityEngine;
 public class PixelGetter : MonoBehaviour
 {
     public Texture2D[] images;
+    public Texture2D[] dailyImages;
 
     public ColorSeter[] colorSeters;
 
@@ -15,13 +16,18 @@ public class PixelGetter : MonoBehaviour
 
     void Start()
     {
+        GetPixel(images);
+    }
+
+    void GetPixel(Texture2D[] images)
+    {
         for (int i = 0; i < images.Length; i++)
         {
             LevelConfig levelConfig = new LevelConfig();
             Color[] pixels = images[i].GetPixels();
 
             levelConfig.name = colorSeters[i].name;
-                
+
             if (pixels.Length == 25) levelConfig.typeLevel = DataManager.TypeLevel.Level5x5;
             if (pixels.Length == 100) levelConfig.typeLevel = DataManager.TypeLevel.Level10x10;
             if (pixels.Length == 225) levelConfig.typeLevel = DataManager.TypeLevel.Level15x15;
@@ -51,8 +57,10 @@ public class PixelGetter : MonoBehaviour
                 }
                 BoxConfig boxConfig = new BoxConfig();
                 Color color = GetDominantColor(pixels[h], i);
-                if(color != Color.white)
+
+                if (color != Color.white)
                 {
+                Debug.LogWarning(pixels[h]);
                     totalToWin++;
                 }
                 boxConfig.mainHex = HexConvert(color);
@@ -72,7 +80,7 @@ public class PixelGetter : MonoBehaviour
             levelConfig.boxConfigs = boxConfigs;
 
             string js = JsonConvert.SerializeObject(levelConfig);
-            string path = Path.Combine(Application.dataPath, "Resources/Levels/" + (i + 1) + ".json");
+            string path = Path.Combine(Application.dataPath, "Resources/Levels/" + (i + 1 + 1000) + ".json");
             File.WriteAllText(path, js);
         }
     }
@@ -87,7 +95,7 @@ public class PixelGetter : MonoBehaviour
                 float r = Mathf.Abs(colorFind.r * 255f - color.r * 255f);
                 float b = Mathf.Abs(colorFind.b * 255f - color.b * 255f);
                 float g = Mathf.Abs(colorFind.g * 255f - color.g * 255f);
-                if(r <= 10 && b <= 10 && g <= 10) return colorSeters[index].dominantColors[i].dominantColor;
+                if (r <= 10 && b <= 10 && g <= 10) return colorSeters[index].dominantColors[i].dominantColor;
             }
         }
         return Color.white;

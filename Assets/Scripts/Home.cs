@@ -1,12 +1,12 @@
 using TMPro;
 using UnityEngine;
-using static Cinemachine.DocumentationSortingAttribute;
 
 public class Home : MonoBehaviour
 {
     public GameObject home;
     public GameObject gamePlay;
     public GameObject collection;
+    public GameObject daily;
     public TextMeshProUGUI textLevel;
     public GameObject question;
     public TMP_InputField inputField;
@@ -20,6 +20,7 @@ public class Home : MonoBehaviour
 
     public void NoAds()
     {
+
     }
 
 
@@ -85,7 +86,13 @@ public class Home : MonoBehaviour
 
     public void DailyChallenge()
     {
+        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
+        {
+            home.SetActive(false);
+            daily.SetActive(true);
 
+            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
+        });
     }
 
     public void Collection()

@@ -1,9 +1,11 @@
 ﻿using DG.Tweening;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Daily : MonoBehaviour
 {
@@ -29,6 +31,18 @@ public class Daily : MonoBehaviour
     public bool isCanBack;
     public bool isCanNext;
     public TextMeshProUGUI[] date;
+    public TextMeshProUGUI[] totalCompleted;
+    public DailyDay dailyDay;
+    public GameObject gamePlay;
+    public GameObject daily;
+    public GameObject labelDaily;
+    public GameObject back;
+    public GameObject panelQuestion;
+    public CanvasGroup fontWin;
+    public CanvasGroup tempFontWin;
+    public TextMeshProUGUI label;
+    public Image arrowLeft;
+    public Image arrowRight;
 
     public void ShowIntro()
     {
@@ -49,7 +63,7 @@ public class Daily : MonoBehaviour
         return null;
     }
 
-    public void Awake()
+    public void LoadData()
     {
         DOVirtual.DelayedCall(0.02f, delegate
         {
@@ -76,19 +90,69 @@ public class Daily : MonoBehaviour
             }
 
             LoadPage(DateTime.Now);
+            Color cor = arrowRight.color;
+            cor.a = 0f;
+            arrowRight.color = cor;
+            arrowRight.raycastTarget = false;
         });
+    }
+
+    int GetIndex(DateTime currentTime)
+    {
+        TimeSpan timeSpan = currentTime - releaseDate;
+        return timeSpan.Days;
+    }
+
+    void CheckArrowLeft(DateTime currentViewPage)
+    {
+        arrowLeft.DOKill();
+        float alpha = 1;
+        DateTime date = currentViewPage.AddMonths(-1);
+        if (date.Month == releaseDate.Month && date.Year == releaseDate.Year)
+        {
+            alpha = 0;
+            arrowLeft.raycastTarget = false;
+        }
+        else
+        {
+            arrowLeft.raycastTarget = true;
+        }
+        arrowLeft.DOFade(alpha, 0.15f).SetEase(Ease.Linear);
+    }
+
+    void CheckArrowRight(DateTime currentViewPage)
+    {
+        arrowRight.DOKill();
+        float alpha = 1;
+        DateTime date = currentViewPage.AddMonths(1);
+        if (date.Month == DateTime.Now.Month && date.Year == DateTime.Now.Year)
+        {
+            alpha = 0;
+            arrowRight.raycastTarget = false;
+        }
+        else
+        {
+            arrowRight.raycastTarget = true;
+        }
+        arrowRight.DOFade(alpha, 0.15f).SetEase(Ease.Linear);
     }
 
     public void LoadPage(DateTime currentViewPage)
     {
+        int indexStart = -1;
         for (int i = 0; i < day.Length; i++)
         {
-            bool isShowBgLastDay = false;
-
+            int totalCompleted = 0;
             if (i == 0) currentViewPage = currentViewPage.AddMonths(-1);
             else currentViewPage = currentViewPage.AddMonths(1);
             DateTime firstDayOfMonth = new DateTime(currentViewPage.Year, currentViewPage.Month, 1);
             DayOfWeek dayOfWeek = firstDayOfMonth.DayOfWeek;
+            if (indexStart == -1)
+            {
+                DateTime date = firstDayOfMonth;
+                if (date.Date < releaseDate) date = releaseDate;
+                indexStart = GetIndex(date);
+            }
             //Debug.LogWarning(currentViewPage);
 
             if (i == 1)
@@ -109,23 +173,40 @@ public class Daily : MonoBehaviour
             int startDayOfWeek = GetDayOfWeek((int)dayOfWeek);
             int d = 1;
             int dayInMonth = DateTime.DaysInMonth(currentViewPage.Year, currentViewPage.Month);
-            Debug.LogWarning("month " + currentViewPage.Month + " have " + dayInMonth);
+            // Debug.LogWarning("month " + currentViewPage.Month + " have " + dayInMonth);
 
             for (int j = 0; j < day[i].Length; j++)
             {
                 if (j >= startDayOfWeek && d <= dayInMonth)
                 {
-                    if (new DateTime(currentViewPage.Year, currentViewPage.Month, d).Date > DateTime.Now.Date)
+                    DateTime date = new DateTime(currentViewPage.Year, currentViewPage.Month, d);
+                    if (date.Date > DateTime.Now.Date)
                     {
                         day[i][j].CanNotSelcect();
                     }
                     else
                     {
-                        if(d <= dayInMonth)
-                        {
-                            Debug.Log("month " + currentViewPage.Month + " day  " + d);
-                        }
                         day[i][j].CanSelcect();
+                        if (date.Date >= releaseDate) day[i][j].LoadData(sprites[indexStart++], indexStart + 1 + 1000, date.Date, ref totalCompleted);
+                        if (d == dayInMonth || date.Date == DateTime.Now.Date)
+                        {
+                            //Debug.Log("month " + currentViewPage.Month + " day  " + d + " j " + j);
+                            int index = j;
+                            if (i != 1) HideBgAll(day[i]);
+                            bool isHave = false;
+                            while (index >= startDayOfWeek)
+                            {
+                                if (!day[i][index].image.gameObject.activeSelf)
+                                {
+                                    isHave = true;
+                                    a[i] = day[i][index].gameObject;
+                                    day[i][index].BgShow();
+                                    break;
+                                }
+                                index--;
+                            }
+                            if (!isHave) day[i][startDayOfWeek].BgShow();
+                        }
                     }
                     day[i][j].num.text = d.ToString();
                     d++;
@@ -136,9 +217,10 @@ public class Daily : MonoBehaviour
                     day[i][j].num.text = "";
                 }
             }
+            this.totalCompleted[i].text = totalCompleted + "/" + dayInMonth;
         }
     }
-    public GameObject a;
+    public GameObject[] a = new GameObject[10];
 
     int GetDayOfWeek(int dayOfWeek)
     {
@@ -237,16 +319,21 @@ public class Daily : MonoBehaviour
         RectTransform rect = pages[0];
         DailyDay[] d = day[0];
         TextMeshProUGUI t = date[0];
+        TextMeshProUGUI tt = totalCompleted[0];
         for (int i = 0; i < pages.Length - 1; i++)
         {
             pages[i] = pages[i + 1];
             day[i] = day[i + 1];
             date[i] = date[i + 1];
+            totalCompleted[i] = totalCompleted[i + 1];
         }
         pages[pages.Length - 1] = rect;
         day[day.Length - 1] = d;
         date[date.Length - 1] = t;
+        totalCompleted[totalCompleted.Length - 1] = tt;
         indexPage--;
+        CheckArrowLeft(dateSelect);
+        CheckArrowRight(dateSelect);
         MovePage();
     }
 
@@ -259,16 +346,21 @@ public class Daily : MonoBehaviour
         RectTransform rect = pages[pages.Length - 1];
         DailyDay[] d = day[day.Length - 1];
         TextMeshProUGUI t = date[date.Length - 1];
+        TextMeshProUGUI tt = totalCompleted[totalCompleted.Length - 1];
         for (int i = pages.Length - 1; i > 0; i--)
         {
             pages[i] = pages[i - 1];
             day[i] = day[i - 1];
             date[i] = date[i - 1];
+            totalCompleted[i] = totalCompleted[i - 1];
         }
         pages[0] = rect;
         day[0] = d;
         date[0] = t;
+        totalCompleted[0] = tt;
         indexPage++;
+        CheckArrowLeft(dateSelect);
+        CheckArrowRight(dateSelect);
         MovePage();
     }
 
@@ -276,12 +368,114 @@ public class Daily : MonoBehaviour
     {
         for (int i = 0; i < dailyDays.Length; i++)
         {
-            dailyDays[i].BgHide(0);
+            dailyDays[i].BgHide();
         }
+    }
+
+    public void HideBgAll(float time)
+    {
+        for (int i = 0; i < day[1].Length; i++)
+        {
+            day[1][i].BgHide(time);
+        }
+    }
+
+    public void ShowQuestion()
+    {
+        GameController.instance.levelDataStorage = GameController.instance.dataManager.GetLevelStorage(level);
+        if (!GameController.instance.levelDataStorage.isClicked)
+        {
+            Play();
+        }
+        else
+        {
+            panelQuestion.SetActive(true);
+        }
+    }
+
+    public void Resum()
+    {
+        panelQuestion.SetActive(false);
+        Play();
+    }
+
+    public void Restart()
+    {
+        GameController.instance.SaveLevel();
+        dailyDay.ResetProgress();
+        panelQuestion.SetActive(false);
+        Play();
+    }
+
+    public void QuestionCancel()
+    {
+        panelQuestion.SetActive(false);
+    }
+
+    public void Play()
+    {
+        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
+        {
+            string monthInEnglish = dailyDay.date.ToString("MMMM", new System.Globalization.CultureInfo("en-US"));
+            label.text = monthInEnglish + " " + dailyDay.date.Day;
+            daily.SetActive(false);
+            gamePlay.SetActive(true);
+            labelDaily.SetActive(true);
+            back.SetActive(true);
+            panelQuestion.SetActive(false);
+            GameController.instance.isLoadData = true;
+
+            GameController.instance.level = level;
+            GameController.instance.LoadLevel(level);
+            UIController.instance.gamePlay.SwitchFontWin(fontWin, out tempFontWin);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, delegate
+            {
+                GameController.instance.isLoadData = false;
+            });
+        });
+    }
+
+    public void BackDaily()
+    {
+        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
+        {
+            gamePlay.SetActive(false);
+            daily.SetActive(true);
+            back.SetActive(false);
+            labelDaily.SetActive(false);
+            LoadPage(dailyDay.date);
+            ResetWin();
+            UIController.instance.StopFxWin();
+            UIController.instance.gamePlay.SwitchFontWin(tempFontWin, out fontWin);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
+        });
+    }
+    
+    public void BackDailyButton()
+    {
+        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
+        {
+            gamePlay.SetActive(false);
+            daily.SetActive(true);
+            back.SetActive(false);
+            labelDaily.SetActive(false);
+            dailyDay.CheckProgress();
+
+            UIController.instance.gamePlay.SwitchFontWin(tempFontWin, out fontWin);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
+        });
     }
 
     public void SelectDay(DailyDay dailyDay, int level)
     {
         this.level = level;
+        this.dailyDay = dailyDay;
+    }
+
+    void ResetWin()
+    {
+        fontWin.alpha = 0;
+        tempFontWin.alpha = 0;
+        UIController.instance.gamePlay.ResetWin();
     }
 }

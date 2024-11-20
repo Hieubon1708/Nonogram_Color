@@ -9,10 +9,24 @@ public class BoxController : MonoBehaviour
     public Box[] pool;
     public Box[][] boxes;
 
-    public void LoadLevel(LevelConfig levelConfig)
+    public void LoadLevel(LevelConfig levelConfig, LevelDataStorage levelDataStorage)
     {
         ResetBoxes();
-
+        bool isNull = false;
+        if (levelDataStorage.boxDataStorage == null)
+        {
+            isNull = true;
+            levelDataStorage.boxDataStorage = new BoxDataStorage[levelConfig.boxConfigs.Length][];
+            for (int i = 0; i < levelConfig.boxConfigs.Length; i++)
+            {
+                BoxDataStorage[] boxesChild = new BoxDataStorage[levelConfig.boxConfigs[i].Length];
+                for (int j = 0; j < boxesChild.Length; j++)
+                {
+                    boxesChild[j] = new BoxDataStorage();
+                }
+                levelDataStorage.boxDataStorage[i] = boxesChild;
+            }
+        }
         gridLayoutGroup.constraintCount = GameController.instance.dataManager.sizeConfig[(int)levelConfig.typeLevel].contrainCount;
         float cellSize = GameController.instance.dataManager.sizeConfig[(int)levelConfig.typeLevel].boxCellSize;
         gridLayoutGroup.cellSize = Vector2.one * cellSize;
@@ -32,52 +46,45 @@ public class BoxController : MonoBehaviour
                 string mainColor = levelConfig.boxConfigs[i][j].mainHex;
                 string extraColor = levelConfig.boxConfigs[i][j].extraHex;
 
-                if (mainColor == "#FFFFFF") x.Add(pool[indexPool]);
+                if (mainColor == "#FFFFFF" && !levelDataStorage.isClicked)
+                {
+                    x.Add(pool[indexPool]);
+                    GameController.instance.SaveLevel(i, j);
+                }
                 boxesInRow[j].LoadLevel(mainColor, extraColor);
                 indexPool++;
             }
             boxes[i] = boxesInRow;
         }
 
-
-        int xCount = x.Count * GameController.instance.dataManager.sizeConfig[(int)levelConfig.typeLevel].percentX / 100;
-        while (xCount > 0)
+        if (!levelDataStorage.isClicked)
         {
-            int indexRandom = Random.Range(0, x.Count);
-            x[indexRandom].IsX();
-            x.RemoveAt(indexRandom);
-            xCount--;
-        }
-    }
-
-    public void LoadDataStorage(LevelDataStorage levelDataStorage)
-    {
-        if (levelDataStorage.boxDataStorage == null)
-        {
-            levelDataStorage.boxDataStorage = new BoxDataStorage[boxes.Length][];
-            for (int i = 0; i < boxes.Length; i++)
+            int xCount = x.Count * GameController.instance.dataManager.sizeConfig[(int)levelConfig.typeLevel].percentX / 100;
+            while (xCount > 0)
             {
-                BoxDataStorage[] boxesChild = new BoxDataStorage[boxes[i].Length];
-                for (int j = 0; j < boxesChild.Length; j++)
-                {
-                    boxesChild[j] = new BoxDataStorage();
-                }
-                levelDataStorage.boxDataStorage[i] = boxesChild;
+                int indexRandom = Random.Range(0, x.Count);
+                x[indexRandom].IsX();
+                x.RemoveAt(indexRandom);
+                xCount--;
             }
         }
-        else
+
+        if (isNull) return;
+        for (int i = 0; i < boxes.Length; i++)
         {
-            for (int i = 0; i < boxes.Length; i++)
+            for (int j = 0; j < boxes[i].Length; j++)
             {
-                for (int j = 0; j < boxes[i].Length; j++)
+                if (levelDataStorage.boxDataStorage[i][j].isVisible)
                 {
-                    if (levelDataStorage.boxDataStorage[i][j].isVisible)
-                    {
-                        GameController.instance.playerController.hexSelected = levelDataStorage.boxDataStorage[i][j].hexSelect;
-                        GameController.instance.playerController.isDrag = true;
-                        boxes[i][j].Show();
-                        GameController.instance.playerController.isDrag = false;
-                    }
+                    GameController.instance.playerController.hexSelected = levelDataStorage.boxDataStorage[i][j].hexSelect;
+                    GameController.instance.playerController.isDrag = true;
+                    boxes[i][j].Show();
+                    GameController.instance.playerController.isDrag = false;
+                }
+                if (levelDataStorage.boxDataStorage[i][j].isX)
+                {
+                    boxes[i][j].x.gameObject.SetActive(true);
+                    boxes[i][j].isVisible = true;
                 }
             }
         }

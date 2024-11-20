@@ -54,6 +54,17 @@ public class SizeConfig
 }
 
 [System.Serializable]
+public class DailyDataStorage
+{
+    public int percentX;
+    public int amountBox;
+    public float boxCellSize;
+    public float fontSize;
+    public int contrainCount;
+    public int limitSpaceInCluster;
+}
+
+[System.Serializable]
 public class LevelConfig
 {
     public string name;
@@ -68,6 +79,7 @@ public class LevelDataStorage
 {
     public bool isClicked;
     public int totalSelect;
+    public bool isCompleted;
     public int healthRemaining;
     public BoxDataStorage[][] boxDataStorage;
 
@@ -81,6 +93,7 @@ public class LevelDataStorage
 public class BoxDataStorage
 {
     public bool isVisible;
+    public bool isX;
     public string hexSelect;
 }
 
