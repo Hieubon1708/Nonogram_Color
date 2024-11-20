@@ -19,13 +19,17 @@ public class GameController : MonoBehaviour
     public LevelConfig levelConfig;
     public LevelDataStorage levelDataStorage;
 
+    public bool isLoadData;
+
     public void Awake()
-    {
+    { 
+        instance = this;
         Application.targetFrameRate = 60;
         DOTween.SetTweensCapacity(200, 500);
-        instance = this;
+
         lineGenerator.Generate();
         dataManager.DataReader();
+
         uIController.home.UpdateTextLevel();
         //PlayerPrefs.SetInt("Level", level);
 
@@ -41,9 +45,16 @@ public class GameController : MonoBehaviour
 
     }
 
-    public void SaveLevel(int i, int j, string mainHex)
+    public void SaveLevel(int health)
+    {
+        levelDataStorage.healthRemaining = health;
+        dataManager.SaveLevel(levelDataStorage, level);
+    }
+
+    public void SaveLevel(int i, int j, string mainHex, string hexSelect)
     {
         levelDataStorage.boxDataStorage[i][j].isVisible = true;
+        levelDataStorage.boxDataStorage[i][j].hexSelect = hexSelect;
         if (mainHex != "#FFFFFFF")
         {
             levelDataStorage.totalSelect++;
@@ -52,53 +63,34 @@ public class GameController : MonoBehaviour
         dataManager.SaveLevel(levelDataStorage, level);
     }
 
-    public void SaveLevel(bool isDone, int index)
-    {
-        levelDataStorage.buttonDataStorage[index].isDone = isDone;
-        dataManager.SaveLevel(levelDataStorage, level);
-    }
-
-    public void SaveLevel(int health)
-    {
-        levelDataStorage.healthRemaining = health;
-        dataManager.SaveLevel(levelDataStorage, level);
-    }
-
     public void SaveLevel()
     {
         levelDataStorage.isClicked = false;
         levelDataStorage.totalSelect = 0;
-        for (int i = 0; i < levelConfig.boxConfigs.Length; i++)
+        levelDataStorage.healthRemaining = 3;
+        for (int i = 0; i < levelDataStorage.boxDataStorage.Length; i++)
         {
             for (int j = 0; j < levelDataStorage.boxDataStorage[i].Length; j++)
             {
                 levelDataStorage.boxDataStorage[i][j].isVisible = false;
             }
         }
-        for (int i = 0; i < levelConfig.buttonConfigs.Length; i++)
-        {
-            levelDataStorage.buttonDataStorage[i].isDone = false;
-        }
-        levelDataStorage.healthRemaining = 3;
-        dataManager.SaveLevel(levelDataStorage, level);
-    }
-
-    public void SaveLevel(int i, int j)
-    {
         dataManager.SaveLevel(levelDataStorage, level);
     }
 
     public void LoadLevel(int level)
     {
         levelConfig = dataManager.GetLevel(level);
-        levelDataStorage = dataManager.GetLevelStorage(level);
         typeLevel = levelConfig.typeLevel;
 
-        boxController.LoadLevel(levelConfig, levelDataStorage);
-        playerController.LoadLevel(levelConfig, levelDataStorage);
+        playerController.LoadLevel(levelConfig);
+        boxController.LoadLevel(levelConfig);
         clusterController.LoadLevel(levelConfig);
         lineGenerator.LoadLevel(levelConfig);
         uIController.LoadLevel(levelConfig);
+
+        boxController.LoadDataStorage(levelDataStorage);
+        playerController.LoadDataStorage(levelDataStorage);
     }
 
     public string GetFontColor(string bgHex)

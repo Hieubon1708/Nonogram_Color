@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using System;
+using System.Collections.Generic;
 using TMPro;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -19,19 +19,35 @@ public class Daily : MonoBehaviour
     float distancePage;
     float offsetX;
     float startX;
+    float startXScreen;
     bool isMovingPage;
     int indexPage;
     DateTime dateSelect;
     bool isLessThan0;
     DateTime releaseDate = new DateTime(2024, 10, 1);
-
+    public GameObject intro;
+    public bool isCanBack;
+    public bool isCanNext;
     public TextMeshProUGUI[] date;
 
-    public void LoadDaily()
+    public void ShowIntro()
     {
-
+        intro.SetActive(true);
     }
 
+    public void HideIntro()
+    {
+        intro.SetActive(false);
+    }
+
+    DailyDay GetDailyDay(GameObject d)
+    {
+        for (int i = 0; i < day[1].Length; i++)
+        {
+            if (day[1][i].gameObject == d) return day[1][i];
+        }
+        return null;
+    }
 
     public void Awake()
     {
@@ -54,6 +70,7 @@ public class Daily : MonoBehaviour
                 for (int j = 0; j < dailyDay.Length; j++)
                 {
                     dailyDay[j] = Instantiate(dayPre, container[i]).GetComponent<DailyDay>();
+                    dailyDay[j].name = i + " " + j;
                 }
                 day[i] = dailyDay;
             }
@@ -66,29 +83,53 @@ public class Daily : MonoBehaviour
     {
         for (int i = 0; i < day.Length; i++)
         {
+            bool isShowBgLastDay = false;
+
             if (i == 0) currentViewPage = currentViewPage.AddMonths(-1);
             else currentViewPage = currentViewPage.AddMonths(1);
             DateTime firstDayOfMonth = new DateTime(currentViewPage.Year, currentViewPage.Month, 1);
             DayOfWeek dayOfWeek = firstDayOfMonth.DayOfWeek;
             //Debug.LogWarning(currentViewPage);
 
-            if (i == 1) dateSelect = currentViewPage;
+            if (i == 1)
+            {
+                dateSelect = currentViewPage;
+                if (dateSelect.Month == DateTime.Now.Month && dateSelect.Year == DateTime.Now.Year) isCanNext = false;
+                else isCanNext = true;
+                if (dateSelect.Month == releaseDate.Month && dateSelect.Year == releaseDate.Year) isCanBack = false;
+                else isCanBack = true;
+            }
+            else
+            {
+                //HideBgAll(day[i]);
+            }
             string monthInEnglish = currentViewPage.ToString("MMMM", new System.Globalization.CultureInfo("en-US"));
             date[i].text = monthInEnglish + " " + currentViewPage.Year;
 
             int startDayOfWeek = GetDayOfWeek((int)dayOfWeek);
             int d = 1;
+            int dayInMonth = DateTime.DaysInMonth(currentViewPage.Year, currentViewPage.Month);
+            Debug.LogWarning("month " + currentViewPage.Month + " have " + dayInMonth);
 
             for (int j = 0; j < day[i].Length; j++)
             {
-                if (j >= startDayOfWeek && d <= DateTime.DaysInMonth(currentViewPage.Year, currentViewPage.Month))
+                if (j >= startDayOfWeek && d <= dayInMonth)
                 {
                     if (new DateTime(currentViewPage.Year, currentViewPage.Month, d).Date > DateTime.Now.Date)
                     {
                         day[i][j].CanNotSelcect();
                     }
+                    else
+                    {
+                        if(d <= dayInMonth)
+                        {
+                            Debug.Log("month " + currentViewPage.Month + " day  " + d);
+                        }
+                        day[i][j].CanSelcect();
+                    }
                     day[i][j].num.text = d.ToString();
                     d++;
+
                 }
                 else
                 {
@@ -97,6 +138,7 @@ public class Daily : MonoBehaviour
             }
         }
     }
+    public GameObject a;
 
     int GetDayOfWeek(int dayOfWeek)
     {
@@ -106,41 +148,62 @@ public class Daily : MonoBehaviour
 
     public void Update()
     {
+        if (intro.activeSelf) return;
         if (Input.GetMouseButtonDown(0))
         {
             if (isMovingPage || EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.CompareTag("Arrow")) return;
             Vector2 mousePos = UIController.instance.ScreenToWorldPoint(Input.mousePosition);
             offsetX = pageParent.position.x - mousePos.x;
+            startXScreen = Input.mousePosition.x;
             startX = mousePos.x;
             isDrag = true;
         }
         if (Input.GetMouseButtonUp(0))
         {
-            if (isMovingPage || EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.CompareTag("Arrow")) return;
             isDrag = false;
-            isLessThan0 = startX - UIController.instance.ScreenToWorldPoint(Input.mousePosition).x < 0;
-            if (!isLessThan0)
+            if (isMovingPage || EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.CompareTag("Arrow")) return;
+            if (Mathf.Abs(Input.mousePosition.x - startXScreen) <= 2.5f)
             {
-                Next();
+                pageParent.DOMoveX(distancePage * indexPage, 0.15f).SetEase(Ease.Linear);
+                PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+                eventDataCurrentPosition.position = Input.mousePosition;
+                var results = new List<RaycastResult>();
+                EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+                for (int i = 0; i < results.Count; i++)
+                {
+                    GameObject d = results[i].gameObject;
+                    if (d.CompareTag("Day"))
+                    {
+                        DailyDay dailyDay = GetDailyDay(d);
+                        dailyDay.OnClick(0.15f);
+                    }
+                }
             }
             else
             {
-                Back();
+                isLessThan0 = startX - UIController.instance.ScreenToWorldPoint(Input.mousePosition).x < 0;
+                if (!isLessThan0)
+                {
+                    Next();
+                }
+                else
+                {
+                    Back();
+                }
             }
-            /*pageParent.DOMoveX(distancePage * indexPage, 0.25f).SetEase(Ease.Linear).OnComplete(delegate
-            {
-                isMovingPage = false;
-            });*/
         }
 
         if (isDrag)
         {
             Vector3 pos = UIController.instance.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Screen.height / 2, 100));
-            pageParent.position = new Vector3(pos.x + offsetX, pos.y, pos.z);
+            float x = pos.x + offsetX;
+            if (!isCanNext) x = Mathf.Clamp(x, indexPage * distancePage, float.MaxValue);
+            if (!isCanBack) x = Mathf.Clamp(x, float.MinValue, indexPage * distancePage);
+            pageParent.position = new Vector3(x, pos.y, pos.z);
         }
         else
         {
-            if (isMovingPage)
+            /*if (isMovingPage)
             {
                 pageParent.position = Vector3.MoveTowards(pageParent.position, new Vector3(distancePage * indexPage, pageParent.position.y, pageParent.position.z), 0.25f);
                 if (pageParent.position.x == indexPage * distancePage)
@@ -150,14 +213,24 @@ public class Daily : MonoBehaviour
                     else LoadPage(dateSelect.AddMonths(1));
 
                 }
-            }
+            }*/
         }
+    }
+
+    void MovePage()
+    {
+        pageParent.DOMoveX(distancePage * indexPage, 0.25f).SetEase(Ease.Linear).OnComplete(delegate
+        {
+            if (isLessThan0) LoadPage(dateSelect.AddMonths(-1));
+            else LoadPage(dateSelect.AddMonths(1));
+            isMovingPage = false;
+        });
     }
 
 
     public void Next()
     {
-        if (isMovingPage) return;
+        if (isMovingPage || intro.activeSelf || !isCanNext) return;
         isMovingPage = true;
         isLessThan0 = false;
         pages[0].position = new Vector3(pages[pages.Length - 1].position.x + distancePage, pages[pages.Length - 1].position.y, pages[pages.Length - 1].position.z);
@@ -174,11 +247,12 @@ public class Daily : MonoBehaviour
         day[day.Length - 1] = d;
         date[date.Length - 1] = t;
         indexPage--;
+        MovePage();
     }
 
     public void Back()
     {
-        if (isMovingPage) return;
+        if (isMovingPage || intro.activeSelf || !isCanBack) return;
         isMovingPage = true;
         isLessThan0 = true;
         pages[pages.Length - 1].position = new Vector3(pages[0].position.x - distancePage, pages[0].position.y, pages[0].position.z);
@@ -195,19 +269,19 @@ public class Daily : MonoBehaviour
         day[0] = d;
         date[0] = t;
         indexPage++;
+        MovePage();
     }
 
-    void HideBgAll(int index)
+    public void HideBgAll(DailyDay[] dailyDays)
     {
-        for (int i = 0; i < day[1].Length; i++)
+        for (int i = 0; i < dailyDays.Length; i++)
         {
-            if (i != index) day[1][i].BgHide();
+            dailyDays[i].BgHide(0);
         }
     }
 
-    public void SelectDay(int index, int level)
+    public void SelectDay(DailyDay dailyDay, int level)
     {
-        HideBgAll(index);
         this.level = level;
     }
 }

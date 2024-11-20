@@ -1,13 +1,16 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     public Animation ani;
+    public GameObject healthGray;
 
     public void SubtractHealthAni()
     {
-        ani.Play("HealthSubtract");
+        if (!GameController.instance.isLoadData) ani.Play("HealthSubtract");
+        else healthGray.SetActive(true);
     }
 
     public void Replay()

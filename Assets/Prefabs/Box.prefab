@@ -89,7 +89,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 1491fdd81fb0207438f3bdb4b1860d52, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!1 &7571537088937254460
@@ -196,6 +196,8 @@ MonoBehaviour:
   rowClusterIndex: {fileID: 0}
   colClusterIndex: {fileID: 0}
   ani: {fileID: 3125020631885679487}
+  xAni: {fileID: 8908080531138123595}
+  xSelectAni: {fileID: 7687896294582882163}
 --- !u!111 &3125020631885679487
 Animation:
   m_ObjectHideFlags: 0
@@ -301,6 +303,6 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: ff88c61d77be7bd43ad0793a068f3439, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0

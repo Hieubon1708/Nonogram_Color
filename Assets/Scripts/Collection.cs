@@ -66,7 +66,7 @@ public class Collection : MonoBehaviour
 
     public void AcceptResart()
     {
-        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
+        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
         {
             collection.SetActive(false);
             gamePlay.SetActive(true);
@@ -76,7 +76,7 @@ public class Collection : MonoBehaviour
             UIController.instance.gamePlay.SwitchFontWin(fontWin, out tempFontWin);
             GameController.instance.LoadLevel(level);
 
-            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
         });
     }
 
@@ -101,7 +101,7 @@ public class Collection : MonoBehaviour
 
     public void Back()
     {
-        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
+        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
         {
             gamePlay.SetActive(false);
             collection.SetActive(true);
@@ -110,17 +110,17 @@ public class Collection : MonoBehaviour
             ResetWin();
             UIController.instance.StopFxWin();
             UIController.instance.gamePlay.SwitchFontWin(tempFontWin, out fontWin);
-            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
         });
     }
 
     public void BackHome()
     {
-        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
+        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
         {
             home.SetActive(true);
             collection.SetActive(false);
-            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
         });
     }
 

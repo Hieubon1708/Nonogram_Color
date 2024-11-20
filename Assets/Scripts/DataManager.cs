@@ -67,23 +67,21 @@ public class LevelConfig
 public class LevelDataStorage
 {
     public bool isClicked;
-    public int healthRemaining;
     public int totalSelect;
-    public ButtonDataStorage[] buttonDataStorage;
+    public int healthRemaining;
     public BoxDataStorage[][] boxDataStorage;
-}
 
-
-[System.Serializable]
-public class ButtonDataStorage
-{
-    public bool isDone;
+    public LevelDataStorage()
+    {
+        healthRemaining = 3;
+    }
 }
 
 [System.Serializable]
 public class BoxDataStorage
 {
     public bool isVisible;
+    public string hexSelect;
 }
 
 

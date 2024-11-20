@@ -1,9 +1,7 @@
 using DG.Tweening;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class BoxController : MonoBehaviour
 {
@@ -11,7 +9,7 @@ public class BoxController : MonoBehaviour
     public Box[] pool;
     public Box[][] boxes;
 
-    public void LoadLevel(LevelConfig levelConfig, LevelDataStorage levelDataStorage)
+    public void LoadLevel(LevelConfig levelConfig)
     {
         ResetBoxes();
 
@@ -40,15 +38,7 @@ public class BoxController : MonoBehaviour
             }
             boxes[i] = boxesInRow;
         }
-        if(levelDataStorage.boxDataStorage == null)
-        {
-            levelDataStorage.boxDataStorage = new BoxDataStorage[boxes.Length][];
-            for (int i = 0; i < boxes.Length; i++)
-            {
-                BoxDataStorage[] boxDataStorageChild = new BoxDataStorage[boxes[i].Length];
-                levelDataStorage.boxDataStorage[i] = boxDataStorageChild;
-            }
-        }
+
 
         int xCount = x.Count * GameController.instance.dataManager.sizeConfig[(int)levelConfig.typeLevel].percentX / 100;
         while (xCount > 0)
@@ -57,6 +47,39 @@ public class BoxController : MonoBehaviour
             x[indexRandom].IsX();
             x.RemoveAt(indexRandom);
             xCount--;
+        }
+    }
+
+    public void LoadDataStorage(LevelDataStorage levelDataStorage)
+    {
+        if (levelDataStorage.boxDataStorage == null)
+        {
+            levelDataStorage.boxDataStorage = new BoxDataStorage[boxes.Length][];
+            for (int i = 0; i < boxes.Length; i++)
+            {
+                BoxDataStorage[] boxesChild = new BoxDataStorage[boxes[i].Length];
+                for (int j = 0; j < boxesChild.Length; j++)
+                {
+                    boxesChild[j] = new BoxDataStorage();
+                }
+                levelDataStorage.boxDataStorage[i] = boxesChild;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < boxes.Length; i++)
+            {
+                for (int j = 0; j < boxes[i].Length; j++)
+                {
+                    if (levelDataStorage.boxDataStorage[i][j].isVisible)
+                    {
+                        GameController.instance.playerController.hexSelected = levelDataStorage.boxDataStorage[i][j].hexSelect;
+                        GameController.instance.playerController.isDrag = true;
+                        boxes[i][j].Show();
+                        GameController.instance.playerController.isDrag = false;
+                    }
+                }
+            }
         }
     }
 

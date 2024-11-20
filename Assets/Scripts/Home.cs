@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class Home : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class Home : MonoBehaviour
     public GameObject gamePlay;
     public GameObject collection;
     public TextMeshProUGUI textLevel;
-
+    public GameObject question;
     public TMP_InputField inputField;
 
     public void ChangeLevel()
@@ -19,20 +20,56 @@ public class Home : MonoBehaviour
 
     public void NoAds()
     {
+    }
 
+
+    public void ShowQuestion()
+    {
+        GameController.instance.level = -1;
+        GameController.instance.levelDataStorage = GameController.instance.dataManager.GetLevelStorage(GameController.instance.level);
+        if (!GameController.instance.levelDataStorage.isClicked)
+        {
+            Play();
+        }
+        else
+        {
+            question.SetActive(true);
+        }
+    }
+
+    public void Resum()
+    {
+        question.SetActive(false);
+        Play();
+    }
+    
+    public void Restart()
+    {
+        GameController.instance.SaveLevel();
+        question.SetActive(false);
+        Play();
+    }
+
+    public void QuestionCancel()
+    {
+        question.SetActive(false);
     }
 
     public void Play()
     {
-        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
+        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
         {
-            inputField.gameObject.SetActive(false);
+            GameController.instance.isLoadData = true;
             home.SetActive(false);
             gamePlay.SetActive(true);
             if (UIController.instance.collection.collection.activeSelf) UIController.instance.collection.collection.SetActive(false);
+            GameController.instance.level = -1;
             GameController.instance.LoadLevel(PlayerPrefs.GetInt("Level", 1));
 
-            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, delegate
+            {
+                GameController.instance.isLoadData = false;
+            });
         });
     }
 
@@ -53,12 +90,12 @@ public class Home : MonoBehaviour
 
     public void Collection()
     {
-        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
+        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
         {
             home.SetActive(false);
             collection.SetActive(true);
 
-            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
         });
     }
 }

@@ -32,7 +32,14 @@ public class ClusterIndex : MonoBehaviour
     public void Flicker()
     {
         if (canvasGroup.alpha == 0.5f) return;
-        flicker.Play("FadeCluster");
+        if (!GameController.instance.isLoadData)
+        {
+            flicker.Play("FadeCluster");
+        }
+        else
+        {
+            canvasGroup.alpha = 0.5f;
+        }
     }
 
     public void CompletedCluster()

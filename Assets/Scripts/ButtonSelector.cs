@@ -29,7 +29,8 @@ public class ButtonSelector : MonoBehaviour, IPointerClickHandler
 
     public void ButtonFade()
     {
-        ani.Play();
+        if (!GameController.instance.isLoadData) ani.Play();
+        else canvasGroup.alpha = 0.5f;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -37,7 +38,9 @@ public class ButtonSelector : MonoBehaviour, IPointerClickHandler
         if(isDone || !GameController.instance.playerController.gameObject.activeSelf) return;
         if(GameController.instance.uIController.gamePlay.hint) GameController.instance.uIController.gamePlay.hint.HideHint();
         GameController.instance.playerController.SetColorSelect(hex);
-        GameController.instance.uIController.ButtonSelect(GameController.instance.playerController.buttonSelectors, this, 0.15f, 0.25f);
+        float time1 = !GameController.instance.isLoadData ? 0.15f : 0;
+        float time2 = !GameController.instance.isLoadData ? 0.25f : 0;
+        GameController.instance.uIController.ButtonSelect(GameController.instance.playerController.buttonSelectors, this, time1, time2);
     }
 
     public void ResetButton()

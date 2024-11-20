@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public int totalToWin;
     public List<GameObject> boxPassed = new List<GameObject>();
 
-    public void LoadLevel(LevelConfig levelConfig, LevelDataStorage levelDataStorage)
+    public void LoadLevel(LevelConfig levelConfig)
     {
         ResetButtons();
         UIController.instance.gamePlay.ResetHealth(out health);
@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
         {
             buttonSelectors[i + 1].LoadLevel(levelConfig.buttonConfigs[i].buttonHex, levelConfig.buttonConfigs[i].fontHex);
         }
-        if (levelDataStorage.buttonDataStorage == null) levelDataStorage.buttonDataStorage = new ButtonDataStorage[levelConfig.buttonConfigs.Length];
         GameController.instance.uIController.ButtonSelect(buttonSelectors, buttonSelectors[1], 0f, 0f);
         gridButton.localScale = Vector3.one * (0.6f + ((5 - levelConfig.buttonConfigs.Length) * 0.08f));
         SetColorSelect(buttonSelectors[1].hex);
@@ -31,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     public void SubtractHealth()
     {
+        if (GameController.instance.isLoadData) return;
         UIController.instance.gamePlay.HealthSubstractAni(health - 1);
         health--;
         GameController.instance.SaveLevel(health);
@@ -38,6 +38,12 @@ public class PlayerController : MonoBehaviour
         {
             GameController.instance.uIController.gamePlay.ShowPanelLose();
         }
+    }
+
+    public void LoadDataStorage(LevelDataStorage levelDataStorage)
+    {
+        health = levelDataStorage.healthRemaining;
+        UIController.instance.gamePlay.LoadDataStorage(health);
     }
 
     float GetSameBoxPassed(ref int isSameRow)
@@ -133,5 +139,14 @@ public class PlayerController : MonoBehaviour
     public void SetColorSelect(string hex)
     {
         hexSelected = hex;
+    }
+
+    public void OnDestroy()
+    {
+        if(health == 0)
+        {
+            Debug.LogWarning("aaa");
+            GameController.instance.SaveLevel();
+        }
     }
 }

@@ -69,8 +69,11 @@ public class UIController : MonoBehaviour
     {
         for (int i = 0; i < buttons.Length; i++)
         {
-            buttons[i].DOKill();
             int index = i;
+            if (!buttons[index].gameObject.activeSelf) continue;
+
+            buttons[index].DOKill();
+
             if (buttons[index] == buttonSelected)
             {
                 buttons[index].bgSelected.gameObject.SetActive(true);
@@ -80,10 +83,17 @@ public class UIController : MonoBehaviour
             else
             {
                 buttons[index].bgSelected.transform.DOScale(0.7f, timeIn).SetEase(Ease.Linear);
-                buttons[index].bgSelected.DOFade(0f, timeIn).SetEase(Ease.Linear).OnComplete(delegate
+                if(!GameController.instance.isLoadData)
+                {
+                    buttons[index].bgSelected.DOFade(0f, timeIn).SetEase(Ease.Linear).OnComplete(delegate
+                    {
+                        buttons[index].bgSelected.gameObject.SetActive(false);
+                    });
+                }
+                else
                 {
                     buttons[index].bgSelected.gameObject.SetActive(false);
-                });
+                }
             }
         }
     }
@@ -134,16 +144,15 @@ public class UIController : MonoBehaviour
         if (!isRemaining)
         {
             ButtonSelector buttonSelector = GetButtonByHex(hex);
+            buttonSelector.isDone = true;
+            buttonSelector.ButtonFade();
+
             if (buttonSelector != null)
             {
-                buttonSelector.isDone = true;
-                buttonSelector.ButtonFade();
-
                 for (int i = 0; i < GameController.instance.playerController.buttonSelectors.Length; i++)
                 {
                     if (!GameController.instance.playerController.buttonSelectors[i].isDone && GameController.instance.playerController.buttonSelectors[i].hex != "#FFFFFF")
                     {
-                        GameController.instance.SaveLevel(true, i);
                         GameController.instance.playerController.buttonSelectors[i].OnPointerClick(null);
                         break;
                     }
