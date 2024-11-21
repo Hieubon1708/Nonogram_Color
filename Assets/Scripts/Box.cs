@@ -59,7 +59,7 @@ public class Box : MonoBehaviour
                     image.DOColor(color, time);
                     CheckLine();
 
-                    GameController.instance.playerController.totalBoxSelected++;
+                    if(!GameController.instance.isLoadData) GameController.instance.playerController.totalBoxSelected++;
                     GameController.instance.playerController.CheckWin();
                 }
                 else Debug.LogError("Not found " + gameObject.name + " / " + mainHex);
@@ -77,7 +77,7 @@ public class Box : MonoBehaviour
                     float time = !GameController.instance.isLoadData ? 0.15f : 0;
                     DOVirtual.DelayedCall(time, delegate
                 {
-                    GameController.instance.playerController.totalBoxSelected++;
+                    if (!GameController.instance.isLoadData) GameController.instance.playerController.totalBoxSelected++;
                     xSelected.gameObject.SetActive(false);
                     GameController.instance.playerController.SubtractHealth();
                     if (!GameController.instance.isLoadData) GameController.instance.uIController.PlayFalse(transform.position, this);
@@ -97,7 +97,7 @@ public class Box : MonoBehaviour
                 {
                     if (mainHex != hexSelected)
                     {
-                        if (mainHex != "#FFFFFF") GameController.instance.playerController.totalBoxSelected++;
+                        if (mainHex != "#FFFFFF" && !GameController.instance.isLoadData) GameController.instance.playerController.totalBoxSelected++;
                         image.color = Color.white;
                         GameController.instance.playerController.SubtractHealth();
                         if (!GameController.instance.isLoadData) GameController.instance.uIController.PlayFalse(transform.position, this);
@@ -109,7 +109,7 @@ public class Box : MonoBehaviour
                 {
                     if (mainHex != "#FFFFFF")
                     {
-                        GameController.instance.playerController.totalBoxSelected++;
+                        if (!GameController.instance.isLoadData) GameController.instance.playerController.totalBoxSelected++;
                         GameController.instance.playerController.CheckWin();
                     }
                     CheckLine();
@@ -134,7 +134,10 @@ public class Box : MonoBehaviour
         if (!x.gameObject.activeSelf && !xSelected.gameObject.activeSelf)
         {
             x.gameObject.SetActive(true);
-            if (!GameController.instance.isLoadData) xAni.Play("ScaleX");
+            if (!GameController.instance.isLoadData)
+            {
+                xAni.Play("ScaleX");
+            }
         }
     }
 

@@ -47,12 +47,14 @@ public class GameController : MonoBehaviour
 
     public void SaveLevel(int health)
     {
+        if (levelStorage == -100) return;
         levelDataStorage.healthRemaining = health;
-        dataManager.SaveLevel(levelDataStorage, level);
+        dataManager.SaveLevel(levelDataStorage, levelStorage);
     }
 
     public void SaveLevel(int i, int j, string mainHex, string hexSelect)
     {
+        if (levelStorage == -100) return;
         levelDataStorage.boxDataStorage[i][j].isVisible = true;
         levelDataStorage.isClicked = true;
         levelDataStorage.boxDataStorage[i][j].hexSelect = hexSelect;
@@ -61,18 +63,20 @@ public class GameController : MonoBehaviour
             levelDataStorage.totalSelect++;
             if(levelDataStorage.totalSelect == levelConfig.totalToWin) levelDataStorage.isCompleted = true;
         }
-        dataManager.SaveLevel(levelDataStorage, level);
+        dataManager.SaveLevel(levelDataStorage, levelStorage);
     }
 
     public void SaveLevel(int i, int j)
     {
+        if (levelStorage == -100) return;
         levelDataStorage.boxDataStorage[i][j].isX = true;
         //Debug.LogWarning(i + " - " + j);
-        dataManager.SaveLevel(levelDataStorage, level);
+        dataManager.SaveLevel(levelDataStorage, levelStorage);
     }
 
     public void SaveLevel()
     {
+        if (levelStorage == -100) return;
         levelDataStorage.isClicked = false;
         levelDataStorage.totalSelect = 0;
         levelDataStorage.healthRemaining = 3;
@@ -84,7 +88,7 @@ public class GameController : MonoBehaviour
                 levelDataStorage.boxDataStorage[i][j].isX = false;
             }
         }
-        dataManager.SaveLevel(levelDataStorage, level);
+        dataManager.SaveLevel(levelDataStorage, levelStorage);
     }
 
     public int GetX()

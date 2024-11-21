@@ -49,11 +49,11 @@ public class GamePlay : MonoBehaviour
 
     public void Back()
     {
-        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
         {
             gamePlay.SetActive(false);
             home.SetActive(true);
-            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
         });
     }
 
@@ -110,7 +110,7 @@ public class GamePlay : MonoBehaviour
 
     public void NextLevel()
     {
-        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
         {
             ResetWin();
             for (int i = 0; i < healths.Length; i++)
@@ -120,19 +120,19 @@ public class GamePlay : MonoBehaviour
             UIController.instance.StopFxWin();
             GameController.instance.GetLevel(PlayerPrefs.GetInt("Level", 1), -1);
             GameController.instance.LoadLevel();
-            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
         });
     }
 
     public void Home()
     {
-        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
         {
             UIController.instance.StopFxWin();
             ResetWin();
             gamePlay.SetActive(false);
             home.SetActive(true);
-            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
         });
     }
 
@@ -146,7 +146,7 @@ public class GamePlay : MonoBehaviour
     public void Replay()
     {
         GameController.instance.SaveLevel();
-        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
         {
             GameController.instance.GetLevel(GameController.instance.level, GameController.instance.levelStorage);
             GameController.instance.LoadLevel();
@@ -155,7 +155,7 @@ public class GamePlay : MonoBehaviour
             {
                 healths[i].Replay();
             }
-            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
         });
     }
 

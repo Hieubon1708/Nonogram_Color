@@ -27,6 +27,7 @@ public class Daily : MonoBehaviour
     bool isLessThan0;
     public DateTime releaseDate = new DateTime(2024, 10, 1);
     public GameObject intro;
+    public bool isMouseDown;
     public bool isCanBack;
     public bool isCanNext;
     public TextMeshProUGUI[] date;
@@ -43,6 +44,7 @@ public class Daily : MonoBehaviour
     public TextMeshProUGUI label;
     public Image arrowLeft;
     public Image arrowRight;
+    public GameObject continueButton;
 
     public void ShowIntro()
     {
@@ -94,10 +96,14 @@ public class Daily : MonoBehaviour
     public void LoadData()
     {
         LoadPage(DateTime.Now);
-        Color cor = arrowRight.color;
-        cor.a = 0f;
-        arrowRight.color = cor;
+        Color cor1 = arrowRight.color;
+        cor1.a = 0f;
+        arrowRight.color = cor1;
         arrowRight.raycastTarget = false;
+        Color cor2 = arrowLeft.color;
+        cor2.a = 1f;
+        arrowLeft.color = cor2;
+        arrowLeft.raycastTarget = true;
     }
 
     int GetIndex(DateTime currentTime)
@@ -241,21 +247,22 @@ public class Daily : MonoBehaviour
 
     public void Update()
     {
-        if (intro.activeSelf) return;
         if (Input.GetMouseButtonDown(0))
         {
-            if (panelQuestion.activeSelf) return;
+            if (panelQuestion.activeSelf || UIController.instance.uICommon.layerCover.gameObject.activeSelf) return;
             if (isMovingPage || EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.CompareTag("Arrow")) return;
             Vector2 mousePos = UIController.instance.ScreenToWorldPoint(Input.mousePosition);
             offsetX = pageParent.position.x - mousePos.x;
             startXScreen = Input.mousePosition.x;
             startX = mousePos.x;
             isDrag = true;
+            isMouseDown = true;
         }
         if (Input.GetMouseButtonUp(0))
         {
             isDrag = false;
-            if (panelQuestion.activeSelf) return;
+            if (panelQuestion.activeSelf || !isMouseDown || UIController.instance.uICommon.layerCover.gameObject.activeSelf) return;
+            isMouseDown = false;
             if (isMovingPage || EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.CompareTag("Arrow")) return;
             if (Mathf.Abs(Input.mousePosition.x - startXScreen) <= 2.5f)
             {
@@ -395,13 +402,22 @@ public class Daily : MonoBehaviour
 
     public void ShowQuestion()
     {
+        isMouseDown = false;
         GameController.instance.levelDataStorage = GameController.instance.dataManager.GetLevelStorage(level);
+        if (dailyDay.image.gameObject.activeSelf)
+        {
+            continueButton.SetActive(false);
+            panelQuestion.SetActive(true);
+            return;
+        }
+        else continueButton.SetActive(true);
         if (!GameController.instance.levelDataStorage.isClicked)
         {
             Play();
         }
         else
         {
+            
             panelQuestion.SetActive(true);
         }
     }
@@ -414,6 +430,7 @@ public class Daily : MonoBehaviour
 
     public void Restart()
     {
+        GameController.instance.GetLevel(level, level);
         GameController.instance.SaveLevel();
         dailyDay.ResetProgress();
         panelQuestion.SetActive(false);
@@ -427,12 +444,13 @@ public class Daily : MonoBehaviour
 
     public void Play()
     {
-        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
         {
             string monthInEnglish = dailyDay.date.ToString("MMMM", new System.Globalization.CultureInfo("en-US"));
             label.text = monthInEnglish + " " + dailyDay.date.Day;
             daily.SetActive(false);
             gamePlay.SetActive(true);
+            isMouseDown = false;
             labelDaily.SetActive(true);
             back.SetActive(true);
             panelQuestion.SetActive(false);
@@ -442,7 +460,7 @@ public class Daily : MonoBehaviour
             GameController.instance.GetLevel(level, level);
             GameController.instance.LoadLevel();
             UIController.instance.gamePlay.SwitchFontWin(fontWin, out tempFontWin);
-            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, delegate
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, delegate
             {
                 GameController.instance.isLoadData = false;
             });
@@ -451,8 +469,8 @@ public class Daily : MonoBehaviour
 
     public void BackDaily()
     {
-        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
-        {
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
+        {        
             gamePlay.SetActive(false);
             daily.SetActive(true);
             back.SetActive(false);
@@ -461,13 +479,13 @@ public class Daily : MonoBehaviour
             ResetWin();
             UIController.instance.StopFxWin();
             UIController.instance.gamePlay.SwitchFontWin(tempFontWin, out fontWin);
-            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
         });
     }
 
     public void BackDailyButton()
     {
-        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
         {
             gamePlay.SetActive(false);
             daily.SetActive(true);
@@ -476,18 +494,18 @@ public class Daily : MonoBehaviour
             dailyDay.CheckProgress();
 
             UIController.instance.gamePlay.SwitchFontWin(tempFontWin, out fontWin);
-            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
         });
     }
 
     public void BackHome()
     {
-        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
         {
             daily.SetActive(false);
             home.SetActive(true);
 
-            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
         });
     }
 

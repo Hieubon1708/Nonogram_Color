@@ -69,14 +69,14 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (UIController.instance.collection.barBackCollection.activeSelf || UIController.instance.gamePlay.panelLose.gameObject.activeSelf) return;
+            if (UIController.instance.collection.barBackCollection.activeSelf || UIController.instance.gamePlay.panelLose.gameObject.activeSelf || UIController.instance.uICommon.layerCover.gameObject.activeSelf) return;
             isDrag = true;
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             isDrag = false;
-            if (UIController.instance.collection.barBackCollection.activeSelf || UIController.instance.gamePlay.panelLose.gameObject.activeSelf) return;
+            if (UIController.instance.collection.barBackCollection.activeSelf || UIController.instance.gamePlay.panelLose.gameObject.activeSelf || UIController.instance.uICommon.layerCover.gameObject.activeSelf) return;
             boxPassed.Clear();
         }
 
@@ -144,7 +144,6 @@ public class PlayerController : MonoBehaviour
     {
         if(health == 0)
         {
-            Debug.LogWarning("aaa");
             GameController.instance.SaveLevel();
         }
     }

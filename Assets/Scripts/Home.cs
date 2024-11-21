@@ -27,8 +27,7 @@ public class Home : MonoBehaviour
 
     public void ShowQuestion()
     {
-        GameController.instance.level = -1;
-        GameController.instance.levelDataStorage = GameController.instance.dataManager.GetLevelStorage(GameController.instance.level);
+        GameController.instance.levelDataStorage = GameController.instance.dataManager.GetLevelStorage(-1);
         if (!GameController.instance.levelDataStorage.isClicked)
         {
             Play();
@@ -47,6 +46,7 @@ public class Home : MonoBehaviour
     
     public void Restart()
     {
+        GameController.instance.GetLevel(PlayerPrefs.GetInt("Level", 1), -1);
         GameController.instance.SaveLevel();
         question.SetActive(false);
         Play();
@@ -59,7 +59,7 @@ public class Home : MonoBehaviour
 
     public void Play()
     {
-        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
         {
             GameController.instance.isLoadData = true;
             home.SetActive(false);
@@ -68,7 +68,7 @@ public class Home : MonoBehaviour
             GameController.instance.GetLevel(PlayerPrefs.GetInt("Level", 1), -1);
             GameController.instance.LoadLevel();
 
-            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, delegate
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, delegate
             {
                 GameController.instance.isLoadData = false;
             });
@@ -82,34 +82,34 @@ public class Home : MonoBehaviour
 
     public void Achievement()
     {
-        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
         {
             home.SetActive(false);
             achievement.SetActive(true);
             UIController.instance.challenge.LoadData();
-            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
         });
     }
 
     public void DailyChallenge()
     {
-        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
         {
             home.SetActive(false);
             daily.SetActive(true);
             UIController.instance.daily.LoadData();
-            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
         });
     }
 
     public void Collection()
     {
-        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
         {
             home.SetActive(false);
             collection.SetActive(true);
 
-            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
         });
     }
 }

@@ -30,6 +30,7 @@ public class DailyDay : MonoBehaviour
             image.gameObject.SetActive(false);
             BgHide();
         }
+        ResetProgress();
     }
 
     public void LoadData(Sprite sprite, int level, DateTime date, ref int totalCompleted)
@@ -63,12 +64,16 @@ public class DailyDay : MonoBehaviour
 
     public void CheckProgress()
     {
-        if (GameController.instance.levelDataStorage.totalSelect > 0)
+        if (GameController.instance.playerController.totalBoxSelected > 0)
         {
             Color color = progress.color;
             color.a = 1f;
             progress.color = color;
             progress.fillAmount = 1 - (float)GameController.instance.levelDataStorage.totalSelect / GameController.instance.levelConfig.totalToWin;
+        }
+        else
+        {
+            ResetProgress();
         }
     }
 

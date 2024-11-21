@@ -30,6 +30,12 @@ public class AchiementControlView : MonoBehaviour
         });
     }
 
+    public void Resize()
+    {
+        bar.anchoredPosition = Vector2.zero;
+        rect.anchoredPosition = Vector2.zero;
+    }
+
     public void MoveBar()
     {
         bar.DOKill();

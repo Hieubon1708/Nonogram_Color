@@ -96,12 +96,12 @@ public class Tutorial : MonoBehaviour
 
     public void Skip()
     {
-        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
         {
             PlayerPrefs.SetInt("Tutorial", 1);
             DoKill();
             tutorial.SetActive(false);
-            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
         });
     }
 
@@ -113,7 +113,7 @@ public class Tutorial : MonoBehaviour
 
     public void NextLevel()
     {
-        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
         {
             DoKill();
             UIController.instance.StopFxWin();
@@ -121,18 +121,18 @@ public class Tutorial : MonoBehaviour
             home.SetActive(false);
             gamePlay.SetActive(true);
             GameController.instance.GetLevel(PlayerPrefs.GetInt("Level", 1), -1);
-            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
         });
     }
 
     public void Home()
     {
-        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
         {
             DoKill();
             UIController.instance.StopFxWin();
             tutorial.SetActive(false);
-            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
         });
     }
 
@@ -150,7 +150,7 @@ public class Tutorial : MonoBehaviour
 
     public void StartHand()
     {
-        hand.position = startHand;
+        hand.position = new Vector3(startHand.x, startHand.y, 100);
         handAni.Play("TutorialHandShow");
     }
 
@@ -222,7 +222,7 @@ public class Tutorial : MonoBehaviour
 
     void CheckBox()
     {
-        Vector2 mousePosition = hand.position;
+        Vector2 mousePosition = UIController.instance.WorldToScreenPoint(hand.position);
         PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
         eventDataCurrentPosition.position = mousePosition;
         var results = new List<RaycastResult>();

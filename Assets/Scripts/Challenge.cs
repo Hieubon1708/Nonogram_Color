@@ -13,6 +13,7 @@ public class Challenge : MonoBehaviour
     public GameObject challengerPre;
     public List<ChallengerCluster> challengerClusters = new List<ChallengerCluster>();
     public DateTime releaseDate = new DateTime(2024, 10, 1);
+    public AchiementControlView achiementControlView;
 
     public void Awake()
     {
@@ -30,6 +31,7 @@ public class Challenge : MonoBehaviour
 
     public void LoadData()
     {
+        achiementControlView.Resize();
         ResetChallenger();
 
         DateTime startDate = releaseDate;
@@ -67,11 +69,11 @@ public class Challenge : MonoBehaviour
 
     public void BackHome()
     {
-        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
+        UIController.instance.uICommon.DOLayerCover(1f, 0.5f, true, delegate
         {
             home.SetActive(true);
             achievement.SetActive(false);
-            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
         });
     }
 }

@@ -77,7 +77,6 @@ public class BoxController : MonoBehaviour
             }
             //Debug.LogWarning(GameController.instance.GetX());
         }
-
         if (isNull) return;
         for (int i = 0; i < boxes.Length; i++)
         {
