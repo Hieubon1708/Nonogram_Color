@@ -118,7 +118,8 @@ public class GamePlay : MonoBehaviour
                 healths[i].Replay();
             }
             UIController.instance.StopFxWin();
-            GameController.instance.LoadLevel(PlayerPrefs.GetInt("Level", 1));
+            GameController.instance.GetLevel(PlayerPrefs.GetInt("Level", 1), -1);
+            GameController.instance.LoadLevel();
             UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
         });
     }
@@ -147,7 +148,8 @@ public class GamePlay : MonoBehaviour
         GameController.instance.SaveLevel();
         UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
         {
-            GameController.instance.LoadLevel(PlayerPrefs.GetInt("Level", 1));
+            GameController.instance.GetLevel(GameController.instance.level, GameController.instance.levelStorage);
+            GameController.instance.LoadLevel();
             HidePanelLose();
             for (int i = 0; i < healths.Length; i++)
             {

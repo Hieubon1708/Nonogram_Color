@@ -7,6 +7,7 @@ public class Home : MonoBehaviour
     public GameObject gamePlay;
     public GameObject collection;
     public GameObject daily;
+    public GameObject achievement;
     public TextMeshProUGUI textLevel;
     public GameObject question;
     public TMP_InputField inputField;
@@ -64,8 +65,8 @@ public class Home : MonoBehaviour
             home.SetActive(false);
             gamePlay.SetActive(true);
             if (UIController.instance.collection.collection.activeSelf) UIController.instance.collection.collection.SetActive(false);
-            GameController.instance.level = -1;
-            GameController.instance.LoadLevel(PlayerPrefs.GetInt("Level", 1));
+            GameController.instance.GetLevel(PlayerPrefs.GetInt("Level", 1), -1);
+            GameController.instance.LoadLevel();
 
             UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, delegate
             {
@@ -81,7 +82,13 @@ public class Home : MonoBehaviour
 
     public void Achievement()
     {
-
+        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
+        {
+            home.SetActive(false);
+            achievement.SetActive(true);
+            UIController.instance.challenge.LoadData();
+            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
+        });
     }
 
     public void DailyChallenge()
@@ -90,7 +97,7 @@ public class Home : MonoBehaviour
         {
             home.SetActive(false);
             daily.SetActive(true);
-
+            UIController.instance.daily.LoadData();
             UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
         });
     }

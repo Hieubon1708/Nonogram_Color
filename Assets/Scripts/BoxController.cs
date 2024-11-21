@@ -8,6 +8,7 @@ public class BoxController : MonoBehaviour
     public GridLayoutGroup gridLayoutGroup;
     public Box[] pool;
     public Box[][] boxes;
+    public List<BOXDO> boxDO = new List<BOXDO>();
 
     public void LoadLevel(LevelConfig levelConfig, LevelDataStorage levelDataStorage)
     {
@@ -30,7 +31,11 @@ public class BoxController : MonoBehaviour
         gridLayoutGroup.constraintCount = GameController.instance.dataManager.sizeConfig[(int)levelConfig.typeLevel].contrainCount;
         float cellSize = GameController.instance.dataManager.sizeConfig[(int)levelConfig.typeLevel].boxCellSize;
         gridLayoutGroup.cellSize = Vector2.one * cellSize;
-
+        if (!levelDataStorage.isClicked)
+        {
+            boxDO.Clear();
+            GameController.instance.SaveLevel();
+        }
         List<Box> x = new List<Box>();
         int indexPool = 0;
         int row = levelConfig.boxConfigs.Length;
@@ -46,27 +51,31 @@ public class BoxController : MonoBehaviour
                 string mainColor = levelConfig.boxConfigs[i][j].mainHex;
                 string extraColor = levelConfig.boxConfigs[i][j].extraHex;
 
-                if (mainColor == "#FFFFFF" && !levelDataStorage.isClicked)
+                if (mainColor == "#FFFFFF" && !levelDataStorage.isClicked && boxes.Length != 5)
                 {
                     x.Add(pool[indexPool]);
-                    GameController.instance.SaveLevel(i, j);
+                    boxDO.Add(new BOXDO(i, j));
                 }
                 boxesInRow[j].LoadLevel(mainColor, extraColor);
                 indexPool++;
             }
             boxes[i] = boxesInRow;
         }
-
-        if (!levelDataStorage.isClicked)
+        if (!levelDataStorage.isClicked && boxes.Length != 5)
         {
             int xCount = x.Count * GameController.instance.dataManager.sizeConfig[(int)levelConfig.typeLevel].percentX / 100;
+            /*Debug.LogWarning(xCount);
+            Debug.LogWarning(GameController.instance.GetX());*/
             while (xCount > 0)
             {
                 int indexRandom = Random.Range(0, x.Count);
                 x[indexRandom].IsX();
+                GameController.instance.SaveLevel(boxDO[indexRandom].i, boxDO[indexRandom].j);
                 x.RemoveAt(indexRandom);
+                boxDO.RemoveAt(indexRandom);
                 xCount--;
             }
+            //Debug.LogWarning(GameController.instance.GetX());
         }
 
         if (isNull) return;
@@ -189,5 +198,17 @@ public class BoxController : MonoBehaviour
             }
         }
         return -1;
+    }
+}
+
+[System.Serializable]
+public class BOXDO
+{
+    public int i;
+    public int j;
+    public BOXDO(int i, int j)
+    {
+        this.i = i;
+        this.j = j;
     }
 }

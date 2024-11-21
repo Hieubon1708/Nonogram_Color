@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class UIController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class UIController : MonoBehaviour
     public GamePlay gamePlay;
     public Collection collection;
     public Daily daily;
+    public Challenge challenge;
     public Home home;
 
     public ParticleSystem fxWin;
@@ -20,7 +22,7 @@ public class UIController : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        daily.LoadData();
+        daily.Generate();
     }
 
     public Vector2 WorldToScreenPoint(Vector2 input)

@@ -1,7 +1,6 @@
 ﻿using DG.Tweening;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -26,7 +25,7 @@ public class Daily : MonoBehaviour
     int indexPage;
     DateTime dateSelect;
     bool isLessThan0;
-    DateTime releaseDate = new DateTime(2024, 10, 1);
+    public DateTime releaseDate = new DateTime(2024, 10, 1);
     public GameObject intro;
     public bool isCanBack;
     public bool isCanNext;
@@ -37,6 +36,7 @@ public class Daily : MonoBehaviour
     public GameObject daily;
     public GameObject labelDaily;
     public GameObject back;
+    public GameObject home;
     public GameObject panelQuestion;
     public CanvasGroup fontWin;
     public CanvasGroup tempFontWin;
@@ -63,7 +63,7 @@ public class Daily : MonoBehaviour
         return null;
     }
 
-    public void LoadData()
+    public void Generate()
     {
         DOVirtual.DelayedCall(0.02f, delegate
         {
@@ -88,13 +88,16 @@ public class Daily : MonoBehaviour
                 }
                 day[i] = dailyDay;
             }
-
-            LoadPage(DateTime.Now);
-            Color cor = arrowRight.color;
-            cor.a = 0f;
-            arrowRight.color = cor;
-            arrowRight.raycastTarget = false;
         });
+    }
+
+    public void LoadData()
+    {
+        LoadPage(DateTime.Now);
+        Color cor = arrowRight.color;
+        cor.a = 0f;
+        arrowRight.color = cor;
+        arrowRight.raycastTarget = false;
     }
 
     int GetIndex(DateTime currentTime)
@@ -177,6 +180,7 @@ public class Daily : MonoBehaviour
 
             for (int j = 0; j < day[i].Length; j++)
             {
+                day[i][j].SetDefaultField();
                 if (j >= startDayOfWeek && d <= dayInMonth)
                 {
                     DateTime date = new DateTime(currentViewPage.Year, currentViewPage.Month, d);
@@ -187,12 +191,16 @@ public class Daily : MonoBehaviour
                     else
                     {
                         day[i][j].CanSelcect();
-                        if (date.Date >= releaseDate) day[i][j].LoadData(sprites[indexStart++], indexStart + 1 + 1000, date.Date, ref totalCompleted);
+                        if (date.Date >= releaseDate)
+                        {
+                            day[i][j].LoadData(sprites[indexStart], indexStart + 1 + 1000, date.Date, ref totalCompleted);
+                            indexStart++;
+                        }
                         if (d == dayInMonth || date.Date == DateTime.Now.Date)
                         {
                             //Debug.Log("month " + currentViewPage.Month + " day  " + d + " j " + j);
                             int index = j;
-                            if (i != 1) HideBgAll(day[i]);
+                            //if (i != 1) HideBgAll(day[i]);
                             bool isHave = false;
                             while (index >= startDayOfWeek)
                             {
@@ -200,12 +208,15 @@ public class Daily : MonoBehaviour
                                 {
                                     isHave = true;
                                     a[i] = day[i][index].gameObject;
-                                    day[i][index].BgShow();
+                                    day[i][index].BgShow(i == 1);
                                     break;
                                 }
                                 index--;
                             }
-                            if (!isHave) day[i][startDayOfWeek].BgShow();
+                            if (!isHave)
+                            {
+                                day[i][startDayOfWeek].BgShow(i == 1);
+                            }
                         }
                     }
                     day[i][j].num.text = d.ToString();
@@ -233,6 +244,7 @@ public class Daily : MonoBehaviour
         if (intro.activeSelf) return;
         if (Input.GetMouseButtonDown(0))
         {
+            if (panelQuestion.activeSelf) return;
             if (isMovingPage || EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.CompareTag("Arrow")) return;
             Vector2 mousePos = UIController.instance.ScreenToWorldPoint(Input.mousePosition);
             offsetX = pageParent.position.x - mousePos.x;
@@ -243,6 +255,7 @@ public class Daily : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             isDrag = false;
+            if (panelQuestion.activeSelf) return;
             if (isMovingPage || EventSystem.current.currentSelectedGameObject != null && EventSystem.current.currentSelectedGameObject.CompareTag("Arrow")) return;
             if (Mathf.Abs(Input.mousePosition.x - startXScreen) <= 2.5f)
             {
@@ -426,7 +439,8 @@ public class Daily : MonoBehaviour
             GameController.instance.isLoadData = true;
 
             GameController.instance.level = level;
-            GameController.instance.LoadLevel(level);
+            GameController.instance.GetLevel(level, level);
+            GameController.instance.LoadLevel();
             UIController.instance.gamePlay.SwitchFontWin(fontWin, out tempFontWin);
             UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, delegate
             {
@@ -450,7 +464,7 @@ public class Daily : MonoBehaviour
             UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
         });
     }
-    
+
     public void BackDailyButton()
     {
         UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
@@ -462,6 +476,17 @@ public class Daily : MonoBehaviour
             dailyDay.CheckProgress();
 
             UIController.instance.gamePlay.SwitchFontWin(tempFontWin, out fontWin);
+            UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
+        });
+    }
+
+    public void BackHome()
+    {
+        UIController.instance.uICommon.DOLayerCover(1f, 0.25f, true, delegate
+        {
+            daily.SetActive(false);
+            home.SetActive(true);
+
             UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
         });
     }

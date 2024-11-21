@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
         SetColorSelect(buttonSelectors[1].hex);
 
         health = levelDataStorage.healthRemaining;
+        totalBoxSelected = levelDataStorage.totalSelect;
         UIController.instance.gamePlay.LoadDataStorage(health);
     }
 
@@ -68,18 +69,19 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if (UIController.instance.collection.barBackCollection.activeSelf || UIController.instance.gamePlay.panelLose.gameObject.activeSelf) return;
             isDrag = true;
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             isDrag = false;
+            if (UIController.instance.collection.barBackCollection.activeSelf || UIController.instance.gamePlay.panelLose.gameObject.activeSelf) return;
             boxPassed.Clear();
         }
 
         if (isDrag)
         {
-            if (UIController.instance.collection.barBackCollection.activeSelf) return;
             Vector2 mousePosition = Input.mousePosition;
             if (boxPassed.Count >= 2)
             {

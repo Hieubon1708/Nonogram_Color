@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
     public GameObject tutorial;
 
     public int level;
+    public int levelStorage;
     public LevelConfig levelConfig;
     public LevelDataStorage levelDataStorage;
 
@@ -66,6 +67,7 @@ public class GameController : MonoBehaviour
     public void SaveLevel(int i, int j)
     {
         levelDataStorage.boxDataStorage[i][j].isX = true;
+        //Debug.LogWarning(i + " - " + j);
         dataManager.SaveLevel(levelDataStorage, level);
     }
 
@@ -79,20 +81,38 @@ public class GameController : MonoBehaviour
             for (int j = 0; j < levelDataStorage.boxDataStorage[i].Length; j++)
             {
                 levelDataStorage.boxDataStorage[i][j].isVisible = false;
+                levelDataStorage.boxDataStorage[i][j].isX = false;
             }
         }
         dataManager.SaveLevel(levelDataStorage, level);
     }
 
-    public void LoadLevel(int level)
+    public int GetX()
     {
+        int c = 0;
+        for (int i = 0; i < levelDataStorage.boxDataStorage.Length; i++)
+        {
+            for (int j = 0; j < levelDataStorage.boxDataStorage[i].Length; j++)
+            {
+                if (levelDataStorage.boxDataStorage[i][j].isX) c++;
+            }
+        }
+        return c;
+    }
+
+    public void GetLevel(int level, int levelStorage)
+    {
+        this.level = level;
+        this.levelStorage = levelStorage;
         levelConfig = dataManager.GetLevel(level);
-        levelDataStorage = dataManager.GetLevelStorage(this.level);
-
+        levelDataStorage = dataManager.GetLevelStorage(levelStorage);
         typeLevel = levelConfig.typeLevel;
+    }
 
-        boxController.LoadLevel(levelConfig, levelDataStorage);
+    public void LoadLevel()
+    {
         playerController.LoadLevel(levelConfig, levelDataStorage);
+        boxController.LoadLevel(levelConfig, levelDataStorage);
         clusterController.LoadLevel(levelConfig);
         lineGenerator.LoadLevel(levelConfig);
         uIController.LoadLevel(levelConfig);

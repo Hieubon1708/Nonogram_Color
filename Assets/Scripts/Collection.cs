@@ -21,6 +21,7 @@ public class Collection : MonoBehaviour
     public CanvasGroup fontWin;
     public CanvasGroup tempFontWin;
     public GameObject playButton;
+    public GameObject label;
 
     public void Awake()
     {
@@ -36,7 +37,7 @@ public class Collection : MonoBehaviour
     {
         int length = PlayerPrefs.GetInt("Level");
         bool isOk = false;
-        for (int i = 0; i < length; i++)
+        for (int i = 0; i < length - 1; i++)
         {
             if (!isOk) isOk = true;
             AddCollector(i);
@@ -71,10 +72,12 @@ public class Collection : MonoBehaviour
             collection.SetActive(false);
             gamePlay.SetActive(true);
             back.SetActive(true);
+            label.SetActive(true);
             panelCollection.SetActive(false);
-
             UIController.instance.gamePlay.SwitchFontWin(fontWin, out tempFontWin);
-            GameController.instance.LoadLevel(level);
+            GameController.instance.GetLevel(level, level);
+            GameController.instance.SaveLevel();
+            GameController.instance.LoadLevel();
 
             UIController.instance.uICommon.DOLayerCover(0f, 0.25f, false, null);
         });
@@ -106,6 +109,7 @@ public class Collection : MonoBehaviour
             gamePlay.SetActive(false);
             collection.SetActive(true);
             back.SetActive(false);
+            label.SetActive(false);
             barBackCollection.SetActive(false);
             ResetWin();
             UIController.instance.StopFxWin();

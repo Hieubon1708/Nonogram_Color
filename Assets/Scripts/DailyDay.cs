@@ -22,6 +22,16 @@ public class DailyDay : MonoBehaviour
         num.color = color;
     }
 
+    public void SetDefaultField()
+    {
+        BgHide();
+        if (image.gameObject.activeSelf)
+        {
+            image.gameObject.SetActive(false);
+            BgHide();
+        }
+    }
+
     public void LoadData(Sprite sprite, int level, DateTime date, ref int totalCompleted)
     {
         this.level = level;
@@ -39,7 +49,7 @@ public class DailyDay : MonoBehaviour
             Color color = progress.color;
             color.a = 1f;
             progress.color = color;
-            progress.fillAmount -= (float)levelDataStorage.totalSelect / levelConfig.totalToWin;
+            progress.fillAmount = 1 - (float)levelDataStorage.totalSelect / levelConfig.totalToWin;
         }
     }
 
@@ -58,7 +68,7 @@ public class DailyDay : MonoBehaviour
             Color color = progress.color;
             color.a = 1f;
             progress.color = color;
-            progress.fillAmount -= (float)GameController.instance.levelDataStorage.totalSelect / GameController.instance.levelConfig.totalToWin;
+            progress.fillAmount = 1 - (float)GameController.instance.levelDataStorage.totalSelect / GameController.instance.levelConfig.totalToWin;
         }
     }
 
@@ -107,7 +117,7 @@ public class DailyDay : MonoBehaviour
         }
     }
 
-    public void BgShow()
+    public void BgShow(bool isMainPage)
     {
         if (!image.gameObject.activeSelf)
         {
@@ -121,7 +131,7 @@ public class DailyDay : MonoBehaviour
             c1.a = 1;
             bg.color = c1;
         }
-        UIController.instance.daily.SelectDay(this, level);
+        if (isMainPage) UIController.instance.daily.SelectDay(this, level);
     }
 
     void DoKill()
