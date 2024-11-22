@@ -49,6 +49,7 @@ public class ClusterIndex : MonoBehaviour
 
     public void ResetClusterIndex()
     {
+        flicker.Stop();
         isDone = false;
         canvasGroup.alpha = 1f;
         gameObject.SetActive(false);

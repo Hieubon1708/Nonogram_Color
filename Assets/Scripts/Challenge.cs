@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,46 +18,66 @@ public class Challenge : MonoBehaviour
 
     public void Awake()
     {
-        DateTime startDate = releaseDate;
-
-        int amountYear = DateTime.Now.Year - startDate.Year;
-
-        for (int i = 0; i <= amountYear; i++)
+        DOVirtual.DelayedCall(0.02f, delegate
         {
-            challengerClusters.Add(Instantiate(challengerPre, container).GetComponent<ChallengerCluster>());
-        }
+            DateTime startDate = releaseDate;
+            int amountYear = DateTime.Now.Year - startDate.Year;
 
-        LoadData();
+            for (int i = 0; i <= amountYear; i++)
+            {
+                challengerClusters.Add(Instantiate(challengerPre, container).GetComponent<ChallengerCluster>());
+            }
+
+            ResetChallenger();
+            int currentYear = startDate.Year;
+            int indexMonth = 0;
+            int indexYear = 0;
+
+            challengerClusters[indexYear].year.text = startDate.Year.ToString();
+
+            int amoutMonth = 0;
+            while (startDate.Date <= DateTime.Now.Date)
+            {
+                challengerClusters[indexYear].LoadData(startDate, releaseDate, cups[indexMonth], dataManager);
+                startDate = startDate.AddMonths(1);
+                amoutMonth++;
+                if (currentYear < startDate.Year)
+                {
+                    challengerClusters[indexYear].SetChildSize(amoutMonth, canvas.sizeDelta.x);
+                    currentYear = startDate.Year;
+                    amoutMonth = 0;
+                    indexYear++;
+                    challengerClusters[indexYear].year.text = startDate.Year.ToString();
+                }
+                indexMonth++;
+            }
+            challengerClusters[indexYear].SetChildSize(amoutMonth, canvas.sizeDelta.x);
+        });
     }
 
     public void LoadData()
     {
-        achiementControlView.Resize();
+        achiementControlView.LoadData();
+
         ResetChallenger();
 
         DateTime startDate = releaseDate;
-
         int currentYear = startDate.Year;
         int indexMonth = 0;
         int indexYear = 0;
 
-        challengerClusters[indexYear].year.text = startDate.Year.ToString();
         while (startDate.Date <= DateTime.Now.Date)
         {
             challengerClusters[indexYear].LoadData(startDate, releaseDate, cups[indexMonth], dataManager);
             startDate = startDate.AddMonths(1);
             if (currentYear < startDate.Year)
             {
+                currentYear = startDate.Year;
                 indexYear++;
                 challengerClusters[indexYear].year.text = startDate.Year.ToString();
             }
             indexMonth++;
         }
-    }
-
-    public void OnEnable()
-    {
-        //
     }
 
     void ResetChallenger()

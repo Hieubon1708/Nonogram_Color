@@ -22,7 +22,7 @@ public class DailyDay : MonoBehaviour
         num.color = color;
     }
 
-    public void SetDefaultField()
+    public void ResetDay()
     {
         BgHide();
         if (image.gameObject.activeSelf)

@@ -13,7 +13,13 @@ public class ChallengerCluster : MonoBehaviour
     public void ResetChallegerCluster()
     {
         index = 0;
-        parent.sizeDelta = child.sizeDelta;     
+    }
+
+    public void SetChildSize(int amountMonth, float width)
+    {
+        float height = Mathf.Ceil((float)amountMonth / 3) * 450;
+        child.sizeDelta = new Vector2(child.sizeDelta.x, height);
+        parent.sizeDelta = new Vector2(width, height + 50 + 75);
     }
 
     public void LoadData(DateTime date, DateTime releaseDate, Sprite cup, DataManager dataManager)

@@ -77,9 +77,9 @@ public class GameController : MonoBehaviour
     public void SaveLevel()
     {
         if (levelStorage == -100) return;
+        levelDataStorage.healthRemaining = 3;
         levelDataStorage.isClicked = false;
         levelDataStorage.totalSelect = 0;
-        levelDataStorage.healthRemaining = 3;
         for (int i = 0; i < levelDataStorage.boxDataStorage.Length; i++)
         {
             for (int j = 0; j < levelDataStorage.boxDataStorage[i].Length; j++)
@@ -120,6 +120,8 @@ public class GameController : MonoBehaviour
         clusterController.LoadLevel(levelConfig);
         lineGenerator.LoadLevel(levelConfig);
         uIController.LoadLevel(levelConfig);
+
+        boxController.LoadDataStorage(levelDataStorage);
     }
 
     public string GetFontColor(string bgHex)

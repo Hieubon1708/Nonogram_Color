@@ -17,6 +17,7 @@ public class Collection : MonoBehaviour
     public GameObject gamePlay;
     public GameObject collection;
     public GameObject back;
+    public GameObject backOrigin;
     public GameObject home;
     public CanvasGroup fontWin;
     public CanvasGroup tempFontWin;
@@ -72,6 +73,7 @@ public class Collection : MonoBehaviour
             collection.SetActive(false);
             gamePlay.SetActive(true);
             back.SetActive(true);
+            backOrigin.SetActive(false);
             label.SetActive(true);
             panelCollection.SetActive(false);
             UIController.instance.gamePlay.SwitchFontWin(fontWin, out tempFontWin);
@@ -109,6 +111,7 @@ public class Collection : MonoBehaviour
             gamePlay.SetActive(false);
             collection.SetActive(true);
             back.SetActive(false);
+            backOrigin.SetActive(true);
             label.SetActive(false);
             barBackCollection.SetActive(false);
             ResetWin();

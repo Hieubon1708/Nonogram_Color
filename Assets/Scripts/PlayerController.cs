@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
         }
         GameController.instance.uIController.ButtonSelect(buttonSelectors, buttonSelectors[1], 0f, 0f);
         gridButton.localScale = Vector3.one * (0.6f + ((5 - levelConfig.buttonConfigs.Length) * 0.08f));
-        SetColorSelect(buttonSelectors[1].hex);
+        if (!levelDataStorage.isClicked) SetColorSelect(buttonSelectors[1].hex);
 
         health = levelDataStorage.healthRemaining;
         totalBoxSelected = levelDataStorage.totalSelect;
@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnDestroy()
     {
-        if(health == 0)
+        if (health == 0)
         {
             GameController.instance.SaveLevel();
         }

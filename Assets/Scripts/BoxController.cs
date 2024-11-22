@@ -13,10 +13,11 @@ public class BoxController : MonoBehaviour
     public void LoadLevel(LevelConfig levelConfig, LevelDataStorage levelDataStorage)
     {
         ResetBoxes();
-        bool isNull = false;
-        if (levelDataStorage.boxDataStorage == null)
+        gridLayoutGroup.constraintCount = GameController.instance.dataManager.sizeConfig[(int)levelConfig.typeLevel].contrainCount;
+        float cellSize = GameController.instance.dataManager.sizeConfig[(int)levelConfig.typeLevel].boxCellSize;
+        gridLayoutGroup.cellSize = Vector2.one * cellSize;
+        if (!levelDataStorage.isClicked)
         {
-            isNull = true;
             levelDataStorage.boxDataStorage = new BoxDataStorage[levelConfig.boxConfigs.Length][];
             for (int i = 0; i < levelConfig.boxConfigs.Length; i++)
             {
@@ -27,12 +28,6 @@ public class BoxController : MonoBehaviour
                 }
                 levelDataStorage.boxDataStorage[i] = boxesChild;
             }
-        }
-        gridLayoutGroup.constraintCount = GameController.instance.dataManager.sizeConfig[(int)levelConfig.typeLevel].contrainCount;
-        float cellSize = GameController.instance.dataManager.sizeConfig[(int)levelConfig.typeLevel].boxCellSize;
-        gridLayoutGroup.cellSize = Vector2.one * cellSize;
-        if (!levelDataStorage.isClicked)
-        {
             boxDO.Clear();
             GameController.instance.SaveLevel();
         }
@@ -76,8 +71,12 @@ public class BoxController : MonoBehaviour
                 xCount--;
             }
             //Debug.LogWarning(GameController.instance.GetX());
-        }
-        if (isNull) return;
+        }    
+    } 
+
+    public void LoadDataStorage(LevelDataStorage levelDataStorage)
+    {
+        if (!levelDataStorage.isClicked) return;
         for (int i = 0; i < boxes.Length; i++)
         {
             for (int j = 0; j < boxes[i].Length; j++)
@@ -96,6 +95,7 @@ public class BoxController : MonoBehaviour
                 }
             }
         }
+        GameController.instance.playerController.hexSelected = UIController.instance.GetCurrentHex();
     }
 
     private void Update()

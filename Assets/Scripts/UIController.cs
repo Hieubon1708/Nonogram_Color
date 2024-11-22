@@ -86,7 +86,7 @@ public class UIController : MonoBehaviour
             else
             {
                 buttons[index].bgSelected.transform.DOScale(0.7f, timeIn).SetEase(Ease.Linear);
-                if(!GameController.instance.isLoadData)
+                if (!GameController.instance.isLoadData)
                 {
                     buttons[index].bgSelected.DOFade(0f, timeIn).SetEase(Ease.Linear).OnComplete(delegate
                     {
@@ -166,5 +166,17 @@ public class UIController : MonoBehaviour
                 Debug.LogError("Button is null");
             }
         }
+    }
+
+    public string GetCurrentHex()
+    {
+        for (int i = 0; i < GameController.instance.playerController.buttonSelectors.Length; i++)
+        {
+            if (!GameController.instance.playerController.buttonSelectors[i].isDone && GameController.instance.playerController.buttonSelectors[i].hex != "#FFFFFF")
+            {
+                return GameController.instance.playerController.buttonSelectors[i].hex;
+            }
+        }
+        return "#000000";
     }
 }

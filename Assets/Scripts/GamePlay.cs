@@ -119,6 +119,7 @@ public class GamePlay : MonoBehaviour
             }
             UIController.instance.StopFxWin();
             GameController.instance.GetLevel(PlayerPrefs.GetInt("Level", 1), -1);
+            GameController.instance.SaveLevel();
             GameController.instance.LoadLevel();
             UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
         });

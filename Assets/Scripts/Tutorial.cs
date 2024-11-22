@@ -121,6 +121,7 @@ public class Tutorial : MonoBehaviour
             home.SetActive(false);
             gamePlay.SetActive(true);
             GameController.instance.GetLevel(PlayerPrefs.GetInt("Level", 1), -1);
+            GameController.instance.LoadLevel();
             UIController.instance.uICommon.DOLayerCover(0f, 0.5f, false, null);
         });
     }

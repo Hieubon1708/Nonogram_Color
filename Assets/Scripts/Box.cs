@@ -49,6 +49,7 @@ public class Box : MonoBehaviour
             if (mainHex == "#FFFFFF")
             {
                 x.gameObject.SetActive(true);
+                if (!GameController.instance.isLoadData) xAni.Play("ScaleX");
                 CheckLineByX(this);
             }
             else
@@ -59,7 +60,7 @@ public class Box : MonoBehaviour
                     image.DOColor(color, time);
                     CheckLine();
 
-                    if(!GameController.instance.isLoadData) GameController.instance.playerController.totalBoxSelected++;
+                    if (!GameController.instance.isLoadData) GameController.instance.playerController.totalBoxSelected++;
                     GameController.instance.playerController.CheckWin();
                 }
                 else Debug.LogError("Not found " + gameObject.name + " / " + mainHex);
@@ -73,6 +74,7 @@ public class Box : MonoBehaviour
                 if (mainHex != hexSelected)
                 {
                     xSelected.gameObject.SetActive(true);
+                    if (!GameController.instance.isLoadData) xSelectAni.Play("ScaleXSelected");
                     GameController.instance.playerController.isDrag = false;
                     float time = !GameController.instance.isLoadData ? 0.15f : 0;
                     DOVirtual.DelayedCall(time, delegate
@@ -87,6 +89,7 @@ public class Box : MonoBehaviour
                 else
                 {
                     x.gameObject.SetActive(true);
+                    if (!GameController.instance.isLoadData) xAni.Play("ScaleX");
                     CheckLineByX(this);
                 }
             }
@@ -134,10 +137,7 @@ public class Box : MonoBehaviour
         if (!x.gameObject.activeSelf && !xSelected.gameObject.activeSelf)
         {
             x.gameObject.SetActive(true);
-            if (!GameController.instance.isLoadData)
-            {
-                xAni.Play("ScaleX");
-            }
+            if (!GameController.instance.isLoadData) xAni.Play("ScaleX");
         }
     }
 
@@ -219,7 +219,7 @@ public class Box : MonoBehaviour
                         DOVirtual.DelayedCall(timeShowX, delegate
                         {
                             boxes[index][col].ShowX();
-                            //CheckRowCluster(boxes[index][col], boxes, index, false);
+                            CheckRowCluster(boxes, index, false);
                         });
                     }
                 }
@@ -239,7 +239,7 @@ public class Box : MonoBehaviour
                         DOVirtual.DelayedCall(timeShowX, delegate
                         {
                             boxes[index][col].ShowX();
-                            //CheckRowCluster(boxes[index][col], boxes, index, false);
+                            CheckRowCluster(boxes, index, false);
                         });
                     }
                 }
@@ -276,14 +276,23 @@ public class Box : MonoBehaviour
         for (int j = 0; j < boxes[row].Length; j++)
         {
             bool isClusterOk = true;
-            if (boxes[row][j].colClusters.Count == 0) continue;
+            if (boxes[row][j].rowClusters.Count == 0) continue;
+            //Debug.LogWarning("======================");
+            //Debug.Log("parent = " + boxes[row][j].name + " ");
             for (int i = 0; i < boxes[row][j].rowClusters.Count; i++)
             {
-                if (!boxes[row][j].rowClusters[i].isVisible) isClusterOk = false;
+                //Debug.Log("----------------------------");
+                //Debug.Log("name = " + boxes[row][j].rowClusters[i].name + " isVisible = " + boxes[row][j].rowClusters[i].isVisible);
+                if (!boxes[row][j].rowClusters[i].isVisible)
+                {
+                    isClusterOk = false;
+                    //Debug.Log("IsCluster Ok ?");
+                }
             }
             if (isClusterOk)
             {
                 boxes[row][j].rowClusterIndex.CompletedCluster();
+                //Debug.LogError("Completed cluster " + boxes[row][j].rowClusterIndex.name);
                 if (!isRowOk)
                 {
                     CheckRowClusterIndex(boxes, row);
@@ -336,7 +345,7 @@ public class Box : MonoBehaviour
             }
             else break;
         }
-        for (int i = boxes.Length - 1; i >= 0; i--)
+        for (int i = boxes[index].Length - 1; i >= 0; i--)
         {
             if (boxes[index][i].isVisible)
             {
@@ -447,6 +456,8 @@ public class Box : MonoBehaviour
 
     public void ResetBox()
     {
+        rowClusters.Clear();
+        colClusters.Clear();
         gameObject.SetActive(false);
         x.gameObject.SetActive(false);
         xSelected.gameObject.SetActive(false);
