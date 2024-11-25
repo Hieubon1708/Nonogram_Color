@@ -16,8 +16,7 @@ public class GamePlay : MonoBehaviour
     public CanvasGroup panelWinBack;
 
     public GameObject layerCover;
-    public Image panelLose;
-    public RectTransform popupLose;
+    public GameObject panelLose;
     public RectTransform boxAreaParent;
     public RectTransform target;
     public GameObject wooden;
@@ -25,14 +24,9 @@ public class GamePlay : MonoBehaviour
     public TextMeshProUGUI textLevel;
     public TextMeshProUGUI textNextLevel;
     public Mask mask;
-    Vector3 startBoxAreaParent;
+    Vector3 startBoxAreaParent = Vector3.zero;
 
     public Health[] healths;
-
-    private void Awake()
-    {
-        startBoxAreaParent = boxAreaParent.position;
-    }
 
     public void SwitchFontWin(CanvasGroup canvas, out CanvasGroup temp)
     {
@@ -69,6 +63,7 @@ public class GamePlay : MonoBehaviour
 
     public void Win()
     {
+        if(startBoxAreaParent == Vector3.zero) startBoxAreaParent = boxAreaParent.position;
         for (int i = 0; i < canvasBeforeWin.Length; i++)
         {
             canvasBeforeWin[i].DOFade(0f, 0.5f).SetEase(Ease.Linear);
@@ -102,9 +97,8 @@ public class GamePlay : MonoBehaviour
         layerCover.SetActive(true);
         DOVirtual.DelayedCall(1.25f, delegate
         {
-            panelLose.gameObject.SetActive(true);
+            panelLose.SetActive(true);
             layerCover.SetActive(false);
-            UIController.instance.uICommon.ScalePopup(panelLose, popupLose, 234f / 255f, 0.1f, 1f, 0.5f);
         });
     }
 
@@ -139,8 +133,7 @@ public class GamePlay : MonoBehaviour
 
     public void HidePanelLose()
     {
-        UIController.instance.uICommon.ScalePopup(panelLose, popupLose, 0f, 0f, 0.9f, 0f);
-        panelLose.gameObject.SetActive(false);
+        panelLose.SetActive(false);
         layerCover.SetActive(false);
     }
 
@@ -175,14 +168,6 @@ public class GamePlay : MonoBehaviour
         GameController.instance.SaveLevel(GameController.instance.playerController.health);
         HidePanelLose();
         healths[0].Replay();
-    }
-
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            NextLevel();
-        }
     }
 
     public void HealthSubstractAni(int index)

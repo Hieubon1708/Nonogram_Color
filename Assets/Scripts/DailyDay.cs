@@ -11,6 +11,7 @@ public class DailyDay : MonoBehaviour
     public Image progress;
     public Image image;
     public TextMeshProUGUI num;
+    public GameObject mask;
     public int index;
     public int level;
     public DateTime date;

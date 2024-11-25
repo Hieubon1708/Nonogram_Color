@@ -456,12 +456,16 @@ public class Box : MonoBehaviour
 
     public void ResetBox()
     {
+        rowClusterIndex = null;
+        colClusterIndex = null;
         rowClusters.Clear();
         colClusters.Clear();
         gameObject.SetActive(false);
         x.gameObject.SetActive(false);
         xSelected.gameObject.SetActive(false);
         image.color = Color.white;
+        x.color = new Vector4(x.color.r, x.color.b, x.color.g, 1);
+        xSelected.color = new Vector4(xSelected.color.r, xSelected.color.b, xSelected.color.g, 1);
         isVisible = false;
     }
 

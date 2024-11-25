@@ -8,8 +8,7 @@ public class UICommon : MonoBehaviour
     public GameManager gameManager;
     public Image layerCover;
     public SettingOption[] settingOptions;
-    public Image panelSetting;
-    public RectTransform popupSetting;
+    public GameObject panelSetting;
 
     void Awake()
     {
@@ -41,25 +40,14 @@ public class UICommon : MonoBehaviour
         });
     }
 
-    public void ScalePopup(Image panel, RectTransform popup, float alpha, float durationAlpha, float scale, float durationScale)
-    {
-        panel.DOKill();
-        popup.DOKill();
-
-        panel.DOFade(alpha, durationAlpha);
-        popup.DOScale(scale, durationScale).SetEase(Ease.OutBack);
-    }
-
     public void ShowPanelSetting()
     {
-        panelSetting.gameObject.SetActive(true);
-        ScalePopup(panelSetting, popupSetting, 234f / 255f, 0.1f, 1f, 0.5f);
+        panelSetting.SetActive(true);
     }
 
     public void HidePanelSetting()
     {
-        ScalePopup(panelSetting, popupSetting, 0f, 0f, 0.9f, 0f);
-        panelSetting.gameObject.SetActive(false);
+        panelSetting.SetActive(false);
     }
 
     public void Facebook()

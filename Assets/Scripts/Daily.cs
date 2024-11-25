@@ -50,6 +50,8 @@ public class Daily : MonoBehaviour
             }
             day[i] = dailyDay;
         }
+
+        //LoadPage(DateTime.Now);
     }
 
     public void LoadData()

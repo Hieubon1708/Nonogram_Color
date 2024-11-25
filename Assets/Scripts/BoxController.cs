@@ -59,19 +59,27 @@ public class BoxController : MonoBehaviour
         if (!levelDataStorage.isClicked && boxes.Length != 5)
         {
             int xCount = x.Count * GameController.instance.dataManager.sizeConfig[(int)levelConfig.typeLevel].percentX / 100;
-            /*Debug.LogWarning(xCount);
-            Debug.LogWarning(GameController.instance.GetX());*/
+            //Debug.LogWarning(xCount);
             while (xCount > 0)
             {
                 int indexRandom = Random.Range(0, x.Count);
-                x[indexRandom].IsX();
+                x[indexRandom].IsX();               
                 GameController.instance.SaveLevel(boxDO[indexRandom].i, boxDO[indexRandom].j);
                 x.RemoveAt(indexRandom);
                 boxDO.RemoveAt(indexRandom);
                 xCount--;
             }
-            //Debug.LogWarning(GameController.instance.GetX());
-        }    
+        }
+        /*for (int i = 0; i < boxes.Length; i++)
+        {
+            for (int j = 0; j < boxes[i].Length; j++)
+            {
+                if (boxes[i][j].isVisible)
+                {
+                    Debug.LogWarning(i + " " + j);
+                }
+            }
+        }*/
     } 
 
     public void LoadDataStorage(LevelDataStorage levelDataStorage)
@@ -94,7 +102,7 @@ public class BoxController : MonoBehaviour
                     boxes[i][j].isVisible = true;
                 }
             }
-        }
+        }      
         GameController.instance.playerController.hexSelected = UIController.instance.GetCurrentHex();
     }
 

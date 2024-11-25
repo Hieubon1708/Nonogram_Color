@@ -32,8 +32,8 @@ public class DailyControlView : ScrollRect
 
     public override void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log(isCanNext);
-        Debug.Log(isCanBack);
+        //Debug.Log(isCanNext);
+        //Debug.Log(isCanBack);
         startX = eventData.position.x;
         base.OnBeginDrag(eventData);
     }

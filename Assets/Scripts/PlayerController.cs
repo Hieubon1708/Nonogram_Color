@@ -69,14 +69,20 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (UIController.instance.collection.barBackCollection.activeSelf || UIController.instance.gamePlay.panelLose.gameObject.activeSelf || UIController.instance.uICommon.layerCover.gameObject.activeSelf) return;
+            if (UIController.instance.collection.barBackCollection.activeSelf 
+                || UIController.instance.gamePlay.panelLose.gameObject.activeSelf 
+                || UIController.instance.uICommon.layerCover.gameObject.activeSelf
+                || UIController.instance.uICommon.panelSetting.gameObject.activeSelf) return;
             isDrag = true;
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             isDrag = false;
-            if (UIController.instance.collection.barBackCollection.activeSelf || UIController.instance.gamePlay.panelLose.gameObject.activeSelf || UIController.instance.uICommon.layerCover.gameObject.activeSelf) return;
+            if (UIController.instance.collection.barBackCollection.activeSelf 
+                || UIController.instance.gamePlay.panelLose.gameObject.activeSelf 
+                || UIController.instance.uICommon.layerCover.gameObject.activeSelf
+                || UIController.instance.uICommon.panelSetting.gameObject.activeSelf) return;
             boxPassed.Clear();
         }
 
